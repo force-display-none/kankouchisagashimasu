@@ -1,0 +1,2 @@
+module SpotWentsHelper
+end

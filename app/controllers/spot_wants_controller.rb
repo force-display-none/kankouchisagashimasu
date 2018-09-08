@@ -1,0 +1,2 @@
+class SpotWantsController < ApplicationController
+end

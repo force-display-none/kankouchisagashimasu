@@ -1,0 +1,2 @@
+class SpotReviewHelpfulsController < ApplicationController
+end

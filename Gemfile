@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Add
 # Template/Framework
 gem 'bootstrap-sass'        #Bootstrapが使える
-gem 'compass-rails'         #Sassの機能拡張
+# gem 'compass-rails'         #Sassの機能拡張
 gem 'font-awesome-rails'    #アイコンFontAwesomeが使える
 gem 'jquery-rails'          #jqueryが使える
 gem 'jquery-turbolinks'     #Bootstrapとjquery用

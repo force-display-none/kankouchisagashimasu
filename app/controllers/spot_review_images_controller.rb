@@ -1,0 +1,2 @@
+class SpotReviewImagesController < ApplicationController
+end
