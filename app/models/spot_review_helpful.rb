@@ -1,0 +1,2 @@
+class SpotReviewHelpful < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class LSpotGenre < ApplicationRecord
+end

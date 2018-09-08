@@ -1,0 +1,2 @@
+class SpotWant < ApplicationRecord
+end
