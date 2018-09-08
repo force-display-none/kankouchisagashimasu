@@ -1,0 +1,2 @@
+class SpotReviewImage < ApplicationRecord
+end

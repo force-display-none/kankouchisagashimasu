@@ -1,0 +1,2 @@
+class SSpotGenre < ApplicationRecord
+end
