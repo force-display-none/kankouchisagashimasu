@@ -1,0 +1,2 @@
+class SpotWentsController < ApplicationController
+end
