@@ -68,7 +68,7 @@ gem 'omniauth-twitter'      #omniauthを使ってTwitterログイン出来る
 # gem 'kaminari'              #ページャ
 # gem 'meta-tags'             #metaタグヘルパー,FacebookのOGP設定用
 # gem 'nested_form'           #formで子モデルの追加が楽になる
-# gem 'paranoia', '~> 2.3', '>= 2.3.1' #論理削除用
+gem 'paranoia', '~> 2.3', '>= 2.3.1' #論理削除用
 # gem 'public_activity'       #通知機能実装用
 # gem 'rails_autolink'        #URLの自動リンク化
 # gem 'rails_config'          #定数管理

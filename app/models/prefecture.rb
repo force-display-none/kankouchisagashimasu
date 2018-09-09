@@ -6,5 +6,4 @@ class Prefecture < ApplicationRecord
 
   validates :name,      presence: true
   validates :region_id, presence: true
-  validates :region_id, uniqueness: true
 end

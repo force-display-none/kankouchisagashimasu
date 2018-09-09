@@ -6,5 +6,4 @@ class Area < ApplicationRecord
 
   validates :name,          presence: true
   validates :prefecture_id, presence: true
-  validates :prefecture_id, uniqueness: true
 end
