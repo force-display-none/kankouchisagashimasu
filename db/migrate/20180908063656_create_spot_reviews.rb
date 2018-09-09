@@ -1,6 +1,7 @@
 class CreateSpotReviews < ActiveRecord::Migration[5.2]
   def change
     create_table :spot_reviews do |t|
+      t.string  :title,            null:false
       t.text    :body,             null:false
       t.integer :season,           null:false
       t.integer :fellow_travelers, null:false

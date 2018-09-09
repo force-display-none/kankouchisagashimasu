@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2018_09_08_064542) do
   end
 
   create_table "spot_reviews", force: :cascade do |t|
+    t.string "title", null: false
     t.text "body", null: false
     t.integer "season", null: false
     t.integer "fellow_travelers", null: false
