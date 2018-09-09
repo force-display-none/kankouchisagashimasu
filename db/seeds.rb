@@ -441,3 +441,177 @@ okinawa_areas = %w(
   okinawa_areas.each do |okinawa_area|
     Area.find_or_create_by(name: okinawa_area, prefecture_id: 47)
   end
+
+# 観光地大区分ジャンルの登録
+l_genre_names = %w(
+  アウトドア ウォータースポーツ・マリンスポーツ 雪・スノースポーツ その他スポーツ・フィットネス エンタメ・アミューズメント
+  レジャー・体験 クラフト・工芸 果物・野菜狩り ミュージアム・ギャラリー 神社・神宮・寺院 伝統文化・日本文化 自然景観・絶景
+  乗り物 動・植物 風呂・スパ・サロン ショッピング 観光施設・名所巡り 祭り・イベント 宿泊施設 その他
+)
+  l_genre_names.each do |l_genre_name|
+    LSpotGenre.find_or_create_by(name: l_genre_name)
+  end
+
+# 観光地小区分ジャンルの登録
+outdoor_names = %w(
+  BBQ(バーベキュー) パラグライダー モーターパラグライダー ハンググライダー トレッキング・登山ウォーキング・ハイキング
+  ジップライン 洞窟体験・ケイビング キャンプ場・バンガロー・コテージ等 バードウォッチング ツリークライミング
+  アスレチック(フィールドアスレチック等) 森林セラピー 野外レクリエーション ナイトツアー スカイダイビング バンジージャンプ
+  オリエンテーリング・パーマネントコース その他アウトドア ウォーキングコース
+)
+  outdoor_names.each do |outdoor_name|
+    SSpotGenre.find_or_create_by(name: outdoor_name, l_spot_genre_id: 1)
+  end
+
+water_sports_names = %w(
+  スキューバダイビング シュノーケリング・ボートシュノーケル カヌー・カヤック マングローブカヤック・カヌー ラフティング パラセーリング
+  川下り・ライン下り サップ・SUP(スタンドアップパドル) 沢下り(キャニオニング) ホバーボード・フライボード バナナボート・チュービング
+  沢登り(シャワークライミング) ウォーターボール サーフィン・ボディボード ウェイクボード・ウェイクサーフィン ウィンドサーフィン
+  カイトサーフィン・カイトボード リバーブギ・ハイドロスピード 水上バイク シーウォーカー 川遊び・水辺遊び ウォータージャンプ プール
+  素潜り・スキンダイビング ヨット・ヨットセーリング その他ウォータースポーツ・マリンスポーツ ボートシュノーケル
+)
+  water_sports_names.each do |water_sports_name|
+    SSpotGenre.find_or_create_by(name: water_sports_name, l_spot_genre_id: 2)
+  end
+
+snow_sports_names = %w(
+  わかさぎ釣り スノーシュー・スノートレッキング スキー場・スノーボードゲレンデ その他雪・スノースポーツ
+  エアボード テレマークスキー クロスカントリースキー アイススケート場 犬ぞり スノーモービル 流氷ウォーク
+)
+  snow_sports_names.each do |snow_sports_name|
+    SSpotGenre.find_or_create_by(name: snow_sports_name, l_spot_genre_id: 3)
+  end
+
+other_sports_names = %w(
+  乗馬 ボルダリング・ロッククライミング バギー アーチェリー マウンテンバイク サイクリング ゴルフ・ゴルフ場 モトクロス スポーツリゾート施設
+  サッカー バブルサッカー フットサル ジョギング スカッシュ スポーツ観戦 その他スポーツ・フィットネス モーターパラグライダー サイクリングセンター
+)
+  other_sports_names.each do |other_sports_name|
+    SSpotGenre.find_or_create_by(name: other_sports_name, l_spot_genre_id: 4)
+  end
+
+entertainment_names = %w(
+  脱出・謎解きゲーム 宝探し（トレジャーハント） フライトシミュレーター サバゲー(サバイバルゲーム) ディナーショー ダンス
+  テーマパーク・レジャーランド カラオケ・パーティ インターネットカフェ・マンガ喫茶 その他エンタメ・アミューズメント
+)
+  entertainment_names.each do |entertainment_name|
+    SSpotGenre.find_or_create_by(name: entertainment_name, l_spot_genre_id: 5)
+  end
+
+experience_names = %w(
+  バイキング・ビュッフェ・ホテルレストラン 仕事体験（職業体験） イルカウォッチング・ドルフィンスイム ホエールウォッチング
+  うどん・そば打ち 釣り(釣り堀・渓流釣り・海釣り・釣り船等) 島旅行・島巡り・離島ツアー 自然体験 着物・浴衣レンタル・着付け体験
+  梅干し作り お菓子作り教室・お菓子作り体験 グラスボート 食品サンプル製作 ピザ作り 熱気球 牧場・酪農体験 動物ふれあい体験
+  ワイン作り 舞妓体験 ソーセージ・ウィンナー作り 民謡ライブ 茶道教室・茶道体験 機織り 野生動物観察 体験観光 日本酒作り・醸造体験
+  塩作り 忍者・侍・武士体験 収穫 三味線体験 ジャム作り 農業体験 おやき作り 工場見学 昆虫採集 トールペイント 無人島ツアー 漁業体験・潮干狩り・地引網
+  楽器作り 味噌作り 化石発掘 こけし絵付け 調香 バウムクーヘン作り 琉球舞踊体験 3Dプリンター体験 林業体験 ガーデニング レジャースポット
+  花摘み・ハーブ摘み 家具作り 生け花・華道禅・座禅 田舎暮らし体験 武道･武術体験 ドッグラン 写真体験 その他レジャー・体験
+)
+  experience_names.each do |experience_name|
+    SSpotGenre.find_or_create_by(name: experience_name, l_spot_genre_id: 6)
+  end
+
+craft_names = %w(
+  陶芸教室・陶芸体験 ガラス細工作り アクセサリー作り ものづくり キャンドル作り(アロマキャンドル等) 染色・染物体験 藍染め体験 草木染め 友禅染め
+  フラワーアレンジメント・ハーバリウム ポーセラーツサロン・ポーセリンアート レザークラフト ランプシェード作り 織物 箸作り 木工 手作りオルゴール
+  香水作り 紙漉き 絵画・版画体験 石鹸作り 彫金教室・彫金体験 靴作り 人形作り 苔玉作り マリンクラフト スペインタイル クリスマスリース作り
+  押し花体験 時計作り 竹細工作り フィギュア制作 エアブラシ塗装体験 グルーデコ フェルト体験 クレイアート メガネ作り 江戸切子 竹炭・花炭作り
+  彫紙アート カルトナージュ シュガークラフト 漆工芸 布草履作り カービング パッチワーク 扇子絵付け体験 彫刻 焼き絵 布ぞうり作り その他クラフト・工芸
+)
+  craft_names.each do |craft_name|
+    SSpotGenre.find_or_create_by(name: craft_name, l_spot_genre_id: 7)
+  end
+
+harvest_names = %w(
+  いちご狩り みかん狩り ぶどう狩り キノコ採り りんご狩り 桃狩り ブルーベリー狩り 梨狩り 芋掘り さくらんぼ狩り トマト狩り プラム狩り その他果物・野菜狩り
+)
+  harvest_names.each do |harvest_name|
+    SSpotGenre.find_or_create_by(name: harvest_name, l_spot_genre_id: 8)
+  end
+
+museum_names = %w(
+  スタジオ見学 映画 ワークショップ 写真館 資料館 科学館 美術館 文化施設 社会見学・社会科見学 プラネタリウム 博物館 その他ミュージアム・ギャラリー
+)
+  museum_names.each do |museum_name|
+    SSpotGenre.find_or_create_by(name: museum_name, l_spot_genre_id: 9)
+  end
+
+shrine_names = %w(
+  寺院・寺社巡り 神社・神宮巡り その他神社・神宮・寺院
+)
+  shrine_names.each do |shrine_name|
+    SSpotGenre.find_or_create_by(name: shrine_name, l_spot_genre_id: 10)
+  end
+
+traditional_culture_names = %w(
+  伝統工芸 郷土芸能・伝統芸能 日本文化 伝統舞踊 その他伝統文化 写経・写仏 座禅 滝行・護摩行・その他修行
+)
+  traditional_culture_names.each do |traditional_culture_name|
+    SSpotGenre.find_or_create_by(name: traditional_culture_name, l_spot_genre_id: 11)
+  end
+
+nature_names = %w(
+  海岸景観 郷土景観 湖沼 高原 山岳 施設景観 運河・河川景観 自然歩道・自然研究路 湿原 夜景スポット その他自然景観・絶景ビーチ・海水浴場滝・渓谷自然現象
+)
+  nature_names.each do |nature_name|
+    SSpotGenre.find_or_create_by(name: nature_name, l_spot_genre_id: 12)
+  end
+
+vehicle_names = %w(
+  クルーズ・クルージング 屋形船・納涼船 人力車 パーソナルモビリティ（セグウェイ等） レンタサイクル レンタカー 原付・バイクレンタル リムジンレンタル
+  ゴーカート・公道カート ケーブルカー・ロープウェイ レールバイク ヘリコプター遊覧 セスナ・遊覧飛行 観光馬車 観光バス・タクシー・ハイヤー その他乗り物
+)
+  vehicle_names.each do |vehicle_name|
+    SSpotGenre.find_or_create_by(name: vehicle_name, l_spot_genre_id: 13)
+  end
+
+animals_and_plants_names = %w(
+  植物 動物 その他動・植物
+)
+  animals_and_plants_names.each do |animals_and_plants_name|
+    SSpotGenre.find_or_create_by(name: animals_and_plants_name, l_spot_genre_id: 14)
+  end
+
+spa_names = %w(
+  貸切温泉・貸切露天・貸切風呂 日帰り温泉 岩盤浴 健康ランド・スーパー銭湯 その他風呂・スパ・サロン エステ リラクゼーション その他美容施設
+)
+  spa_names.each do |spa_name|
+    SSpotGenre.find_or_create_by(name: spa_name, l_spot_genre_id: 15)
+  end
+
+shopping_names = %w(
+  アウトレットモール ショッピングセンター 特産物（味覚） 名産品 センター施設 その他ショッピング
+)
+  shopping_names.each do |shopping_name|
+    SSpotGenre.find_or_create_by(name: shopping_name, l_spot_genre_id: 16)
+  end
+
+sights_names = %w(
+  観光コース 町めぐり 神社・神宮巡り 寺院・寺社巡り 史跡・名所巡り 酒造巡り 世界遺産巡り お城巡り 牧場・酪農 動物園・植物園 サンセット&ナイトツアー
+  マリーナ・ヨットハーバー 公園・庭園 文化史跡・遺跡 その他観光施設 地域風俗・風習 城郭 展望台・展望施設 旧街道 歴史的建造物 水族館 海中公園
+  産業観光施設 町並み 観光ボランティア 観光案内所 近代建築 古都歩き パワースポット 道の駅・サービスエリア 教会・モスク ダム
+)
+  sights_names.each do |sights_name|
+    SSpotGenre.find_or_create_by(name: sights_name, l_spot_genre_id: 17)
+  end
+
+festival_names = %w(
+  イベント 花火大会 祭り 花見 イルミネーション その他祭り・イベント
+)
+  festival_names.each do |festival_name|
+    SSpotGenre.find_or_create_by(name: festival_name, l_spot_genre_id: 18)
+  end
+
+hotel_names = %w(
+  リゾートホテルビジネスホテル ペンション等 民宿・ペンション 旅館 民間の宿 公共の宿 公的宿泊施設 その他宿泊施設
+)
+  hotel_names.each do |hotel_name|
+    SSpotGenre.find_or_create_by(name: hotel_name, l_spot_genre_id: 19)
+  end
+
+other_names = %w(
+  その他名所 特殊地形 エコツーリズム
+)
+  other_names.each do |other_name|
+    SSpotGenre.find_or_create_by(name: other_name, l_spot_genre_id: 20)
+  end

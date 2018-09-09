@@ -6,5 +6,4 @@ class SSpotGenre < ApplicationRecord
 
   validates :name,            presence: true
   validates :l_spot_genre_id, presence: true
-  validates :l_spot_genre_id, uniqueness: true
 end
