@@ -17,4 +17,7 @@ class User < ApplicationRecord
   validates :gender,     presence: true
   validates :age,        presence: true
   validates :management, presence: true
+
+  enum gender: { 男性: 1, 女性: 2 }
+  enum age:    { 十代: 1, 二十代: 2, 三十代: 3, 四十代: 4, 五十代: 5, 六十代: 6, 七十代: 7, 八十代以上: 8, 十代未満: 9 }
 end

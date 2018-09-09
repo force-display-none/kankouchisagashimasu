@@ -60,7 +60,7 @@ gem 'omniauth-twitter'      #omniauthを使ってTwitterログイン出来る
 #Other_utility
 # gem 'acts-as- taggable-on'  #タグ機能を実装する
 # gem 'dotenv-rails'          #環境変数管理
-# gem 'enum_help'             #enumをI18n対応させる
+gem 'enum_help'             #enumをI18n対応させる
 # gem 'geocoder'              #緯度と経度を取得する
 # gem 'gmaps4rails'           #Googleマップを表示する
 # gem 'gon'                   #railsとJS間での変数受け渡し用
