@@ -10,6 +10,21 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+      <ul>
+        <li><%= link_to "ログアウト", destory_user_session_path(current_user) %></li>
+      </ul>
+      <% else %>
+      <ul>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
+        <li><%= link_to "新規登録", new_user_registration_path %></li>
+      </ul>
+      <% end %>
+    </header>
     <%= yield %>
+    <footer>
+      <p>ここはフッターです(フッターにはコピーライトとページ上部へ戻るを表示させる予定です)</p>
+    </footer>
   </body>
 </html>
