@@ -13,7 +13,7 @@
     <header>
       <% if user_signed_in? %>
       <ul>
-        <li><%= link_to "ログアウト", destory_user_session_path(current_user) %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       </ul>
       <% else %>
       <ul>
@@ -22,6 +22,8 @@
       </ul>
       <% end %>
     </header>
+    <%= notice %>
+    <%= alert %>
     <%= yield %>
     <footer>
       <p>ここはフッターです(フッターにはコピーライトとページ上部へ戻るを表示させる予定です)</p>
