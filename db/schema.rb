@@ -116,10 +116,13 @@ ActiveRecord::Schema.define(version: 2018_09_08_064542) do
     t.text "description", null: false
     t.text "short_description", null: false
     t.string "period", null: false
+    t.string "postal_code"
     t.string "location", null: false
     t.string "path", null: false
     t.float "latitude"
     t.float "longitude"
+    t.text "map_url", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_spots_on_name"

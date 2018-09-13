@@ -9,7 +9,8 @@ class RegionsController < ApplicationController
     private
 
     def region_params
-      params.require(:region).permit(:name, :deleted_at)
+      params.require(:region).permit(:name, :deleted_at,
+      	                              prefectures_attributes: [:id, :name, :deleted_at, :_destroy])
     end
 
 end

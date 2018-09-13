@@ -1,0 +1,64 @@
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :area_id %><br />
+    <%= f.collection_select :area_id, Area.all, :id, :name, :prompt => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :s_spot_genre_id %><br />
+    <%= f.collection_select :s_spot_genre_id, SSpotGenre.all, :id, :name, :prompt => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true, autocomplete: "description" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :short_description %><br />
+    <%= f.text_field :short_description, autofocus: true, autocomplete: "short_description" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :period %><br />
+    <%= f.text_field :period, autofocus: true, autocomplete: "period" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location, autofocus: true, autocomplete: "location" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :path %><br />
+    <%= f.text_field :path, autofocus: true, autocomplete: "path" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :map_url %><br />
+    <%= f.text_field :map_url, autofocus: true, autocomplete: "map_url" %>
+  </div>
+
+  <div id="spot_images" class="field">
+    <%= f.fields_for :spot_images do |spot_image| %><br />
+      <%= render 'spot_image_fields', f: spot_image %>
+    <% end %>
+  </div>
+
+  <div id="links" class="field">
+    <%= link_to_add_association 'add spot_image', f, :spot_images %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "観光地を登録する" %>
+  </div>

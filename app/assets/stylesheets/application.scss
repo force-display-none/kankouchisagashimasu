@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+// トップの日本地図
+#japan-map {
+    width: 50%;
+    border-collapse: separate;
+    border-spacing: 1px;
+}
+.pref {
+    background: #224163;
+    min-height: 10px;
+    font-size: 0.7em;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+}
+.pref a {
+    display: block;
+    min-height: 10px;
+    text-decoration: none;
+    color: white;
+}
+#hokkaido {
+    margin: 20px 0;
+}
+
+// 観光地詳細ページ
+section {
+	float: left;
+	width: 600px;
+}
+#sidebar {
+	float: right;
+	width: 250px;
+}
+// フッター
+footer {
+	clear: both;
+}

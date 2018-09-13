@@ -1,0 +1,32 @@
+<h1><%= @spot.name %></h1>
+<p style="background-color: lightblue;">タグを表示したいです</p>
+<span>エリア=></span><%= @spot.area.prefecture.region.name %> => <%= @spot.area.prefecture.name %> => <%= @spot.area.name %><br>
+<span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %>
+<p style="display: block; float: right; width: 250px; background-color: yellow;">「行きたい」か「行った」を表示</p>
+<p style="background-color: orange;">概要のリンクとレビューのリンクをタブのように表示したいです</p>
+<section class="spot-show">
+<ul class="bxslider">
+<% @spot.spot_images.each do |image| %>
+  <li><%= attachment_image_tag image, :image, :fill, 300, 300 %></li>
+<% end %>
+</ul>
+<h2><%= @spot.name %>について</h2>
+<p><%= @spot.description %></p>
+<dl>
+<dt>営業期間または営業時間</dt>
+<dd><%= @spot.period %></dd>
+<dt>所在地</dt>
+<dd><%= @spot.location %>
+	<% if @spot.latitude.nil? || @spot.longitude.nil? %>
+	  <%= link_to "map", @spot.map_url %>
+	<% else %>
+	  <%= link_to "map", map_path %>
+  <% end %>
+</dd>
+<dt>交通アクセス</dt>
+<dd><%= @spot.path %></dd>
+</dl>
+</section>
+<div id="sidebar">
+	<a class="twitter-timeline" data-width="220" data-height="700" href="https://twitter.com/NTA_jp?ref_src=twsrc%5Etfw">Tweets by NTA_jp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
