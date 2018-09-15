@@ -23,4 +23,12 @@ class Spot < ApplicationRecord
   validates :path,              presence: true
   validates :area_id,           presence: true
   validates :s_spot_genre_id,   presence: true
+
+  def went?(user)
+    spot_wents.where(user_id: user.id).exists?
+  end
+
+  def want?(user)
+    spot_wants.where(user_id: user.id).exists?
+  end
 end

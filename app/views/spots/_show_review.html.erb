@@ -1,0 +1,43 @@
+<% if spot.spot_reviews.exists? %>
+  <% spot.spot_reviews.each do |spot_review| %>
+    <% spot_review.spot_review_images.each do |review_image| %>
+      <span><%= attachment_image_tag review_image, :image, :fill, 50, 50 %></span>
+    <% end %><br>
+    <span>タイトル</span>
+    <span><%= spot_review.title %></span><br>
+    <span>レビュー内容</span>
+    <span><%= spot_review.body %></span><br>
+    <span>行った時期</span>
+    <span><%= spot_review.season.strftime('%Y/%m') %></span><br>
+    <span>同行者</span>
+    <span><%= spot_review.fellow_travelers %></span><br>
+    <span>レビュー投稿者</span>
+    <span><%= spot_review.user.nickname %></span><br>
+    <span>年代</span>
+    <span><%= spot_review.user.age %></span><br>
+    <span>性別</span>
+    <span><%= spot_review.user.gender %></span><br>
+    <% if spot_review.helpfuled_by?(current_user) %>
+      <span>
+        <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id), method: :delete do %>
+          <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
+          <%= spot_review.spot_review_helpfuls.count %> 参考になった
+        <% end %>
+      </span>
+    <% else %>
+      <span>
+        <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id), method: :post do %>
+          <!-- <i class="fa fa-heart-o" aria-hidden="true"></i> -->
+          <%= spot_review.spot_review_helpfuls.count %> 参考になった
+        <% end %>
+      </span>
+    <% end %><!-- if spot_review.helpfuled_by? --><br>
+  <% end %><!-- @spot.spot_reviews.each do -->
+<% end %><!-- if @spot.spot_reviews.exists? -->
+<% if user_signed_in? %>
+  <%= form_for(spot_review, url: spot_spot_reviews_path(spot)) do |f| %>
+    <%= render 'spot_review_form', f: f %>
+  <% end %><!-- form_forのend -->
+<% else %>
+  <%= link_to "レビューを投稿する", new_user_session_path %>
+<% end %>

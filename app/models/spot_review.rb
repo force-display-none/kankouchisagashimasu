@@ -17,6 +17,10 @@ class SpotReview < ApplicationRecord
   validates :spot_id,          presence: true
   validates :user_id,          presence: true
 
+  def helpfuled_by?(user)
+    spot_review_helpfuls.where(user_id: user.id).exists?
+  end
+
   enum fellow_travelers: { 家族全世代: 1, 家族3歳以下のお子様連れ: 2, 家族親および祖父母: 3, カップルまたは夫婦: 4, 友達同士: 5, 一人: 6 }
   enum public: { 非公開: false, 公開: true }
 end
