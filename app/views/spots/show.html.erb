@@ -1,32 +1,71 @@
+<% f_share = "https://www.facebook.com/share.php?url=" + request.url %>
+<% t_share = "https://twitter.com/share?url=" + request.url + "&text=" %>
+<% l_share = "https://social-plugins.line.me/lineit/share?url=" + request.url %>
+<% h_share = "//b.hatena.ne.jp/add?mode=confirm&url=" + request.url + "&text=" %>
+<% g_share = "https://plus.google.com/share?url=" + request.url %>
+
 <h1><%= @spot.name %></h1>
+<%= link_to "Facebookでシェア", f_share, rel: "nofollow", target: "_blank" %><br>
+<%= link_to "Twitterでシェア", t_share, rel: "nofollow", target: "_blank" %><br>
+<%= link_to "LINEで送る", l_share, rel: "nofollow", target: "_blank" %><br>
+<%= link_to "はてブで送る", h_share, rel: "nofollow", target: "_blank" %><br>
+<%= link_to "G+で送る", g_share, rel: "nofollow", target: "_blank" %>
+
 <p style="background-color: lightblue;">タグを表示したいです</p>
 <span>エリア=></span><%= @spot.area.prefecture.region.name %> => <%= @spot.area.prefecture.name %> => <%= @spot.area.name %><br>
 <span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %>
 <p style="display: block; float: right; width: 250px; background-color: yellow;">「行きたい」か「行った」を表示</p>
-<p style="background-color: orange;">概要のリンクとレビューのリンクをタブのように表示したいです</p>
-<section class="spot-show">
+<div class="spot-show-box">
 <ul class="bxslider">
 <% @spot.spot_images.each do |image| %>
   <li><%= attachment_image_tag image, :image, :fill, 300, 300 %></li>
-<% end %>
-</ul>
-<h2><%= @spot.name %>について</h2>
-<p><%= @spot.description %></p>
-<dl>
-<dt>営業期間または営業時間</dt>
-<dd><%= @spot.period %></dd>
-<dt>所在地</dt>
-<dd><%= @spot.location %>
-	<% if @spot.latitude.nil? || @spot.longitude.nil? %>
-	  <%= link_to "map", @spot.map_url %>
-	<% else %>
-	  <%= link_to "map", map_path %>
   <% end %>
-</dd>
-<dt>交通アクセス</dt>
-<dd><%= @spot.path %></dd>
-</dl>
-</section>
+</ul>
+
+<input id="tab01" type="radio" name="tabinput" checked>
+<input id="tab02" type="radio" name="tabinput">
+
+<ul class="tabnav">
+  <li><label class="tabnav01" for="tab01">概要</label></li>
+  <li><label class="tabnav02" for="tab02">レビュー</label></li>
+</ul>
+
+<div class="tabcontent">
+  <div id="tabcontent01">
+  <%= render 'show_gaiyou', spot: @spot %>
+  </div>
+  <div id="tabcontent02">
+    <% if @spot.spot_reviews.exists? %>
+      <% @spot.spot_reviews.each do |spot_review| %>
+        <% spot_review.spot_review_images.each do |review_image| %>
+          <span><%= attachment_image_tag review_image, :image, :fill, 50, 50 %></span>
+        <% end %>
+        <span>タイトル</span>
+        <span><%= spot_review.title %></span><br>
+        <span>レビュー内容</span>
+        <span><%= spot_review.body %></span><br>
+        <span>行った時期</span>
+        <span><%= spot_review.season.strftime('%Y/%m') %></span><br>
+        <span>同行者</span>
+        <span><%= spot_review.fellow_travelers %></span><br>
+        <span>レビュー投稿者</span>
+        <span><%= spot_review.user.nickname %></span><br>
+        <span>年代</span>
+        <span><%= spot_review.user.age %></span><br>
+        <span>性別</span>
+        <span><%= spot_review.user.gender %></span><br>
+      <% end %><!-- @spot.spot_reviews.each do -->
+    <% end %><!-- if @spot.spot_reviews.exists? -->
+    <% if user_signed_in? %>
+      <%= form_for(@spot_review, url: spot_spot_reviews_path(@spot)) do |f| %>
+        <%= render 'spot_review_form', f: f %>
+      <% end %>
+    <% else %>
+      <%= link_to "レビューを投稿する", new_user_session_path %>
+    <% end %>
+  </div>
+</div><!-- class="tabcontent" -->
 <div id="sidebar">
 	<a class="twitter-timeline" data-width="220" data-height="700" href="https://twitter.com/NTA_jp?ref_src=twsrc%5Etfw">Tweets by NTA_jp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
+</div><!-- class="spot-show-box" -->

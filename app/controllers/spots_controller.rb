@@ -12,7 +12,9 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot= Spot.find(params[:id])
+    @spot = Spot.find(params[:id])
+    @spot_review = SpotReview.new
+    @spot_review_image = @spot_review.spot_review_images.build
   end
 
   def show_reviews

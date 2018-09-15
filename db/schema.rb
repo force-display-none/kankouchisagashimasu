@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_064542) do
+ActiveRecord::Schema.define(version: 2018_09_15_090141) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2018_09_08_064542) do
   create_table "spot_reviews", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.integer "season", null: false
+    t.date "season", null: false
     t.integer "fellow_travelers", null: false
     t.boolean "public", default: false, null: false
     t.integer "spot_id", null: false

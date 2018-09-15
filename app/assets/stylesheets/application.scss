@@ -38,13 +38,51 @@
 }
 
 // 観光地詳細ページ
+/* tabnav */
+.tabnav{
+    margin: 0;
+    padding: 0;
+}
+.tabnav li{
+    display: inline;
+}
+.tabnav li label{
+    display: inline-block;
+    background: #ddd;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+input[name=tabinput]{
+  display: none;
+}
+#tab01:checked ~ .tabnav .tabnav01,
+#tab02:checked ~ .tabnav .tabnav02 {
+    background: #FFCC66;
+    color: #333;
+}
+
+/* tabcontent */
+.tabcontent{
+    padding: 20px;
+    border: 1px dotted #ccc;
+}
+.tabcontent div{
+  display: none;
+}
+#tab01:checked ~ .tabcontent #tabcontent01,
+#tab02:checked ~ .tabcontent #tabcontent02  {
+  display: block;
+}
 section {
 	float: left;
 	width: 600px;
 }
 #sidebar {
 	float: right;
-	width: 250px;
+	width: 20%;
 }
 // フッター
 footer {

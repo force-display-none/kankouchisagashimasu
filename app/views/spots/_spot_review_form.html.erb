@@ -1,0 +1,27 @@
+<span class="field">
+  <%= f.label :タイトル %><br />
+  <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+</span><br>
+<span class="field">
+  <%= f.label :レビュー内容 %><br />
+  <%= f.text_field :body, autofocus: true, autocomplete: "body" %>
+</span><br>
+<span class="field">
+  <%= f.label :行った時期 %><br />
+  <%= f.date_select :season, {:discard_day => true}, start_year: 2018, end_year:   (Time.now.year - 30) %>
+</span><br>
+<span class="field">
+  <%= f.label :同行者 %><br />
+  <%= f.select :fellow_travelers, SpotReview.fellow_travelers.keys.to_a, {} %>
+</span><br>
+<span id="spot_review_images" class="field">
+  <%= f.fields_for :spot_review_images do |spot_review_image| %><br />
+    <%= render 'spot_review_image_fields', f: spot_review_image %>
+  <% end %>
+</span>
+<span id="links" class="field">
+    <%= link_to_add_association 'add spot_review_image', f, :spot_review_images %>
+</span><br>
+<span class="actions">
+  <%= f.submit "レビューを投稿する" %>
+</span>

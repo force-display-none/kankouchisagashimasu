@@ -3,5 +3,5 @@ class SpotReviewImage < ApplicationRecord
 
   has_many :likes
 
-  validates :spot_review_id, presence: true
+  attachment :image
 end

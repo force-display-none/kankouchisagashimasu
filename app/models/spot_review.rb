@@ -1,9 +1,11 @@
 class SpotReview < ApplicationRecord
-  belongs_to :spot
-  belongs_to :user
+  belongs_to :spot, optional: true
+  belongs_to :user, optional: true
 
   has_many :spot_review_helpfuls
-  has_many :spot_review_images
+  has_many :spot_review_images, inverse_of: :spot_review
+
+  accepts_nested_attributes_for :spot_review_images, reject_if: :all_blank, allow_destroy: true
 
   validates :title,            presence: true
   validates :title,            length: { maximum:50 }

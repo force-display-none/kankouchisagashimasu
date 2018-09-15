@@ -1,0 +1,18 @@
+<section class="spot-show">
+  <h2><%= spot.name %>について</h2>
+  <p><%= spot.description %></p>
+  <dl>
+    <dt>営業期間または営業時間</dt>
+      <dd><%= spot.period %></dd>
+    <dt>所在地</dt>
+      <dd><%= spot.location %>
+    <% if spot.latitude.nil? || spot.longitude.nil? %>
+      <%= link_to "map", spot.map_url %>
+    <% else %>
+      <%= link_to "map", map_path %>
+      <% end %>
+      </dd>
+    <dt>交通アクセス</dt>
+      <dd><%= spot.path %></dd>
+  </dl>
+</section>
