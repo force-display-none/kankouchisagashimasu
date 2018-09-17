@@ -1,62 +1,59 @@
 <h1><%= @spot.name %></h1>
+<% if @spot.spot_wents.exists? %><small style="color: orange;"><%= @spot.spot_wents.count %>人のユーザーが<%= @spot.name %>に行きました</small><% end %>
+<% if @spot.spot_wants.exists? %><small style="color: blue;"><%= @spot.spot_wants.count %>人のユーザーが行きたいと思っています</small><% end %>
 
-<% f_share = "https://www.facebook.com/share.php?url=" + request.url %>
-<% t_share = "https://twitter.com/share?url=" + request.url + "&text=" %>
-<% l_share = "https://social-plugins.line.me/lineit/share?url=" + request.url %>
-<% h_share = "//b.hatena.ne.jp/add?mode=confirm&url=" + request.url + "&text=" %>
-<% g_share = "https://plus.google.com/share?url=" + request.url %>
-
-<%= link_to "Facebookでシェア", f_share, rel: "nofollow", target: "_blank" %><br>
-<%= link_to "Twitterでシェア", t_share, rel: "nofollow", target: "_blank" %><br>
-<%= link_to "LINEで送る", l_share, rel: "nofollow", target: "_blank" %><br>
-<%= link_to "はてブで送る", h_share, rel: "nofollow", target: "_blank" %><br>
-<%= link_to "G+で送る", g_share, rel: "nofollow", target: "_blank" %>
-
-<p style="background-color: lightblue;">タグを表示したいです</p>
-<span>エリア=></span><%= @spot.area.prefecture.region.name %> => <%= @spot.area.prefecture.name %> => <%= @spot.area.name %><br>
-<span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %>
-
-
-<% if @spot.went?(current_user) %>
-  <li>
-    <%= link_to spot_spot_wents_path(@spot), method: :delete do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= @spot.spot_wents.count %> 行った
-    <% end %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to spot_spot_wents_path(@spot), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-      <%= @spot.spot_wents.count %> 行った
-      <% if @spot.want?(current_user) %>
-        <li>
-          <%= link_to spot_spot_wants_path(@spot), method: :delete do %>
-            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-            <%= @spot.spot_wants.count %> 行きたい
-          <% end %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to spot_spot_wants_path(@spot), method: :post do %>
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <%= @spot.spot_wants.count %> 行きたい
-          <% end %>
-        </li>
-      <% end %>
-    <% end %>
-  </li>
-<% end %>
-
-
-
-
-<div class="spot-show-box">
-<ul class="bxslider">
-<% @spot.spot_images.each do |image| %>
-  <li><%= attachment_image_tag image, :image, :fill, 300, 300 %></li>
-  <% end %>
+<ul class="shareList2">
+  <li class="shareList2__item"><a class="shareList2__link icon-twitter" href="https://twitter.com/share?url=<%= request.url %>&text=" target="_blank" title="Twitter"></a></li>
+  <li class="shareList2__item"><a class="shareList2__link icon-facebook" href="https://www.facebook.com/share.php?url=<%= request.url %>" target="_blank" title="Facebook"></a></li>
+  <li class="shareList2__item"><a class="shareList2__link icon-google-plus" href="https://plus.google.com/share?url=<%= request.url %>" target="_blank" title="Google+"></a></li>
+  <li class="shareList2__item"><a class="shareList2__link icon-hatebu" href="//b.hatena.ne.jp/add?mode=confirm&url=<%= request.url %>&text=" target="_blank" title="はてなブックマーク"></a></li>
+  <li class="shareList2__item"><a class="shareList2__link icon-line" href="https://social-plugins.line.me/lineit/share?url=<%= request.url %>" target="_blank" title="LINE"></a></li>
 </ul>
+
+<% @spot.tag_list.each do |tag| %>
+  <span class="label label-primary"><%= tag %></span>
+<% end %><br>
+
+<span>エリア=></span><%= @spot.area.prefecture.region.name %> => <%= @spot.area.prefecture.name %> => <%= @spot.area.name %><br>
+<span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %><br>
+
+<% if user_signed_in? %>
+  <% if @spot.went?(current_user) %>
+    <li>
+      <%= link_to spot_spot_wents_path(@spot), method: :delete do %>
+        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>行ったを外す<% end %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to spot_spot_wents_path(@spot), method: :post do %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>行った<% end %>
+        <% if @spot.want?(current_user) %>
+          <li>
+            <%= link_to spot_spot_wants_path(@spot), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>行きたいを外す<% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to spot_spot_wants_path(@spot), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>行きたい<% end %>
+          </li>
+        <% end %>
+    </li>
+  <% end %><!-- if @spot.went?(current_user) -->
+<% else %>
+  <%= link_to "行った", new_user_session_path %>
+  <%= link_to "行きたい", new_user_session_path %><br><small style="color: red;">(行った/行きたいの利用には<%= link_to "ログイン", new_user_session_path %>が必要です)</small><br>
+<% end %><!-- if user_signed_in? -->
+
+<main class="spot-show-box">
+  <% if @spot.spot_images.exists? %>
+  <ul class="bxslider">
+  <% @spot.spot_images.each do |image| %>
+    <li><%= attachment_image_tag image, :image, :fill, 300, 300 %></li>
+    <% end %>
+  </ul>
+  <small>※掲載されている情報や写真については最新の情報とは限りません。必ずご自身で事前にご確認の上、ご利用ください</small>
+<% end %>
 
 <input id="tab01" type="radio" name="tabinput" checked>
 <input id="tab02" type="radio" name="tabinput">
@@ -65,11 +62,7 @@
   <li><label class="tabnav01" for="tab01">概要</label></li>
   <li><label class="tabnav02" for="tab02">レビュー</label></li>
 </ul>
-
 <div class="tabcontent">
-  <span id="sidebar">
-  <a class="twitter-timeline" data-width="220" data-height="700" href="https://twitter.com/NTA_jp?ref_src=twsrc%5Etfw">Tweets by NTA_jp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</span>
   <div id="tabcontent01">
   <%= render 'show_gaiyou', spot: @spot %>
   </div>
@@ -77,4 +70,7 @@
   <%= render 'show_review', spot: @spot, spot_review: @spot_review %>
   </div>
 </div><!-- class="tabcontent" -->
-</div><!-- class="spot-show-box" -->
+</main><!-- class="spot-show-box" -->
+<div id="sidebar" >
+  <a class="twitter-timeline" data-width="220" data-height="700" href="https://twitter.com/NTA_jp?ref_src=twsrc%5Etfw">Tweets by NTA_jp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>

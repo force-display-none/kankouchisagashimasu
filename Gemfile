@@ -58,7 +58,7 @@ gem 'omniauth-facebook'     #omniauthを使ってFacebookログイン出来る
 gem 'omniauth-twitter'      #omniauthを使ってTwitterログイン出来る
 
 #Other_utility
-# gem 'acts-as- taggable-on'  #タグ機能を実装する
+gem 'acts-as-taggable-on'     #タグ機能を実装する
 # gem 'dotenv-rails'          #環境変数管理
 gem 'enum_help'               #enumをI18n対応させる
 gem 'geocoder'                #緯度と経度を取得する
@@ -75,6 +75,7 @@ gem 'paranoia', '~> 2.3', '>= 2.3.1' #論理削除用
 # gem 'ransack'               #検索機能実装用
 # gem 'select2-rails'         #セレクトボックスに検索機能がつく
 # gem 'socialization'         #いいね機能実装用
+gem 'i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

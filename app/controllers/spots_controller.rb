@@ -15,6 +15,11 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @spot_review = SpotReview.new
     @spot_review_image = @spot_review.spot_review_images.build
+    if user_signed_in?
+      session[:url] = nil
+    else
+      session[:url] = request.url
+    end
   end
 
   def show_reviews
@@ -37,7 +42,7 @@ class SpotsController < ApplicationController
 
     def spot_params
     	params.require(:spot).permit(:name, :area_id, :s_spot_genre_id, :description, :short_description,
-    	                             :period, :postal_code, :location, :path, :latitude, :longitude, :deleted_at, :map_url,
+    	                             :period, :postal_code, :location, :path, :latitude, :longitude, :deleted_at, :map_url, :tag_list,
                                     spot_images_attributes: [ :id, :image, :_destory ])
     end
 

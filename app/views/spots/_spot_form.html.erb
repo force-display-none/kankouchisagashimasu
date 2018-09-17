@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :spot, :tag_list %><br />
+    <%= f.text_field :tag_list, value: @spot.tag_list.join(',') %>
+  </div>
+
+  <div class="field">
     <%= f.label :s_spot_genre_id %><br />
     <%= f.collection_select :s_spot_genre_id, SSpotGenre.all, :id, :name, :prompt => true %>
   </div>

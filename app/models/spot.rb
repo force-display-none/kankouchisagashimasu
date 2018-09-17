@@ -1,5 +1,7 @@
 class Spot < ApplicationRecord
   acts_as_paranoid
+  acts_as_taggable
+  acts_as_taggable_on :tags, :interests
   geocoded_by :location, latitude: :latitude, longitude: :longitude
   after_validation :geocode
 

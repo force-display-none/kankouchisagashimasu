@@ -59,6 +59,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (6.0.0)
+      activerecord (~> 5.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     archive-zip (0.11.0)
@@ -324,6 +326,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   annotate!
   better_errors
   binding_of_caller
@@ -341,6 +344,7 @@ DEPENDENCIES
   gmaps4rails
   hirb
   hirb-unicode
+  i18n
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails

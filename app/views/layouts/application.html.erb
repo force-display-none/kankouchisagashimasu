@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kankouchisagashimasu</title>
+    <title>観光地さがします</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="UTF-8">
+    <meta name="description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="観光地さがします"/>
+    <meta property="og:description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。" />
+    <!-- <meta property="og:url" content="http://localhost:3000" /> -->
+    <!-- <meta property="og:image" content="https://secure.gravatar.com/avatar/ba111671b9d4dbdb9eff02471c361827" /> -->
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <link href="/assets/style.css" rel="stylesheet" />
+    <link href="/assets/icon.css" rel="stylesheet" />
     <!-- <!– Read bxSlider CSS file –> -->
     <link href="/assets/jquery.bxslider.css" rel="stylesheet" />
   </head>
@@ -17,15 +25,16 @@
     <header style="background-color: orange;">
       <% if user_signed_in? %>
       <ul>
+        <li><%= link_to "TOPへ", root_path %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       </ul>
       <% else %>
       <ul>
+        <li><%= link_to "TOPへ", root_path %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>
         <li><%= link_to "新規登録", new_user_registration_path %></li>
       </ul>
       <% end %>
-      <p>パンくずリストを表示したいです</p>
     </header>
     <%= notice %>
     <%= alert %>

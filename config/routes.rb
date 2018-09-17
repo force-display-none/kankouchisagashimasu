@@ -12,24 +12,19 @@ Rails.application.routes.draw do
   get '/spots/:id/map' => 'spots#map', as: :map
   get '/prefectures/:id/search' => 'prefectures#search', as: :search
 
-  resources :regions, only: [:show, :index]do
-  	resources :prefectures, only: [:show, :index]do
-  	  resources :areas, only: [:show, :index]
-
+  resources :regions, only: [:show, :index]
+  resources :prefectures, only: [:show, :index]
+  resources :areas, only: [:show, :index]
+  resources :spots, only: [:new, :create, :show, :edit, :update, :destroy]do
+    resource :spot_wants, only: [:create, :destroy]
+    resource :spot_wents, only: [:create, :destroy]
+    resources :spot_images, only: [:create, :index, :destroy]
+    resources :spot_reviews, only: [:create, :index, :update, :destroy]do
+      resource :spot_review_helpfuls, only: [:create, :destroy]
+      resources :spot_review_images, only: [:create, :index, :destroy]do
+        resource :likes, only: [:create, :destroy]
+      end
     end
   end
-        resources :spots, only: [:new, :create, :show, :edit, :update, :destroy]do
-          resource :spot_wants, only: [:create, :destroy]
-          resource :spot_wents, only: [:create, :destroy]
-          resources :spot_images, only: [:create, :index, :destroy]
-          resources :spot_reviews, only: [:create, :index, :update, :destroy]do
-            resource :spot_review_helpfuls, only: [:create, :destroy]
-            resources :spot_review_images, only: [:create, :index, :destroy]do
-              resource :likes, only: [:create, :destroy]
-            end
-          end
-        end
-
-
   resources :users, only: [:show, :index, :edit, :update, :destroy]
 end

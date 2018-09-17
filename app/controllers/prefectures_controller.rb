@@ -2,6 +2,11 @@ class PrefecturesController < ApplicationController
 
   def index
   	@prefectures = Prefecture.all
+    if user_signed_in?
+      unless session[:url].blank?
+        redirect_to session[:url]
+      end
+    end
   end
 
   def show
