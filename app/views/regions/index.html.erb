@@ -1,0 +1,11 @@
+<section class="left">
+<h1>地域の一覧から選ぶ</h1>
+<% @regions.each do |region| %>
+  <ul><h2><%= region.name %></h2>
+  	<% region.prefectures.each do |prefecture| %>
+  	<li><h3><%= link_to "#{prefecture.name}", areas_path(prefecture, id: prefecture.id) %></h3></li>
+  	<% end %>
+  </ul>
+  <% end %>
+</section>
+<%= render 'layouts/sidebar' %>

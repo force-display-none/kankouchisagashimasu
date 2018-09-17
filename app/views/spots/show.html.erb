@@ -1,3 +1,5 @@
+<span><%= link_to "全国", root_path %> => 地域:</span><%= link_to "#{@spot.area.prefecture.region.name}", regions_path(@spot, id: @spot.area.prefecture.region.id) %> => 都道府県名:<%= link_to "#{@spot.area.prefecture.name}", areas_path(@spot, id: @spot.area.prefecture.id) %> => エリア:<%= link_to "#{@spot.area.name}", area_path(@spot.area) %><br>
+<span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %><br>
 <h1><%= @spot.name %></h1>
 <% if @spot.spot_wents.exists? %><small style="color: orange;"><%= @spot.spot_wents.count %>人のユーザーが<%= @spot.name %>に行きました</small><% end %>
 <% if @spot.spot_wants.exists? %><small style="color: blue;"><%= @spot.spot_wants.count %>人のユーザーが行きたいと思っています</small><% end %>
@@ -13,9 +15,6 @@
 <% @spot.tag_list.each do |tag| %>
   <span class="label label-primary"><%= tag %></span>
 <% end %><br>
-
-<span>エリア=></span><%= @spot.area.prefecture.region.name %> => <%= @spot.area.prefecture.name %> => <%= @spot.area.name %><br>
-<span>ジャンル=></span><%= @spot.s_spot_genre.l_spot_genre.name %> => <%= @spot.s_spot_genre.name %><br>
 
 <% if user_signed_in? %>
   <% if @spot.went?(current_user) %>
@@ -71,6 +70,4 @@
   </div>
 </div><!-- class="tabcontent" -->
 </main><!-- class="spot-show-box" -->
-<div id="sidebar" >
-  <a class="twitter-timeline" data-width="220" data-height="700" href="https://twitter.com/NTA_jp?ref_src=twsrc%5Etfw">Tweets by NTA_jp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
+<%= render 'layouts/sidebar' %>

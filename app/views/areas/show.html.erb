@@ -1,0 +1,10 @@
+<span><%= link_to "全国", root_path %> => 地域:</span><%= link_to "#{@area.prefecture.region.name}", regions_path(@area, id: @area.prefecture.region.id) %> => 都道府県名:<%= link_to "#{@area.prefecture.name}", areas_path(@area, id: @area.prefecture.id) %> => エリア:<%= @area.name %>
+<h1>観光地一覧(<%= @area.prefecture.name %>：<%= @area.name %>エリア)</h1>
+<section class="left">
+<% if @area.spots.exists? %>
+  <% @area.spots.each do |spot| %>
+	<h2><%= link_to "#{spot.name}", spot_path(spot) %></h2>
+  <% end %>
+<% end %>
+</section>
+<%= render 'layouts/sidebar' %>

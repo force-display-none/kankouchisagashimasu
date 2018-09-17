@@ -44,12 +44,7 @@ input[name=tabinput]{
 #tab02:checked ~ .tabcontent #tabcontent02  {
   display: block;
 }
-section {
+.left {
 	float: left;
 	width: 600px;
-}
-#sidebar {
-    position: relative;
-	float: right;
-	width: 25%;
 }

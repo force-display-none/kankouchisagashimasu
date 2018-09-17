@@ -21,8 +21,8 @@ class PrefecturesController < ApplicationController
     while area.spots.count == 0 do
       area = prefecture.areas.offset( rand(prefecture.areas.count) ).first
       i += 1
-      if i > 200
-      	redirect_to root_path and return
+      if i > 50
+      	redirect_to areas_path(prefecture, id: prefecture.id) and return
       end
     end
   	spot = area.spots.offset( rand(area.spots.count) ).first
