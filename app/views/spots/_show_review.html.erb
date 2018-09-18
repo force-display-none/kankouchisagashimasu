@@ -16,23 +16,25 @@
         <dt>投稿者</dt>
           <dd><%= spot_review.user.nickname %>さん(年代：<%= spot_review.user.age %>｜性別：<%= spot_review.user.gender %>)</dd>
         <% if user_signed_in? %>
-          <% if spot_review.helpfuled_by?(current_user) %>
-            <dt>参考になったを外しますか？</dt>
-              <dd>
-                <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id), method: :delete do %>
-                <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
-                <%= spot_review.spot_review_helpfuls.count %> はい
-                <% end %>
-              </dd>
-          <% else %>
-            <dt>このレビューは参考になりましたか？</dt>
-              <dd>
-                <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id), method: :post do %>
-                <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
-                <%= spot_review.spot_review_helpfuls.count %> はい
-                <% end %>
-              </dd>
-          <% end %><!-- if spot_review.helpfuled_by? -->
+          <% if spot_review.user.id != current_user.id %>
+            <% if spot_review.helpfuled_by?(current_user) %>
+              <dt>参考になったを外しますか？</dt>
+                <dd>
+                  <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id),   method: :delete do %>
+                  <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
+                  <%= spot_review.spot_review_helpfuls.count %> はい
+                  <% end %>
+                </dd>
+            <% else %>
+              <dt>このレビューは参考になりましたか？</dt>
+                <dd>
+                  <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id),   method: :post do %>
+                  <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
+                  <%= spot_review.spot_review_helpfuls.count %> はい
+                  <% end %>
+                </dd>
+            <% end %><!-- if spot_review.helpfuled_by? -->
+          <% end %><!-- if spot_review.user.id != current_user.id -->
         <% end %><!-- if user_signed_in? -->
       </dl>
     <% end %><!-- @spot.spot_reviews.each do -->

@@ -72,7 +72,7 @@ gem 'paranoia', '~> 2.3', '>= 2.3.1' #論理削除用
 # gem 'public_activity'       #通知機能実装用
 # gem 'rails_autolink'        #URLの自動リンク化
 # gem 'rails_config'          #定数管理
-# gem 'ransack'               #検索機能実装用
+gem 'ransack'                 #検索機能実装用
 # gem 'select2-rails'         #セレクトボックスに検索機能がつく
 # gem 'socialization'         #いいね機能実装用
 gem 'i18n'

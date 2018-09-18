@@ -1,0 +1,43 @@
+<div id="tabcontent02">
+  <% if spot_reviews.exists? %>
+    <% spot_reviews.each do |review| %>
+    <dl style="float: left;">
+      <%= form_for(review, url: spot_spot_review_path( spot_id: review.spot, id: review.id)) do |f| %>
+      <dt>観光地名:
+        <%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot) %>
+      </dt>
+      <dd>
+        <span class="field">
+          <%= f.label :タイトル %>
+          <br />
+          <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+        </span>
+        <br>
+        <span class="field">
+          <%= f.label :レビュー内容 %>
+          <br />
+          <%= f.text_area :body, rows: '20', cols: '40', autofocus: true, autocomplete: "body" %>
+        </span><br>
+        <span class="field">
+          <%= f.label :行った時期 %>
+          <br />
+          <%= f.date_select :season, {:discard_day => true}, start_year: 2018, end_year:   (Time.now.year - 30) %>
+        </span><br>
+        <span class="field">
+          <%= f.label :同行者 %>
+          <br />
+          <%= f.select :fellow_travelers, SpotReview.fellow_travelers.keys.to_a, {} %>
+        </span><br>
+        <span class="actions">
+          <%= f.submit "レビューを更新する" %>
+        </span>
+        <% end %><!-- form_for -->
+        <br>
+        <%= link_to "このレビューを削除", spot_spot_review_path(review, spot_id: review.spot.id, id: review.id), method: :delete, "  data-confirm" => " 本当に削除しますか？" %>
+      </dd>
+    </dl>
+    <% end %><!-- spot_reviews.each do -->
+  <% else %>
+  <span>投稿したレビューはありません</span>
+  <% end %><!-- if spot_reviews.exists? -->
+</div>

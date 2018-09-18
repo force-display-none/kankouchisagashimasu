@@ -1,7 +1,16 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
+    user = User.find(params[:id])
+    if user.id != current_user.id
+      redirect_to user_path(current_user)
+    end
     @user = current_user
+    @spot_wants = @user.spot_wants
+    @spot_wents = @user.spot_wents
+    @spot_reviews = @user.spot_reviews
+    @spot_review_helpfuls = @user.spot_review_helpfuls
   end
 
   def my_reviews
@@ -29,6 +38,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = current_user
+    user.destory
+    redirect_to root_path
   end
 
     private

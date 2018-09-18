@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/users/:id/my_like_images' => 'users#my_like_images', as: :users_my_like_images
   get '/spots/:id/map' => 'spots#map', as: :map
   get '/prefectures/:id/search' => 'prefectures#search', as: :search
+  get 'search', to: 'areas#show'
 
   resources :regions, only: [:show, :index]
   resources :prefectures, only: [:show, :index]
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show, :index, :edit, :update, :destroy]
+
 end

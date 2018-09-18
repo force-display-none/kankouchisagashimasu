@@ -1,0 +1,24 @@
+<div id="tabcontent01">
+  <ul style="float: left;">行きたい一覧
+  <% if spot_wants.exists? %>
+    <% spot_wants.each do |want| %>
+      <li>観光地名：<%= link_to "#{want.spot.name}(#{want.spot.area.prefecture.name})", spot_path(want.spot) %><br>
+      <%= link_to spot_spot_wents_path(want.spot), method: :post, "data-confirm" => "更新後は#{want.spot.name}のページへ行きます" do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>行きたいから行ったに更新する<% end %>
+      <%= link_to spot_spot_wants_path(want.spot), method: :delete, "data-confirm" => "本当に外しますか？" do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>行きたいを外す<% end %></li>
+    <% end %></ul>
+  <% else %>
+    <li>「行きたい」を登録している観光地はありません</li></ul>
+  <% end %>
+  <ul style="float: right;">行った一覧
+  <% if spot_wents.exists? %>
+    <% spot_wents.each do |went| %>
+      <li>観光地名：<%= link_to "#{went.spot.name}(#{went.spot.area.prefecture.name})", spot_path(went.spot) %><br>
+      <%= link_to spot_spot_wents_path(went.spot), method: :delete, "data-confirm" => "本当に外しますか？" do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>行ったを外す<% end %></li>
+    <% end %></ul>
+  <% else %>
+    <li>「行った」を登録している観光地はありません</li></ul>
+  <% end %>
+</div>

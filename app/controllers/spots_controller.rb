@@ -20,6 +20,7 @@ class SpotsController < ApplicationController
     else
       session[:url] = request.url
     end
+    flash.now[:notice] = "この観光地はいかがですか？"
   end
 
   def show_reviews

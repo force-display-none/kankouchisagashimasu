@@ -1,0 +1,13 @@
+<div id="tabcontent03">
+  <% if spot_review_helpfuls.exists? %>
+    <% spot_review_helpfuls.each do |helpful| %>
+    <% user = helpful.spot_review.user %><% review = helpful.spot_review %>
+      <dl style="float: left;">
+        <dt>観光地名:<%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot) %></dt>
+        <dd>投稿者:<%= user.nickname %>さん(<%= user.age %>/<%= user.gender %>)<br>タイトル:<%= review.title %> <br>行った時期:<%= review.season.strftime('%Y年/%m月') %> <br>同行者:<%= review.fellow_travelers %><br>内容:<%= review.body %><br>参考にされている数<%= review.spot_review_helpfuls.count %><br><%= link_to "参考になったを外す", spot_spot_review_spot_review_helpfuls_path(spot_id: review.spot.id, spot_review_id: review.id), method: :delete, "data-confirm" => "本当に外しますか？" %></dd>
+      </dl>
+    <% end %><!-- spot_review_helpfuls.each do -->
+  <% else %>
+    <span>参考にしているレビューはありません</span>
+  <% end %><!-- if spot_review_helpfuls.exists? -->
+</div>

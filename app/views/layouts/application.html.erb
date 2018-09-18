@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="UTF-8">
+    <meta http-equiv="content-language" content="ja">
     <meta name="description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。">
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="観光地さがします"/>
@@ -25,12 +26,14 @@
     <header style="background-color: orange;">
       <% if user_signed_in? %>
       <ul>
+        <li>ようこそ<%= current_user.nickname %>さん</li>
         <li><%= link_to "TOPへ", root_path %></li>
         <li><%= link_to "マイページ", user_path(current_user) %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       </ul>
       <% else %>
       <ul>
+        <li>ようこそゲストさん</li>
         <li><%= link_to "TOPへ", root_path %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>
         <li><%= link_to "初めての方はこちら", new_user_registration_path %></li>
@@ -38,10 +41,11 @@
       <% end %>
     </header>
     <%= notice %>
-    <%= alert %>
+    <%= alert %><br>
     <%= yield %>
     <footer>
-      <p style="background-color: orange;">ここはフッターです(フッターにはコピーライトとページ上部へ戻るを表示させる予定です)</p>
+      <p style="background-color: orange;">ここはフッターです(フッターにはコピーライトとページ上部へ戻るを表示させる予定です)
+      <%= link_to "一覧で選ぶ", regions_path %></p>
     </footer>
     <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="/assets/jquery.bxslider.min.js"></script>

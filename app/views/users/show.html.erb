@@ -1,35 +1,7 @@
-<h2><%= @user.nickname %>さんの登録情報</h2>
-
+<h2><%= @user.nickname %>さんのページです</h2>
+<h3>登録情報を変更する</h3><i style="float: right;"><%= link_to "退会する", user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %></i>
 <%= form_for(@user) do |f| %>
-
-  <div class="field">
-    <%= f.label :名前 %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :ニックネーム %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :性別 %><br />
-    <%= f.select :gender, User.genders.keys.to_a, {include_blank: true} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :年代 %><br />
-    <%= f.select :age, User.ages.keys.to_a, {include_blank: true} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "上記の内容で更新する" %>
-  </div>
+ <%= render 'edit_user_form', f: f %>
 <% end %>
 
 <input id="tab01" type="radio" name="tabinput" checked>
@@ -37,14 +9,13 @@
 <input id="tab03" type="radio" name="tabinput">
 
 <ul class="tabnav">
-  <li><label class="tabnav01" for="tab01">メニュー1</label></li>
-  <li><label class="tabnav02" for="tab02">メニュー2</label></li>
-  <li><label class="tabnav03" for="tab03">メニュー3</label></li>
+  <li><label class="tabnav01" for="tab01">行きたい/行った一覧</label></li>
+  <li><label class="tabnav02" for="tab02">投稿レビュー一覧</label></li>
+  <li><label class="tabnav03" for="tab03">参考になったレビュー一覧</label></li>
 </ul>
 
 <div class="tabcontent">
-  <div id="tabcontent01">タブ1の内容</div>
-  <div id="tabcontent02">タブ2の内容<br>タブ2の内容</div>
-  <div id="tabcontent03">タブ3の内容<br>タブ3の内容<br>タブ3の内容</div>
+  <%= render 'my_wants_and_wents', spot_wants: @spot_wants, spot_wents: @spot_wents %>
+  <%= render 'my_reviews', spot_reviews: @spot_reviews %>
+  <%= render 'my_keep_helpfuls', spot_review_helpfuls: @spot_review_helpfuls %>
 </div>
-  

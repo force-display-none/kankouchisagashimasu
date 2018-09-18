@@ -14,9 +14,19 @@ class SpotReviewsController < ApplicationController
   end
 
   def update
+    spot_review = SpotReview.find(params[:id])
+    if spot_review.user.id == current_user.id
+      spot_review.update(spot_review_params)
+    end
+    redirect_to user_path(current_user)
   end
 
   def destroy
+    spot_review = SpotReview.find(params[:id])
+    if spot_review.user.id == current_user.id
+      spot_review.destroy
+    end
+    redirect_to user_path(current_user)
   end
 
     private
