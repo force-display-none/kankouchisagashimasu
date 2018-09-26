@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'b3bca507cb0949733c890568a6b71df2a0637cae50092f737560c4f813d391256a60930e67e6142e219d32f7c3bf90ad5d144f75c9961f55c91870af68f8d575'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -257,7 +257,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
+  config.omniauth :facebook, "682762378746819", "0323f06d3bfc2734abd44651318f3f60", scope: 'email', info_fields: 'email,name'
+  #config.omniauth :twitter, ENV['uzItwjHrz0Djl6OPlB09GCybj'], ENV['k29YZfHzFFgXID0rEyW6a5SmRTZYFFvP4xQIVmk5mFqzZCQ4u5'], display: 'popup'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

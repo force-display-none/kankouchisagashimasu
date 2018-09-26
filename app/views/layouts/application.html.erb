@@ -9,6 +9,7 @@
     <meta name="description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。">
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="観光地さがします"/>
+    <meta property="og:site_name" content="観光地さがします"/>
     <meta property="og:description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。" />
     <!-- <meta property="og:url" content="http://localhost:3000" /> -->
     <!-- <meta property="og:image" content="https://secure.gravatar.com/avatar/ba111671b9d4dbdb9eff02471c361827" /> -->
@@ -23,6 +24,31 @@
   </head>
 
   <body>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '682762378746819',
+        xfbml      : true,
+        version    : 'v3.1'
+        });
+      FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+    </script>
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
     <header style="background-color: orange;">
       <% if user_signed_in? %>
       <ul>
@@ -37,6 +63,8 @@
         <li><%= link_to "TOPへ", root_path %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>
         <li><%= link_to "初めての方はこちら", new_user_registration_path %></li>
+        <li><%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %></li>
+        <li><%#= link_to "Twitterでログイン", user_twitter_omniauth_authorize_path %></li>
       </ul>
       <% end %>
     </header>

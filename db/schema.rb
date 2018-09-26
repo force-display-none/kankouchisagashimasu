@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_060632) do
+ActiveRecord::Schema.define(version: 2018_09_26_100008) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -179,6 +179,9 @@ ActiveRecord::Schema.define(version: 2018_09_16_060632) do
     t.integer "age", null: false
     t.string "management", default: "user", null: false
     t.datetime "deleted_at"
+    t.string "provider"
+    t.string "facebook_uid"
+    t.string "twitter_uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
