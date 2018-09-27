@@ -11,8 +11,9 @@
     <meta property="og:title" content="観光地さがします"/>
     <meta property="og:site_name" content="観光地さがします"/>
     <meta property="og:description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。" />
-    <!-- <meta property="og:url" content="http://localhost:3000" /> -->
-    <!-- <meta property="og:image" content="https://secure.gravatar.com/avatar/ba111671b9d4dbdb9eff02471c361827" /> -->
+    <meta property="og:url" content="http://localhost:3000" />
+    <meta property="og:image" content="https://secure.gravatar.com/avatar/ba111671b9d4dbdb9eff02471c361827" />
+    <%= favicon_link_tag('favicon.ico') %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -25,7 +26,7 @@
 
   <body>
 
-    <script>
+<!--     <script>
       window.fbAsyncInit = function() {
         FB.init({
         appId      : '682762378746819',
@@ -42,7 +43,7 @@
            js.src = "https://connect.facebook.net/en_US/sdk.js";
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
-    </script>
+    </script> -->
 <div
   class="fb-like"
   data-share="true"
@@ -53,14 +54,14 @@
       <% if user_signed_in? %>
       <ul>
         <li>ようこそ<%= current_user.nickname %>さん</li>
-        <li><%= link_to "TOPへ", root_path %></li>
+        <li><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/' %></li>
         <li><%= link_to "マイページ", user_path(current_user) %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       </ul>
       <% else %>
       <ul>
         <li>ようこそゲストさん</li>
-        <li><%= link_to "TOPへ", root_path %></li>
+        <li><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/' %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>
         <li><%= link_to "初めての方はこちら", new_user_registration_path %></li>
         <li><%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %></li>
@@ -72,7 +73,7 @@
     <%= alert %><br>
     <%= yield %>
     <footer>
-      <p style="background-color: orange;">ここはフッターです(フッターにはコピーライトとページ上部へ戻るを表示させる予定です)
+      <p style="background-color: orange;"><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :size =>'100x35', :alt =>"アイコン"), '/' %>
       <%= link_to "一覧で選ぶ", regions_path %></p>
     </footer>
     <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

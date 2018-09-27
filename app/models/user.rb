@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
+         :recoverable, :rememberable, :validatable, #:confirmable,
          :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   has_many :spot_wants
@@ -42,7 +42,7 @@ class User < ApplicationRecord
         user.facebook_uid = data['facebook_uid'] if data['facebook_uid'] && user.facebook_uid.blank?
         # twitterの判定も先取って記述しておきます
         user.twitter_uid = data['twitter_uid'] if data['twitter_uid'] && user.twitter_uid.blank?
-        user.skip_confirmation!
+        # user.skip_confirmation!
       end
     end
   end
