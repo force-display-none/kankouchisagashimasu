@@ -1,4 +1,5 @@
 class SpotsController < ApplicationController
+  before_action :createguest!, only: [:show]
 
   def new
     @spot = Spot.new
@@ -15,8 +16,21 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @spot_review = SpotReview.new
     @spot_review_image = @spot_review.spot_review_images.build
+    @guest = Guest.find_by(id:session[:guest_id])
     if user_signed_in?
       session[:url] = nil
+      if @spot.spot_likes.exists?
+        unless @guest.nil?
+          if @spot.spot_likes.where(user_id: @guest.id).exists?
+            like = SpotLike.find_by(user_id: @guest.id, spot_id: @spot.id)
+            like.user_id = current_user.id
+            like.remote_ip = request.remote_ip
+            like.save
+          end
+        @guest.destroy
+        session[:guest_id] = nil
+        end
+      end
     else
       session[:url] = request.url
     end
@@ -40,6 +54,18 @@ class SpotsController < ApplicationController
   end
 
     private
+
+    def createguest!
+      unless user_signed_in?
+        if session[:guest_id].nil?
+          @guest = Guest.new
+          @guest.save
+          session[:guest_id] = @guest.id
+        else
+          @guest = Guest.find_by(id:session[:guest_id])
+        end
+      end
+    end
 
     def spot_params
     	params.require(:spot).permit(:name, :area_id, :s_spot_genre_id, :description, :short_description,

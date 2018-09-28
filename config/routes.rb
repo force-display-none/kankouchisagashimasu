@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/users/:id/my_helpfuls' => 'users#my_helpfuls', as: :users_my_helpfuls
   get '/users/:id/my_like_images' => 'users#my_like_images', as: :users_my_like_images
   get '/spots/:id/map' => 'spots#map', as: :map
+  get '/spots/:id/create_spot_guest_likes' => 'spot_likes#create_by_guest', as: :create_spot_guest_likes
+  get '/spots/:id/destroy_spot_guest_likes' => 'spot_likes#delete_by_guest', as: :destroy_spot_guest_likes
+  get '/spots/:id/destroy_spot_remote_ip_likes' => 'spot_likes#delete_by_remote_ip', as: :destroy_spot_remote_ip_likes
   get '/prefectures/:id/search' => 'prefectures#search', as: :search
   get 'search', to: 'areas#show'
 
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   resources :spots, only: [:new, :create, :show, :edit, :update, :destroy]do
     resource :spot_wants, only: [:create, :destroy]
     resource :spot_wents, only: [:create, :destroy]
+    resource :spot_likes, only: [:create, :destroy]
     resources :spot_images, only: [:create, :index, :destroy]
     resources :spot_reviews, only: [:create, :index, :update, :destroy]do
       resource :spot_review_helpfuls, only: [:create, :destroy]

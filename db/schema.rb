@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_100008) do
+ActiveRecord::Schema.define(version: 2018_09_27_103922) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 2018_09_26_100008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_areas_on_name"
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "l_spot_genres", force: :cascade do |t|
@@ -65,6 +70,14 @@ ActiveRecord::Schema.define(version: 2018_09_26_100008) do
   create_table "spot_images", force: :cascade do |t|
     t.integer "spot_id", null: false
     t.text "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spot_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "spot_id"
+    t.string "remote_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

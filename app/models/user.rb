@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :spot_reviews
   has_many :spot_review_helpfuls
   has_many :likes
+  has_many :spot_likes, dependent: :destroy
 
   validates :name,       presence: true
   validates :name,       length: { in: 2..20 }

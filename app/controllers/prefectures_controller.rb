@@ -4,7 +4,7 @@ class PrefecturesController < ApplicationController
   	@prefectures = Prefecture.all
     if user_signed_in?
       unless session[:url].blank?
-        redirect_to session[:url]
+        redirect_to session[:url] and return
       end
     end
   end

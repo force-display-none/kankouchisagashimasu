@@ -12,6 +12,7 @@ class Spot < ApplicationRecord
   has_many :spot_wents
   has_many :spot_wants
   has_many :spot_reviews
+  has_many :spot_likes, dependent: :destroy
 
   accepts_nested_attributes_for :spot_images, reject_if: :all_blank, allow_destroy: true
 
@@ -33,4 +34,13 @@ class Spot < ApplicationRecord
   def want?(user)
     spot_wants.where(user_id: user.id).exists?
   end
+
+  def liked_by?(user)
+    spot_likes.where(user_id: user.id).exists?
+  end
+
+  def guest_liked_by?(guest)
+    spot_likes.where(user_id: guest.id).exists?
+  end
+
 end
