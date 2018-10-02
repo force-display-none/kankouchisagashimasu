@@ -59,14 +59,14 @@ gem 'omniauth-twitter'      #omniauthを使ってTwitterログイン出来る
 
 #Other_utility
 gem 'acts-as-taggable-on'     #タグ機能を実装する
-# gem 'dotenv-rails'          #環境変数管理
+gem 'dotenv-rails'            #環境変数管理
 gem 'enum_help'               #enumをI18n対応させる
 gem 'geocoder'                #緯度と経度を取得する
 gem 'gmaps4rails'             #Googleマップを表示する
 # gem 'gon'                   #railsとJS間での変数受け渡し用
 # gem 'jqcloud-rails'         #タグクラウド実装用
 # gem 'kaminari'              #ページャ
-# gem 'meta-tags'             #metaタグヘルパー,FacebookのOGP設定用
+gem 'meta-tags'             #metaタグヘルパー,FacebookのOGP設定用
 gem 'cocoon'                  #formで子モデルの追加が楽になる
 gem 'paranoia', '~> 2.3', '>= 2.3.1' #論理削除用
 # gem 'public_activity'       #通知機能実装用

@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require activestorage
-//= require turbolinks
 //= require jquery
+//= require jquery.turbolinks
+//= require turbolinks
 //= require rails-ujs
 //= require_tree .
 //= require underscore
 //= require gmaps/google
 //= require cocoon
+//

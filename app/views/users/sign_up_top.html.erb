@@ -1,0 +1,83 @@
+<div class="fadeSlider">
+  <div class="fadeSlider-plat">
+    <div class="fadeSlider-text-box">
+      <div class="fadeSlider-text">
+        <div id="orver">
+          <h1><em><%= link_to "観光地さがします", root_path %></em></h1>
+          <div id="wrap">
+            <div id="contents">
+              <h2>行きたい観光地を見つけよう!</h2>
+              <h4>「観光地さがします」は、観光地検索サービスです。</h4><br>
+              <h5>会員登録をすると行きたい観光地をリストに登録したり<br>行った観光地のレビューを投稿することが出来ます。</h5>
+              <p>(会員登録は完全無料です)</p><br>
+              <h4>かんたん30秒で会員登録(無料)</h4>
+              <a id="modal-open" class="button-link fl_org"><strong  id="close" ><%= fa_icon("user-plus") %> 会員登録する</strong></a>
+              <p><%= link_to "\uf137 登録せずに利用する", root_path, class: "hover fa" %></p>
+              <p class="copyright"><small>Copyright © 観光地さがします</small></p>
+            </div> <!-- contents end -->
+          </div> <!-- wrap end -->
+        </div> <!-- orver end -->
+
+        <!-- ここからモーダルウィンドウ -->
+        <div id="modal-content">
+          <div id="modal-content-innar">
+          <!-- モーダルウィンドウのコンテンツ開始 -->
+            <h3>会員登録フォーム</h3>
+            <p>
+              <small><%= link_to "(SNSアカウントと連携して登録する方はこちら)", new_user_registration_path, class: "hover" %></small>
+            </p>
+            <!-- User新規登録form_for -->
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="field">
+              <%= f.label :名前 %><br />
+              <%= f.text_field :name, autofocus: true, placeholder:"\uf007 名前(2〜20文字)", class: "form-control fa"  %>
+            </div>
+            <div class="field">
+              <%= f.label :ニックネーム %><br />
+              <%= f.text_field :nickname, autofocus: true, placeholder:"\uf006 ニックネーム(2〜20文字)", class: "form-control fa" %>
+            </div>
+            <div class="field">
+              <%= f.label :性別 %><br />
+              <%= f.select :gender, User.genders.keys.to_a, :prompt => "性別を選択してください" %>
+            </div>
+            <div class="field">
+              <%= f.label :年代 %><br />
+              <%= f.select :age, User.ages.keys.to_a, :prompt => "年代を選択してください" %>
+            </div>
+            <div class="field">
+              <%= f.label :メールアドレス %><br />
+              <%= f.email_field :email, autofocus: true, placeholder:"\uf0e0 メールアドレス", class: "form-control fa" %>
+            </div>
+            <div class="field">
+              <%= f.label :パスワード %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 文字以上)</em>
+              <% end %><br />
+              <%= f.password_field :password, placeholder:"\uf023 パスワード(半角英数6字以上)", class: "form-control fa" %>
+            </div>
+            <div class="field">
+              <%= f.label :確認用パスワード %><br />
+              <%= f.password_field :password_confirmation, placeholder:"\uf058 確認用パスワード", class: "form-control fa" %>
+            </div>
+            <div class="actions"><br />
+              <%= f.submit "上記の内容で新規登録する", class: "sign_up_submit" %>
+            </div><br /><br>
+            <% end %><!-- form_for -->
+            <p>
+              <small><%= link_to "\uf137 登録せずに利用する", root_path, class: "hover fa" %></small>
+            </p>
+            <p>
+              <a id="modal-close"><strong><%= fa_icon("times-circle") %> フォームを閉じる</strong></a>
+            </p>
+          </div><!-- modal-content-innar end -->
+        </div><!-- modal-content end -->
+        <!-- モーダルウィンドウのコンテンツ終了 -->
+      </div><!-- fadeSlider-text end -->
+      <span class="fadeSlider_01"></span>
+      <span class="fadeSlider_02"></span>
+      <span class="fadeSlider_03"></span>
+      <span class="fadeSlider_04"></span>
+    </div><!-- fadeSlider-text-box end -->
+  </div><!-- fadeSlider-plat end -->
+</div><!-- fadeSlider end -->

@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+  <% if @spot.went?(current_user) %>
+    <li>
+      <%= link_to spot_spot_wents_path(@spot), method: :delete do %>
+        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>行ったを外す<% end %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to spot_spot_wents_path(@spot), method: :post do %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>行った<% end %>
+        <% if @spot.want?(current_user) %>
+          <li>
+            <%= link_to spot_spot_wants_path(@spot), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>行きたいを外す<% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to spot_spot_wants_path(@spot), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>行きたい<% end %>
+          </li>
+        <% end %>
+    </li>
+  <% end %><!-- if @spot.went?(current_user) -->
+<% else %>
+  <%= link_to "行った", new_user_session_path %>
+  <%= link_to "行きたい", new_user_session_path %><br><small style="color: red;">(行った/行きたいの利用には<%= link_to "ログイン", new_user_session_path %>が必要です)</small><br>
+<% end %><!-- if user_signed_in? -->

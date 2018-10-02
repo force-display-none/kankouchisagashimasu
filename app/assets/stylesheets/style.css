@@ -605,7 +605,8 @@ hr{
 	display: flex;
 	flex-wrap:wrap;
 	padding:0;
-	margin:-5px 0 0 -5px;
+	margin: 0 42%;
+	/*margin:-5px 0 0 -5px;*/
 }
 .shareList8__item {
 	height:50px;
@@ -616,7 +617,8 @@ hr{
 .shareList8__link {
 	display:block;
 	color:#ffffff;
-	padding:0 20px;
+	/*padding:0 20px;*/
+	padding:0 10px;
 	text-decoration: none;
 	transition: .2s;
 	border:2px solid;
@@ -851,4 +853,153 @@ hr{
     -webkit-transform: translateY(3px);
     transform: translateY(3px);
     border-bottom: none;
+}
+
+
+/*ログインボタン*/
+
+
+
+.fl_org{/*ボタンの背景*/
+  /*color: #FFF;文字・アイコン色*/
+  border-radius: 7px;/*角丸に*/
+  display: inline-block;
+  height: 50px;/*高さ*/
+  width: 250px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 16px;/*文字のサイズ*/
+  line-height: 50px;/*高さと合わせる*/
+  vertical-align: middle;/*垂直中央寄せ*/
+  background: #0F0A64;
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.fl_org .fa-user-plus {
+	color: #FFF;
+    /*text-shadow: 2px 2px 0px #4287d6;*/
+    font-size: 16px;
+}
+
+.fl_org strong {/*テキスト*/
+  color: #FFF;
+  display:inline-block;
+  transition: .5s
+}
+
+.fl_org:hover strong{/*ホバーで一周回転*/
+	color: #FFF;
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+}
+
+.fl_org2{/*ボタンの背景*/
+  /*color: #FFF;文字・アイコン色*/
+  /*border-radius: 7px;/*角丸に*/*/
+  display: inline-block;
+  height: 22px;/*高さ*/
+  width: 240px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 16px;/*文字のサイズ*/
+  line-height: 22px;/*高さと合わせる*/
+  vertical-align: middle;/*垂直中央寄せ*/
+  background: #0F0A64;
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.fl_org2 .fa-user-plus {
+	color: #FFF;
+    /*text-shadow: 2px 2px 0px #4287d6;*/
+    font-size: 16px;
+}
+
+.fl_org2 strong {/*テキスト*/
+  color: #FFF;
+  display:inline-block;
+  font-weight: normal
+  /*transition: .5s*/
+}
+
+.fl_org2:hover strong{/*ホバーで一周回転*/
+	color: #FFF;
+/*  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);*/
+}
+
+/*Facebookログインボタン*/
+
+.fl_fb2 {/*ボタンの下地*/
+  color: #FFF;/*文字・アイコン色*/
+  border-radius: 7px;/*角丸に*/
+  display: inline-block;
+  height: 50px;/*高さ*/
+  width: 250px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 16px;/*文字のサイズ*/
+  line-height: 50px;/*高さと合わせる*/
+  vertical-align: middle;/*垂直中央寄せ*/
+  background: #4966a0;
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+  position: relative;
+}
+
+.fl_fb2 .fa-facebook {
+    text-shadow: 2px 2px 1px #224282;
+    font-size: 16px;
+}
+
+.fl_fb2 span {/*テキスト*/
+  position: absolute;
+  display:inline-block;
+  transition: .5s;
+}
+
+.fl_fb2:hover span{/*ホバーで一周回転*/
+	color: #FFF;
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+}
+
+/*Twitterログインボタン*/
+
+.fl_tw2{/*ボタンの背景*/
+  color: #FFF;/*文字・アイコン色*/
+  border-radius: 7px;/*角丸に*/
+  display: inline-block;
+  height: 50px;/*高さ*/
+  width: 250px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 16px;/*文字のサイズ*/
+  line-height: 50px;/*高さと合わせる*/
+  vertical-align: middle;/*垂直中央寄せ*/
+  background: #1da1f3;
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+  position: relative;
+}
+
+.fl_tw2 .fa-twitter {
+    text-shadow: 2px 2px 0px #4287d6;
+    font-size: 16px;
+}
+
+.fl_tw2 span {/*テキスト*/
+  position: absolute;
+  display:inline-block;
+  transition: .5s}
+
+.fl_tw2:hover span{/*ホバーで一周回転*/
+	color: #FFF;
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
 }

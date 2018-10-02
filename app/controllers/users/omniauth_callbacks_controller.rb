@@ -1,6 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def facebook
 
+  def facebook
     # Facebook上でメール使用を許可しているかの分岐
     if request.env['omniauth.auth'].info.email.blank?
       redirect_to '/users/auth/facebook?auth_type=rerequest&scope=email'

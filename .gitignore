@@ -32,3 +32,6 @@
 
 # Ignore vendor/bundle 山本さんより
 /vendor/bundle
+
+# Ignore API key .
+/.env

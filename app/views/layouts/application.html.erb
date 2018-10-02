@@ -4,27 +4,30 @@
     <title>観光地さがします</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta charset="UTF-8">
-    <meta http-equiv="content-language" content="ja">
-    <meta name="description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。">
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="観光地さがします"/>
-    <meta property="og:site_name" content="観光地さがします"/>
-    <meta property="og:description" content="「観光地さがします」は、都道府県やエリアを選択するだけで観光地をピックアップできるサイトです。" />
-    <meta property="og:url" content="http://localhost:3000" />
-    <meta property="og:image" content="https://secure.gravatar.com/avatar/ba111671b9d4dbdb9eff02471c361827" />
-    <%= favicon_link_tag('favicon.ico') %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= display_meta_tags(default_meta_tags) %>
+    <meta property="og:image:width" content="630" />
+    <meta property="og:image:height" content="210" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- SNSアイコン用 -->
     <link href="/assets/style.css" rel="stylesheet" />
     <link href="/assets/icon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Googleマップ表示用 -->
+    <script src="//maps.google.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>"></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    <script src="/assets/modal.js"></script>
+
     <!-- <!– Read bxSlider CSS file –> -->
-    <link href="/assets/jquery.bxslider.css" rel="stylesheet" />
+    <!-- <link href="/assets/jquery.bxslider.css" rel="stylesheet" /> -->
+    <%= favicon_link_tag('favicon.ico') %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="anchor">
 
 <!--     <script>
       window.fbAsyncInit = function() {
@@ -44,42 +47,25 @@
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
     </script> -->
-<div
+<!-- <div
   class="fb-like"
   data-share="true"
   data-width="450"
   data-show-faces="true">
-</div>
-    <header style="background-color: orange;">
-      <% if user_signed_in? %>
-      <ul>
-        <li>ようこそ<%= current_user.nickname %>さん</li>
-        <li><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/' %></li>
-        <li><%= link_to "マイページ", user_path(current_user) %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-      </ul>
-      <% else %>
-      <ul>
-        <li>ようこそゲストさん</li>
-        <li><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/' %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-        <li><%= link_to "初めての方はこちら", new_user_registration_path %></li>
-        <li><%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %></li>
-        <li><%= link_to "Twitterでログイン", user_twitter_omniauth_authorize_path %></li>
-      </ul>
-      <% end %>
-    </header>
-    <%= notice %>
-    <%= alert %><br>
+</div> -->
+    <%= render 'layouts/header' %>
     <%= yield %>
     <footer>
-      <p style="background-color: orange;"><%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :size =>'100x35', :alt =>"アイコン"), '/' %>
-      <%= link_to "一覧で選ぶ", regions_path %></p>
+      <div class="anchor"><span><%= link_to "ページ上部に戻る", "#anchor" %></span></div>
+      <div class="shareList8">
+        <div class="shareList8__item"><a class="shareList8__link icon-facebook" href="https://www.facebook.com/share.php?url=<%= request.url %>" target="_blank" title="Facebook"></a></div>
+        <div class="shareList8__item"><a class="shareList8__link icon-twitter" href="https://twitter.com/share?url=<%= request.url %>&text=" target="_blank" title="Twitter"></a></div>
+       </div>
+      <p class="copyright"><small>Copyright © 観光地さがします</small></p>
     </footer>
     <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script src="/assets/jquery.bxslider.min.js"></script>
-    <script src="/assets/bxSlider_option.js"></script>
-    <script src="//maps.google.com/maps/api/js?key=<%= ENV['AIzaSyDaLY_RRWm88jI9SILzPCQP_N1g9EsiL3M'] %>"></script>
-    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <!-- <script src="/assets/jquery.bxslider.min.js"></script> -->
+    <!-- <script src="/assets/bxSlider_option.js"></script> -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>

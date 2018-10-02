@@ -13,13 +13,396 @@
  *= require_tree .
  *= require_self
  */
+
+@import "font-awesome";
+
+$widthPC: 1080px; //PC
+$widthTab: 768px; //タブレット
+$widthSp: 568px; //スマートフォン
+
+@mixin tab {
+  @media (min-width: $widthTab) and (max-width: ($widthPC)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+	body {
+	  margin-bottom: 180px;
+    }
+}
+
+// ヘッダー
+// .header-text-sp {
+//   @include pc {
+//     display: none;
+//   };
+// }
+
+.header-text-pc {
+  background-color: #FF8C00;
+  span {
+    color: #FFF;
+    font-family: "sans-serif";
+    padding-left: 5%;
+  }
+}
+
+header {
+	position: relative;
+	border-bottom: thick solid #FF8C00;
+	background-image: image_url('gahag-0119247818.png');
+}
+.header-logo {
+	margin-left: 5%;
+}
+.login-nav {
+	position: absolute;
+	bottom: 0%;
+	right: 5%;
+	.orange {
+	  color: #0000FF;
+	}
+}
+div .nav-last-content {
+	margin-left: 16px;
+}
+.flash {
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.back-image {
+  height: 100vh;
+  width: 100%;
+  background-image: image_url('img3.jpg');
+  background-size: cover;
+  background-position: center;
+  .back-image-mask {
+    height: 100%;
+    background-color: rgba( 0, 0, 0, 0.5);
+    position: relative;
+  }
+  .form {
+    position: absolute;
+    text-align: center;
+    color: #FFF;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h3 {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+    span {
+      color: #FFF;
+    }
+    .error_field {
+      color: red;
+      font-size: 16px;
+      height: 16px;
+      line-height: 10px;
+      padding: 0;
+      margin: 0 auto;
+      border: none;
+      background-color: rgba( 0, 0, 0, 0.5);
+
+    }
+    input, select {
+      color: #000;
+      width: 240px;
+      border-radius: 0px;
+    }
+    .sign_up_submit {
+      color: #FFF;
+      background: #0F0A64;
+      border-color: #0F0A64;
+      &:hover {
+        background: #FF8C00;
+      }
+    }
+  }
+  #user_remember_me {
+    width: 10px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  .new {
+    margin-top: 100px;
+  }
+}
+.auth-box {
+  position: relative;
+  display: inline-block;
+  padding: 10px 0 20px 0;
+  .auth {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+
+
 // サイドバー
 #sidebar {
+	margin-top: 32px;
     position: relative;
 	float: right;
 	width: 25%;
+	@include sp {
+	  display: none;
+	}
+
 }
 // フッター
 footer {
-	clear: both;
+  clear: both;
+  text-align: center;
+  background-image: image_url('gahag-0119247818.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 180px;
+  position: absolute;
+  bottom: 0;
+  .anchor {
+    background-color: #FF8C00;
+    cursor: pointer;
+    &:hover {
+      transition: background-color .3s;
+      background-color: #696969;
+    }
+    a {
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    }
+  }
+  .copyright {
+  	padding: 32px 0;
+  	margin-top: 0;
+  }
+}
+
+.fadeSlider {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .fadeSlider-plat {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  }
+
+  .fadeSlider-text-box {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  }
+
+  .fadeSlider-text {
+    position: absolute;
+    z-index: 4;
+    color: #FFF;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  h1 a {
+    color: #FFF;
+    text-decoration: none;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+
+    &.fadeSlider_01 {
+      background-image: url(img1.jpg);
+      animation: fadeSlideImg01 16s ease-out infinite;
+      animation-delay: 4s;
+    }
+    &.fadeSlider_02 {
+      opacity: 0;
+      background-image: url(img2.jpg);
+      animation: fadeSlideImg02 16s ease-out infinite;
+      animation-delay: 4s;
+    }
+    &.fadeSlider_03 {
+      opacity: 0;
+      background-image: url(img3.jpg);
+      animation: fadeSlideImg03 16s ease-out infinite;
+      animation-delay: 4s;
+    }
+    &.fadeSlider_04 {
+      opacity: 0;
+      background-image: url(img4.jpg);
+      animation: fadeSlideImg04 16s ease-out infinite;
+      animation-delay: 4s;
+    }
+
+}
+
+@keyframes fadeSlideImg01 {
+    0% { opacity: 0.7; }
+    25% { opacity: 0; }
+    50% { opacity: 0; }
+    75% { opacity: 0; }
+    100% { opacity: 0.7; }
+}
+@keyframes fadeSlideImg02 {
+    0% { opacity: 0; }
+    25% { opacity: 0.7; }
+    50% { opacity: 0; }
+    75% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@keyframes fadeSlideImg03 {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@keyframes fadeSlideImg04 {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    50% { opacity: 0; }
+    75% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+}
+
+#contents h2 {
+  padding-top: 20px;
+}
+
+#modal-content {
+width: 85% ;
+margin: 0 ;
+padding: 10px 20px ;
+border: 2px solid #aaa ;
+background: #FFF ;
+background-color: rgba( 0, 0, 0, 0.5);
+position: fixed ;
+display: none ;
+z-index: 6 ;
+  input, select {
+    color: #000;
+    width: 240px;
+    border-radius: 0px;
+  }
+  .sign_up_submit {
+    color: #FFF;
+    background: #0F0A64;
+    border-color: #0F0A64;
+    &:hover {
+      background: #FF8C00;
+    }
+  }
+}
+#modal-content-innar{
+margin:0 auto;
+width:80%;
+}
+#modal-overlay {
+z-index: 1 ;
+display: none ;
+position: fixed ;
+top: 0 ;
+left: 0 ;
+width: 100% ;
+height: 120% ;
+background-color: rgba( 0,0,0, 0.75 ) ;
+}
+.button-link {
+color: #00f ;
+text-decoration: underline ;
+}
+.button-link:hover {
+cursor: pointer ;
+color: #f00 ;
+}
+
+#modal-close{
+  display: inline-block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none;
+  &:hover{
+    color: #FF8C00;
+    cursor: pointer ;
+  }
+}
+#modal-close:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #FF8C00;
+  transform: scale(0, 1);
+  transition: 0.5s;
+}
+#modal-close:hover:before {
+  transform: scale(1);
+}
+
+.hover{
+  display: inline-block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none !important;
+  &:hover{
+    color: #FFF;
+  }
+}
+.hover:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #FFF;
+  transform: scale(0, 1);
+  transition: 0.5s;
+}
+.hover:hover:before {
+  transform: scale(1);
 }

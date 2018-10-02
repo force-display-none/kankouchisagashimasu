@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [ :show, :index, :update, :destroy]
+
+  def sign_up_top
+    if user_signed_in?
+      redirect_to root_path
+    end
+  end
 
   def show
     user = User.find(params[:id])
