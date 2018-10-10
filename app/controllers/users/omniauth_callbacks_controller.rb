@@ -20,6 +20,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session['devise.omniauth_data'] = {
             email: data['email'],
             name: data['name'],
+            provider: 'facebook',
             facebook_uid: data['id']
         }
       end
@@ -37,6 +38,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session['devise.omniauth_data'] = {
             email: data['info']['email'],
             name: data['info']['name'],
+            provider: data['provider'],
             twitter_uid: data['uid']
         }
       end

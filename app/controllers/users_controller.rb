@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def sign_up_top
     if user_signed_in?
-      redirect_to root_path
+      redirect_to root_path, alert: "既にログインしています。"
     end
   end
 
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = current_user
-    user.destory
+    user.destroy
     redirect_to root_path
   end
 

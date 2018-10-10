@@ -1,21 +1,33 @@
 class SpotWentsController < ApplicationController
 
   def create
-  	spot = Spot.find(params[:spot_id])
-    spot_went = current_user.spot_wents.new(spot_id: spot.id)
-    spot_went.save
-    spot_want = current_user.spot_wants.find_by(spot_id: spot.id)
-    unless spot_want.nil?
-      spot_want.destroy
+  	@spot = Spot.find(params[:spot_id])
+    @spot_went = current_user.spot_wents.new(spot_id: @spot.id)
+    @spot_went.save
+    @spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
+    @spot_review = SpotReview.new
+    if !@spot_want.nil?
+      @spot_want.destroy
     end
-    redirect_to spot_path(spot)
+    # redirect_to spot_path(@spot)
+    @spot.reload
+    respond_to do |format|
+      format.html { render @spot, @spot_review }
+      format.js
+    end
   end
 
   def destroy
-  	spot = Spot.find(params[:spot_id])
-  	spot_went = current_user.spot_wents.find_by(spot_id: spot.id)
-    spot_went.destroy
-    redirect_to spot_path(spot)
+  	@spot = Spot.find(params[:spot_id])
+  	@spot_went = current_user.spot_wents.find_by(spot_id: @spot.id)
+    @spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
+    @spot_went.destroy
+    # redirect_to spot_path(spot)
+    @spot.reload
+    respond_to do |format|
+      format.html { render @spot }
+      format.js
+    end
   end
 
 	private

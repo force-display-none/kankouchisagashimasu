@@ -4,15 +4,15 @@
 	margin:0;
 	padding:0;
 }*/
-/*h1,h2,h3,h4,h5,h6{font-size:100%;}
+/*h1,h2,h3,h4,h5,h6{font-size:100%;}*/
 ol,ul,li,dl{list-style-position: inside;}
-button,input,select,textarea{margin:0;}
+/*button,*/input,select,textarea{margin:0;}
 html{
 	box-sizing:border-box;
 	line-height:1;
 	font-size: 62.5%;
-}*/
-/**,*:before,*:after{box-sizing:inherit;}
+}
+*,*:before,*:after{box-sizing:inherit;}
 img,embed,iframe,object,audio,video{max-width:100%;}
 iframe{border:0;}
 table{
@@ -26,7 +26,7 @@ td,th{
 hr{
 	height: 0;
 	border: 0;
-}*/
+}
 
 
 /*ベース
@@ -224,6 +224,7 @@ hr{
 	text-decoration: none;
 	border-radius: 5px;
 }
+.shareList2__link:hover { text-decoration: none; }
 .shareList2__link::before{
 	font-size:16px;
 	display:block;
@@ -624,6 +625,7 @@ hr{
 	border:2px solid;
 	border-radius: 5px;
 }
+.shareList8__link:hover { text-decoration: none; }
 .shareList8__link::before{
 	font-size:16px;
 }

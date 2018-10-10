@@ -2,16 +2,16 @@
  <div class="header-text-pc"><span>行きたい観光地を見つけよう!</span></div>
  <header>
    <%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/', class: "header-logo" %>
-    <span class="flash" style="color: #0000FF;"><%= notice %></span><span class="flash" style="color: red;"><%= alert %></span>
+    <span class="flash-box"><span class="flash fa" style="color: red; background-color: #FFCCCC;"><%= alert %></span><span class="flash fa" style="color: #0000FF;"><%= notice %></span></span>
    <% if user_signed_in? %>
      <div class="login-nav">
-       <span>ようこそ<strong class="orange"><%= current_user.nickname %></strong>さん(<%= link_to "マイページ", user_path(current_user) %>)</span>
-       <span class="nav-last-content"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+       <span>ようこそ<strong style="color: blue;"><%= current_user.nickname %></strong>さん(<%= link_to "マイページ", user_path(current_user), class: "blue blue--bgLeft" %>)</span>
+       <span class="nav-last-content"><%= link_to "ログアウト", destroy_user_session_path, class: "red red--bgLeft", method: :delete, "data-confirm" => "ログアウトしてよろしいですか？" %></span>
      </div>
    <% else %>
      <div class="login-nav">
-       <span>ようこそ<strong class="orange">ゲスト</strong>さん(<%= link_to "ログイン", new_user_session_path %>)</span>
-       <span class="nav-last-content"><%= link_to "初めての方はこちら", sign_up_top_path %></span>
+       <span>ようこそ<strong style="color: blue;">ゲスト</strong>さん(<%= link_to "ログイン", new_user_session_path, class: "blue blue--bgLeft" %>)</span>
+       <span class="nav-last-content"><%= link_to "初めての方はこちら", sign_up_top_path, class: "blue blue--bgLeft" %></span>
      </div>
    <% end %>
  </header>

@@ -1,16 +1,30 @@
-<span><%= link_to "全国", root_path %> => 地域:</span><%= link_to "#{@prefecture.region.name}", regions_path(@prefecture, id: @prefecture.region.id) %> => 都道府県名:<%= @prefecture.name %><br>
-<h1>エリアごとの観光地一覧(<%= @prefecture.name %>)</h1>
-<section class="left">
-  <% @prefecture.areas.each do |area| %>
-  <ul>
-  	<li>
-      <% if area.spots.exists? %>
-        <h2><%=link_to "#{area.name}エリア", area_path(area) %></h2>
-      <% else %>
-        <h2><%= area.name %>エリア(このエリアに登録されている観光地はまだありません)</h2>
-  		<% end %>
-  	</li>
-  </ul>
-  <% end %>
-</section>
-<%= render 'layouts/sidebar' %>
+<div class="back-image2">
+  <div class="back-image-mask2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <span><%= link_to "全国", root_path, class: "blue blue--bgLeft"  %> => 地域:</span><%= link_to "#{@prefecture.region.name}", regions_path(@prefecture, id: @prefecture.region.id), class: "blue blue--bgLeft" %> => 都道府県名:<%= @prefecture.name %><br>
+          <h1 class="headline">エリアごとの観光地一覧(<%= @prefecture.name %>)</h1>
+          <% n = 1 %>
+          <% @prefecture.areas.each do |area| %>
+          <% if area.id.to_i % 2 == 0 %>
+            <% style = "success" %>
+          <% else %>
+            <% style = "primary" %>
+          <% end %>
+            <% if area.spots.exists? %>
+              <%=link_to area_path(area) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= area.name %>エリア</h4></button><% end %><br>
+            <% else %>
+              <button style="width: 100%; cursor: not-allowed" type="button" class="btn btn-<%= style %>"><h4><%= fa_icon("exclamation-triangle") %><%= area.name %>エリア(このエリアに登録されている観光地はまだありません)</h4></button><br>
+            <% end %>
+          <% n += 1 %>
+          <% end %>
+        </div>
+        <div class="col-sm-1">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div><br>
+  </div>
+</div>

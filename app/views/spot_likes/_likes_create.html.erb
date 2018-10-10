@@ -1,0 +1,5 @@
+<%= link_to spot_spot_likes_path(@spot), method: :post, id: "spot_likes", remote: true do %>
+<span class="like-button">ここ好き！</span>
+  <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <%= @spot.spot_likes.count %>
+<% end %>

@@ -1,17 +1,34 @@
 class SpotReviewHelpfulsController < ApplicationController
 
   def create
-  	spot_review = SpotReview.find(params[:spot_review_id])
-    spot_review_helpful = current_user.spot_review_helpfuls.new(spot_review_id: spot_review.id)
-    spot_review_helpful.save
-    redirect_to spot_path(spot_review.spot)
+    @i = params[:helpful_id]
+  	@spot_review = SpotReview.find(params[:spot_review_id])
+    @spot_review_helpful = current_user.spot_review_helpfuls.new(spot_review_id: @spot_review.id)
+    @spot_review_helpful.save
+    # redirect_to spot_path(@spot_review.spot)
+    @spot_review.reload
+    respond_to do |format|
+      format.html { render @spot_review, @i }
+      format.js
+    end
   end
 
   def destroy
-  	spot_review = SpotReview.find(params[:spot_review_id])
-    spot_review_helpful = current_user.spot_review_helpfuls.find_by(spot_review_id: spot_review.id)
-    spot_review_helpful.destroy
-    redirect_to spot_path(spot_review.spot)
+    @i = params[:helpful_id]
+  	@spot_review = SpotReview.find(params[:spot_review_id])
+    if current_user.spot_review_helpfuls.where(spot_review_id: @spot_review.id).count == 1
+      @spot_review_helpful = current_user.spot_review_helpfuls.find_by(spot_review_id: @spot_review.id)
+      @spot_review_helpful.destroy
+    else
+      @spot_review_helpfuls = current_user.spot_review_helpfuls.where(spot_review_id: @spot_review.id)
+      @spot_review_helpfuls.delete_all
+    end
+    # redirect_to spot_path(@spot_review.spot)
+    @spot_review.reload
+    respond_to do |format|
+      format.html { render @spot_review, @i }
+      format.js
+    end
   end
 
 	private

@@ -12,7 +12,7 @@
               <p>(会員登録は完全無料です)</p><br>
               <h4>かんたん30秒で会員登録(無料)</h4>
               <a id="modal-open" class="button-link fl_org"><strong  id="close" ><%= fa_icon("user-plus") %> 会員登録する</strong></a>
-              <p><%= link_to "\uf137 登録せずに利用する", root_path, class: "hover fa" %></p>
+              <p><%= link_to "\uf071 登録せずに利用する", root_path, class: "hover fa" %></p>
               <p class="copyright"><small>Copyright © 観光地さがします</small></p>
             </div> <!-- contents end -->
           </div> <!-- wrap end -->
@@ -24,7 +24,7 @@
           <!-- モーダルウィンドウのコンテンツ開始 -->
             <h3>会員登録フォーム</h3>
             <p>
-              <small><%= link_to "(SNSアカウントと連携して登録する方はこちら)", new_user_registration_path, class: "hover" %></small>
+              <small><%= link_to "(SNSアカウントと連携して登録する方はこちら)", new_user_registration_path, class: "hover-orange" %></small>
             </p>
             <!-- User新規登録form_for -->
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -65,10 +65,10 @@
             </div><br /><br>
             <% end %><!-- form_for -->
             <p>
-              <small><%= link_to "\uf137 登録せずに利用する", root_path, class: "hover fa" %></small>
+              <small><%= link_to "\uf071 登録せずに利用する", root_path, class: "hover fa" %></small>
             </p>
             <p>
-              <a id="modal-close"><strong><%= fa_icon("times-circle") %> フォームを閉じる</strong></a>
+              <a id="modal-close" class="hover-orange"><strong><%= fa_icon("times-circle") %> フォームを閉じる</strong></a>
             </p>
           </div><!-- modal-content-innar end -->
         </div><!-- modal-content end -->

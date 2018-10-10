@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, #:confirmable,
          :omniauthable, omniauth_providers: [:facebook, :twitter]
 
+  acts_as_paranoid
+
   has_many :spot_wants
   has_many :spot_wents
   has_many :spot_reviews
@@ -35,16 +37,34 @@ class User < ApplicationRecord
   end
 
   # ユーザー登録に渡すデータを設定
+  # session['devise.omniauth_data']はomniauth_callbacks_controllerからきます
   def self.new_with_session(_, session)
     super.tap do |user|
       if (data = session['devise.omniauth_data'])
         user.email = data['email'] if user.email.blank?
         user.name = data['name'] if user.name.blank?
+        user.provider = data['provider'] if user.provider.blank?
         user.facebook_uid = data['facebook_uid'] if data['facebook_uid'] && user.facebook_uid.blank?
         # twitterの判定も先取って記述しておきます
         user.twitter_uid = data['twitter_uid'] if data['twitter_uid'] && user.twitter_uid.blank?
         # user.skip_confirmation!
       end
+    end
+  end
+
+  protected
+
+  # ログイン時、OmniAuthで認証したユーザーのパスワード入力免除するため、Deviseの実装をOverrideする。
+  def password_required?
+    super && provider.blank?  # provider属性に値があればパスワード入力免除
+  end
+
+  # Edit時、OmniAuthで認証したユーザーのパスワード入力免除するため、Deviseの実装をOverrideする。
+  def update_with_password(params, *options)
+    if encrypted_password.blank?            # encrypted_password属性が空の場合
+      update_attributes(params, *options)   # パスワード入力なしにデータ更新
+    else
+      super
     end
   end
 

@@ -44,6 +44,76 @@ html {
     }
 }
 
+.btn-primary {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #709dff 50%, #FFF 100%);
+    // background-image: -webkit-linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+    // background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+    background-image: linear-gradient(45deg, #709dff 50%, #FFF 100%);
+    transition: .4s;
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-primary:active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary:active.focus,
+.btn-primary.active, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary.focus,
+.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary.focus {
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(45deg, #ff1900 0%, #fb9d00 100%);
+    background-image: linear-gradient(45deg, #ff1900 0%, #fb9d00 100%);
+    border-color: #ff8b5f;
+}
+
+.btn-primary.outline {
+    border: 3px solid #b0c9ff; //アウトラインのみのボタンの線の色
+    color: #FFF; //アウトラインのみのボタンのテキストの色
+}
+
+.btn-success {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #0005ff 0%, #3b3e3b 100%);
+    background-image: linear-gradient(45deg, #0005ff 0%, #3b3e3b 100%);
+    transition: .4s;
+}
+
+.btn-success:hover, .btn-success:focus, 
+.btn-success:active, .btn-success:active:focus, .btn-success:active:hover, .btn-success:active.focus,
+.btn-success.active, .btn-success.active:focus, .btn-success.active:hover, .btn-success.active.focus,
+.open > .dropdown-toggle.btn-success, 
+.open > .dropdown-toggle.btn-success:hover,
+.open > .dropdown-toggle.btn-success:focus, 
+.open > .dropdown-toggle.btn-success.focus,
+.btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus,
+.btn-success.disabled.focus, .btn-success[disabled].focus, fieldset[disabled] .btn-success.focus {
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(270deg, #ff1900 0%, #fb9d00 100%);
+    background-image: linear-gradient(270deg, #ff1900 0%, #fb9d00 100%);
+    border-color: #ff8b5f;
+}
+
+.btn-success.outline {
+    border: 3px solid #001bfb; //アウトラインのみのボタンの線の色
+    color: #FFF; //アウトラインのみのボタンのテキストの色
+}
+
+#twitter-widget-0 { min-width: 240px !important; }
+
 // ヘッダー
 // .header-text-sp {
 //   @include pc {
@@ -72,17 +142,59 @@ header {
 	position: absolute;
 	bottom: 0%;
 	right: 5%;
-	.orange {
-	  color: #0000FF;
-	}
+  }
+.blue {
+  color: #0000FF;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all .3s;
+  position: relative;
+  // margin: 15px 25px;
+    &:hover {
+      text-decoration: none;
+      color: #FFF;
+    }
+}
+.blue--bgLeft {
+  // padding: 0 .3em;
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 50%, rgba(0,0,255,1) 50%);
+  background-position: 0 0;
+  background-size: 201% auto;
+  &:hover {
+    background-position: -100% 0;
+    color: #FFF;
+    }
+}
+.red {
+  color: #0000FF;
+  text-decoration: none !important;
+  font-size: 16px;
+  transition: all .3s;
+  position: relative;
+    &:hover {
+      text-decoration: none;
+      color: #FFF;
+    }
+}
+.red--bgLeft {
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 50%, rgba(255,0,0,1) 50%);
+  background-position: 0 0;
+  background-size: 201% auto;
+  &:hover {
+    background-position: -100% 0;
+    color: #FFF;
+  }
 }
 div .nav-last-content {
 	margin-left: 16px;
 }
+.flash-box {
+  display: inline-grid;
+}
 .flash {
   font-size: 20px;
-  position: absolute;
-  bottom: 0;
+  // position: absolute;
+  // bottom: 0;
 }
 
 .back-image {
@@ -162,7 +274,7 @@ div .nav-last-content {
 // サイドバー
 #sidebar {
 	margin-top: 32px;
-    position: relative;
+  position: relative;
 	float: right;
 	width: 25%;
 	@include sp {
@@ -253,26 +365,26 @@ footer {
 
     &.fadeSlider_01 {
       background-image: url(img1.jpg);
-      animation: fadeSlideImg01 16s ease-out infinite;
-      animation-delay: 4s;
+      animation: fadeSlideImg01 12s ease-out infinite;
+      animation-delay: 3s;
     }
     &.fadeSlider_02 {
       opacity: 0;
       background-image: url(img2.jpg);
-      animation: fadeSlideImg02 16s ease-out infinite;
-      animation-delay: 4s;
+      animation: fadeSlideImg02 12s ease-out infinite;
+      animation-delay: 3s;
     }
     &.fadeSlider_03 {
       opacity: 0;
       background-image: url(img3.jpg);
-      animation: fadeSlideImg03 16s ease-out infinite;
-      animation-delay: 4s;
+      animation: fadeSlideImg03 12s ease-out infinite;
+      animation-delay: 3s;
     }
     &.fadeSlider_04 {
       opacity: 0;
       background-image: url(img4.jpg);
-      animation: fadeSlideImg04 16s ease-out infinite;
-      animation-delay: 4s;
+      animation: fadeSlideImg04 12s ease-out infinite;
+      animation-delay: 3s;
     }
 
 }
@@ -355,33 +467,15 @@ text-decoration: underline ;
 }
 .button-link:hover {
 cursor: pointer ;
-color: #f00 ;
+// color: #f00 ;
 }
 
 #modal-close{
-  display: inline-block;
-  position: relative;
-  color: #FFF;
-  text-decoration: none;
-  &:hover{
-    color: #FF8C00;
-    cursor: pointer ;
+  &:hover {
+    cursor: pointer;
   }
 }
-#modal-close:before{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 3px;
-  background: #FF8C00;
-  transform: scale(0, 1);
-  transition: 0.5s;
-}
-#modal-close:hover:before {
-  transform: scale(1);
-}
+
 
 .hover{
   display: inline-block;
@@ -404,5 +498,29 @@ color: #f00 ;
   transition: 0.5s;
 }
 .hover:hover:before {
+  transform: scale(1);
+}
+
+.hover-orange{
+  display: inline-block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none !important;
+  &:hover{
+  color: #FF8C00;
+  }
+}
+.hover-orange:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #FF8C00;
+  transform: scale(0, 1);
+  transition: 0.5s;
+}
+.hover-orange:hover:before {
   transform: scale(1);
 }

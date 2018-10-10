@@ -1,17 +1,27 @@
 class SpotWantsController < ApplicationController
 
   def create
-  	spot = Spot.find(params[:spot_id])
-    spot_want = current_user.spot_wants.new(spot_id: spot.id)
-    spot_want.save
-    redirect_to spot_path(spot)
+  	@spot = Spot.find(params[:spot_id])
+    @spot_want = current_user.spot_wants.new(spot_id: @spot.id)
+    @spot_want.save
+    # redirect_to spot_path(@spot)
+    @spot.reload
+    respond_to do |format|
+      format.html { render @spot }
+      format.js
+    end
   end
 
   def destroy
-  	spot = Spot.find(params[:spot_id])
-  	spot_want = current_user.spot_wants.find_by(spot_id: spot.id)
-    spot_want.destroy
-    redirect_to spot_path(spot)
+  	@spot = Spot.find(params[:spot_id])
+  	@spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
+    @spot_want.destroy
+    # redirect_to spot_path(@spot)
+    @spot.reload
+    respond_to do |format|
+      format.html { render @spot }
+      format.js
+    end
   end
 
 	private

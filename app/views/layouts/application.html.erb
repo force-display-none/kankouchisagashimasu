@@ -13,12 +13,18 @@
     <link href="/assets/icon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900">
 
+    <!-- bootstrap用 -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Googleマップ表示用 -->
     <script src="//maps.google.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>"></script>
     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
     <script src="/assets/modal.js"></script>
+    <script src="/assets/review_form.js"></script>
+
+    <!-- bootstrap用だけどいらないみたい -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- <!– Read bxSlider CSS file –> -->
     <!-- <link href="/assets/jquery.bxslider.css" rel="stylesheet" /> -->
@@ -28,31 +34,6 @@
   </head>
 
   <body id="anchor">
-
-<!--     <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-        appId      : '682762378746819',
-        xfbml      : true,
-        version    : 'v3.1'
-        });
-      FB.AppEvents.logPageView();
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "https://connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-    </script> -->
-<!-- <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div> -->
     <%= render 'layouts/header' %>
     <%= yield %>
     <footer>
@@ -66,6 +47,5 @@
     <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!-- <script src="/assets/jquery.bxslider.min.js"></script> -->
     <!-- <script src="/assets/bxSlider_option.js"></script> -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>

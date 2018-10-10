@@ -1,32 +1,50 @@
-<span><%= link_to "全国", root_path %> => 地域:</span><%= link_to "#{@area.prefecture.region.name}", regions_path(@area, id: @area.prefecture.region.id) %> => 都道府県名:<%= link_to "#{@area.prefecture.name}", areas_path(@area, id: @area.prefecture.id) %> => エリア:<%= @area.name %>
-<h1>観光地一覧(<%= @area.prefecture.name %>：<%= @area.name %>エリア)</h1>
-
-
-
-<%= search_form_for(@q, url: area_path(@area)) do |f| %>
-  <div class="form-group">
-    <%= f.label :name_cont, "観光地名で検索する" %><br>
-    <%= f.text_field :name_cont, class: "form-control" %><br>
-    <%= f.label :s_spot_genre_id_eq, "ジャンルで絞り込む" %><br>
-    <%= f.collection_select :s_spot_genre_id_eq, @s_spot_genres, :id, :name, :include_blank => '指定なし' %>
+<div class="back-image2">
+  <div class="back-image-mask2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <span><%= link_to "全国", root_path, class: "blue blue--bgLeft" %> => 地域:</span><%= link_to "#{@area.prefecture.region.name}", regions_path(@area, id: @area.prefecture.region.id), class: "blue blue--bgLeft" %> => 都道府県名:<%= link_to "#{@area.prefecture.name}", areas_path(@area, id: @area.prefecture.id), class: "blue blue--bgLeft" %> => エリア:<%= @area.name %>
+          <h1 class="headline">観光地一覧(<%= @area.prefecture.name %> => <%= @area.name %>エリア)</h1>
+          <%= search_form_for(@q, url: area_path(@area)) do |f| %>
+            <div class="form-group">
+              <%= f.label :name_cont, "観光地名で検索する" %><br>
+              <%= f.text_field :name_cont, class: "form-control" %><br>
+              <%= f.label :s_spot_genre_id_eq, "ジャンルで絞り込む" %><br>
+              <%= f.collection_select :s_spot_genre_id_eq, @s_spot_genres, :id, :name, :include_blank => '指定なし' %>
+            </div>
+            <div class="actions"><%= f.submit "検索する", class: "search_submit" %></div>
+          <% end %>
+          <%= flash[:result] %>
+          <% n = 1 %>
+          <% if @area.spots.exists? %>
+  　        <% if params[:q].present? %>
+              <% @spots.each do |spot| %>
+                <% if n % 2 == 0 %>
+                  <% style = "success" %>
+                <% else %>
+                  <% style = "primary" %>
+                <% end %>
+              <%= link_to spot_path(spot) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
+              <% n += 1 %>
+              <% end %>
+            <% else %>
+              <% @area.spots.each do |spot| %>
+                <% if n % 2 == 0 %>
+                  <% style = "success" %>
+                <% else %>
+                  <% style = "primary" %>
+                <% end %>
+              <%= link_to spot_path(spot) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
+              <% n += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-sm-1">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div><br>
   </div>
-  <div class="actions"><%= f.submit "Search" %></div>
-<% end %>
-
-
-
-<section class="left">
-　<%= flash[:result] %>
-  <% if @area.spots.exists? %>
-  　<% if params[:q].present? %>
-      <% @spots.each do |spot| %>
-  	  <h2><%= link_to "#{spot.name}", spot_path(spot) %>(<%= spot.s_spot_genre.name %>)</h2>
-      <% end %>
-    <% else %>
-      <% @area.spots.each do |spot| %>
-	  <h2><%= link_to "#{spot.name}", spot_path(spot) %>(<%= spot.s_spot_genre.name %>)</h2>
-      <% end %>
-    <% end %>
-<% end %>
-</section>
-<%= render 'layouts/sidebar' %>
+</div>

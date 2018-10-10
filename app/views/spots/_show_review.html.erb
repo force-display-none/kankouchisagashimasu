@@ -1,52 +1,154 @@
-<section class="spot-show left">
-  <h2><%= spot.name %>のレビュー</h2>
+<h2 class="tabcontent-headline"><%= spot.name %>のレビュー
   <% if spot.spot_reviews.exists? %>
-    <p>全<%= spot.spot_reviews.count %>件</p>
-    <% spot.spot_reviews.each do |spot_review| %>
-    <span><%= attachment_image_tag spot_review.spot_review_images.first, :image, :fill, 50, 50 %></span>
-      <dl>
-        <dt>タイトル</dt>
-          <dd><%= spot_review.title %></dd>
-        <dt>レビュー内容</dt>
-          <dd><%= spot_review.body %></dd>
-        <dt>行った時期</dt>
-          <dd><%= spot_review.season.strftime('%Y/%m') %></dd>
-        <dt>同行者</dt>
-          <dd><%= spot_review.fellow_travelers %></dd>
-        <dt>投稿者</dt>
-          <dd><%= spot_review.user.nickname %>さん(年代：<%= spot_review.user.age %>｜性別：<%= spot_review.user.gender %>)</dd>
-        <% if user_signed_in? %>
-          <% if spot_review.user.id != current_user.id %>
-            <% if spot_review.helpfuled_by?(current_user) %>
-              <dt>参考になったを外しますか？</dt>
-                <dd>
-                  <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id),   method: :delete do %>
-                  <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
-                  <%= spot_review.spot_review_helpfuls.count %> はい
-                  <% end %>
-                </dd>
-            <% else %>
-              <dt>このレビューは参考になりましたか？</dt>
-                <dd>
-                  <%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: spot_review.spot.id, spot_review_id: spot_review.id),   method: :post do %>
-                  <!-- <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> -->
-                  <%= spot_review.spot_review_helpfuls.count %> はい
-                  <% end %>
-                </dd>
-            <% end %><!-- if spot_review.helpfuled_by? -->
-          <% end %><!-- if spot_review.user.id != current_user.id -->
-        <% end %><!-- if user_signed_in? -->
-      </dl>
-    <% end %><!-- @spot.spot_reviews.each do -->
+    (全<%= spot.spot_reviews.count %>件)
   <% else %>
-  <p><%= spot.name %>のレビューはまだ投稿されていません</p>
-  <% end %><!-- if spot.spot_reviews.exists? -->
+    (投稿はまだありません)
+  <% end %>
+</h2>
+
 <% if user_signed_in? %>
-  <% spot_went = current_user.spot_wents.find_by(spot_id: spot.id) %>
-  <% unless spot_went.nil? %>
-    <%= form_for(spot_review, url: spot_spot_reviews_path(spot)) do |f| %>
+
+  <% went = current_user.spot_wents.find_by(spot_id: spot.id) %>
+
+  <% unless went.nil? %>
+
+
+
+<span id="ors">
+      <!-- <h1>モーダルウィンドウのデモ</h1> -->
+  <span id="wr">
+    <span id="cont">
+      <!-- <p>リンクテキストをクリックするとモーダルウィンドウを表示させます。モーダルウィンドウ周りのオーバーレイをクリックすると終了します。</p> -->
+      <a id="review-form-open" class="button-link blue blue--bgLeft" style="display: inline-block; float: right; text-decoration: none;">レビューを投稿する<!-- クリックするとモーダルウィンドウを開きます。 --><i class="fa fa-edit" aria-hidden="true" style="color: #FFF;"></i></a>
+    </span> <!-- contents end -->
+  </span> <!-- wrap end -->
+</span> <!-- orver end -->
+
+<!-- ここからモーダルウィンドウ -->
+<span id="review-form">
+  <span id="review-form-innar">
+  <!-- モーダルウィンドウのコンテンツ開始 -->
+  <p class="red bold">
+   <%= form_for(spot_review, url: spot_spot_reviews_path(spot)) do |f| %>
       <%= render 'spot_review_form', f: f %>
     <% end %><!-- form_forのend -->
+  <!-- モーダルウィンドウのデモ
+
+これはモーダルウィンドウです。<br />左下の「閉じる」か、背景をクリックすると終了します。 --></p>
+
+<p><a id="review-form-close" class="button-link">レビュー投稿フォームを閉じる</a></p>
+  </span>
+  <!-- モーダルウィンドウのコンテンツ終了 -->
+</span>
+
+
+
+
+    <div><%= form_for(spot_review, url: spot_spot_reviews_path(spot)) do |f| %>
+      <%= render 'spot_review_form', f: f %>
+    <% end %></div><!-- form_forのend -->
+
   <% end %><!-- unless spot_went.nil? -->
+
 <% end %><!-- if user_signed_in? -->
-</section>
+
+<% if spot.spot_reviews.exists? %>
+
+<% if !user_signed_in? %>
+
+<small style="display: inline-block; float: right; color: #000;"><%= fa_icon("exclamation-triangle") %>参考になったの利用には<%= link_to "ログイン", new_user_session_path, class: "blue blue--bgLeft" %>が必要です)</small>
+
+<% end %>
+
+<% @i = 1 %>
+
+　　<% spot.spot_reviews.each do |review| %>
+<span class="spot-review-box">
+  <span class="spot-review-header">
+　　　　<span class="spot-review-header-item"><%#= attachment_image_tag review.spot_review_images.first, :image, :fill, 30, 30 %></span>
+       <% if user_signed_in? %>
+         <% if review.user.id == current_user.id %>
+           <%= link_to user_path(current_user), "data-confirm" => "マイページに移動しますか？" do %>
+　　　　      <span class="spot-review-header-item" style="margin: 0 1%; color: blue;">あなたのレビューです</span>
+           <% end %>
+         <% else %>
+           <span class="spot-review-header-item" style="margin: 0 1%;"><%= review.user.nickname %>さん</span>
+         <% end %>
+       <% else %>
+　　　　  <span class="spot-review-header-item" style="margin: 0 1%;"><%= review.user.nickname %>さん</span>
+       <% end %>
+　　　　<span class="spot-review-header-item"><%= review.user.gender %>／<%= review.user.age %></span>
+　　　　<span class="spot-review-header-item" style="margin-left: 1%; border: solid 1px #000; ";"><%= review.fellow_travelers %></span>
+  </span>
+  <span class="spot-review-body-box">
+　　　　<h4 class="spot-review-headline"><%= review.title %></h4>
+　　　　<span class="spot-review-body"><%= review.body %></span>
+  </span>
+  <span class="spot-review-date">
+　　　　<span class="spot-review-date-item">行った時期：<%= review.season.strftime('%Y年%m月') %></span>
+　　　　<span class="spot-review-date-item" style="margin-left: 1%;">投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></span>
+ </span>
+ <span class="spot-review-footer">
+
+　　　　<% if user_signed_in? %>
+
+　　　　　　<% if review.user.id == current_user.id %>
+
+
+
+<%= link_to spot_spot_review_path(spot_id: review.spot.id, id: review.id), method: :delete, "data-confirm" => " レビューを本当に削除しますか？", class: "spot-review-footer-item" do %>
+<span class="spot-review-footer-item" id="<%= @i %>"><em class="red red--bgLeft" style="text-decoration: none;">このレビューを削除</em></span>
+   <button class="btn btn-default" style="cursor: not-allowed">参考にされた数</button>
+    <!-- <i class="fa fa-music" aria-hidden="true""></i> -->
+    <span class="balloon3-left">
+    <%= review.spot_review_helpfuls.count %>
+</span>
+<% end %>
+
+
+
+          <% else %>
+
+　　　　　　　　<% if review.helpfuled_by?(current_user) %>
+                <%= render :partial => 'spot_review_helpfuls/spot_review_helpfuls_destroy', :locals => { :review => review } %>
+              <% else %>
+                <%= render :partial => 'spot_review_helpfuls/spot_review_helpfuls_create', :locals => { :review => review }  %>
+              <% end %>
+
+          <% end %><!-- if review.user.id != current_user.id -->
+
+       <% else %>
+
+       <!-- <small style=" position: absolute; right: 0; margin-top: -2%; color: blue;"><%= fa_icon("exclamation-triangle") %>参考になったの利用には<%#= link_to "ログイン", new_user_session_path, class: "blue blue--bgLeft" %>が必要です)</small> -->
+         <!-- <span class="spot-review-footer-item" style="right: 6%; bottom: 0;">このレビューは参考になりましたか？</span> -->
+         <%#= link_to new_user_session_path, "data-confirm" => "この機能の利用にはログインが必要です。ログインページに移動してよろしいですか？", class: "spot-review-footer-item", remote: true, :style=>"right: 0; bottom: 0;"  do %>
+           <!-- <button class="btn btn-default">はい</button> -->
+           <!-- <span class="balloon3-left"><%#= review.spot_review_helpfuls.count %></span> -->
+         <%# end %>
+
+      <%= link_to new_user_session_path, "data-confirm" => "この機能の利用にはログインが必要です。ログインページに移動してよろしいですか？", class: "spot-review-footer-item" do %>
+<span class="spot-review-footer-item"><em class="blue blue--bgLeft">このレビューは参考になりましたか？</em></span>
+   <button class="btn btn-default">はい</button>
+    <!-- <i class="fa fa-music" aria-hidden="true""></i> -->
+    <span class="balloon3-left">
+    <%= review.spot_review_helpfuls.count %>
+</span>
+<% end %>
+
+
+       <% end %><!-- if user_signed_in? -->
+
+  </span><!-- spot-review-footer -->
+
+</span><!-- spot-review-box -->
+
+<% @i += 1 %>
+
+    <% end %><!-- spot.spot_reviews.each do -->
+
+<% end %><!-- if spot.spot_reviews.exists? -->
+
+
+
+
+

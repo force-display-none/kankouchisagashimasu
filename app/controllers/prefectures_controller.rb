@@ -3,7 +3,7 @@ class PrefecturesController < ApplicationController
   def index
   	@prefectures = Prefecture.all
     if user_signed_in?
-      unless session[:url].blank?
+      if session[:url]
         redirect_to session[:url] and return
       end
     end

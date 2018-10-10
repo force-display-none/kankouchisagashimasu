@@ -1,0 +1,95 @@
+<a id="review-form-open2" class="button-link form-open" style="color:#1DCD00;">
+  <span class="like-button">レビュー投稿</span>
+  <i class="fa fa-edit" aria-hidden="true" style="color: #000;"></i>
+  <% if @spot.spot_reviews.exists? %>
+    <%= @spot.spot_reviews.count %>
+  <% end %>
+</a>
+
+
+
+<span id="review-form">
+  <span id="review-form-innar"><!-- モーダルウィンドウのコンテンツ開始 -->
+  <p class="red bold">
+    <div class="form">
+      <h3>レビュー投稿フォーム</h3>
+      <%= form_for(@spot_review, url: spot_spot_reviews_path(@spot)) do |f| %>
+        <%= render 'spot_review_form', f: f %>
+      <% end %><!-- form_forのend -->
+    </div>
+ </p>
+　<p>
+　　<a id="review-form-close" class="button-link">レビュー投稿フォームを閉じる</a>
+　</p>
+
+  </span><!-- review-form-innarモーダルウィンドウのコンテンツ終了 -->
+</span><!-- review-form -->
+
+
+
+<%= link_to spot_spot_wents_path(@spot), method: :delete, id: "wents", remote: true, :style=>"color:#1DCD00;"  do %>
+  <span class="went-button">行った!</span>
+  <i class="fa fa-music" aria-hidden="true" style="color: red;"></i>
+  <%= @spot.spot_wents.count %>
+<% end %>
+
+
+<!-- 一度でも#review-form-open2を消すと別ファイルのjsの設定が消えてしまうので即時関数にして毎回読み込む -->
+<script type="text/javascript">
+  $(function(){
+  $("#review-form-open2").click(function(){
+    console.log('click')
+    //キーボード操作などにより、オーバーレイが多重起動するのを防止する
+    $( this ).blur() ;  //ボタンからフォーカスを外す
+    if( $( "#review-form-overlay" )[0] ) return false ;   //新しくモーダルウィンドウを起動しない (防止策1)
+    //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する (防止策2)
+ 
+    //オーバーレイを出現させる
+    $( "body" ).append( '<div id="review-form-overlay"></div>' ) ;
+    $( "#review-form-overlay" ).fadeIn( "slow" ) ;
+ 
+    //コンテンツをセンタリングする
+    centeringModalSyncer() ;
+ 
+    //コンテンツをフェードインする
+    $( "#review-form" ).fadeIn( "slow" ) ;
+ 
+    //[#modal-overlay]、または[#modal-close]をクリックしたら…
+    $( "#review-form-overlay,#review-form-close" ).unbind().click( function(){
+ 
+      //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
+      $( "#review-form,#review-form-overlay" ).fadeOut( "slow" , function(){
+ 
+        //[#modal-overlay]を削除する
+        $('#review-form-overlay').remove() ;
+ 
+      } ) ;
+ 
+    } ) ;
+ 
+  } ) ;
+ 
+  //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
+  $( window ).resize( centeringModalSyncer ) ;
+ 
+  //センタリングを実行する関数
+  function centeringModalSyncer() {
+ 
+    //画面(ウィンドウ)の幅、高さを取得
+    var w = $( window ).width() ;
+    var h = $( window ).height() ;
+ 
+    // コンテンツ(#modal-content)の幅、高さを取得
+    // jQueryのバージョンによっては、引数[{margin:true}]を指定した時、不具合を起こします。
+    var cw = $( "#review-form" ).outerWidth( {margin:true} );
+    var ch = $( "#review-form" ).outerHeight( {margin:true} );
+    var cw = $( "#review-form" ).outerWidth();
+    var ch = $( "#review-form" ).outerHeight();
+ 
+    //センタリングを実行する
+    $( "#review-form" ).css( {"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"} ) ;
+ 
+  }
+ 
+} ) ;
+</script>

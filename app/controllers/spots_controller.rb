@@ -17,10 +17,13 @@ class SpotsController < ApplicationController
     @spot_review = SpotReview.new
     @spot_review_image = @spot_review.spot_review_images.build
     @guest = Guest.find_by(id:session[:guest_id])
+    if @spot.spot_images.exists?
+      @image = @spot.spot_images.offset( rand(@spot.spot_images.count) ).first
+    end
     if user_signed_in?
       session[:url] = nil
       if @spot.spot_likes.exists?
-        unless @guest.nil?
+        if !@guest.nil?
           if @spot.spot_likes.where(user_id: @guest.id).exists?
             like = SpotLike.find_by(user_id: @guest.id, spot_id: @spot.id)
             like.user_id = current_user.id
@@ -34,7 +37,7 @@ class SpotsController < ApplicationController
     else
       session[:url] = request.url
     end
-    flash.now[:notice] = "この観光地はいかがですか？"
+    flash.now[:notice] = "\uf002 この観光地はいかがですか？"
   end
 
   def show_reviews
@@ -56,7 +59,7 @@ class SpotsController < ApplicationController
     private
 
     def createguest!
-      unless user_signed_in?
+      if !user_signed_in?
         if session[:guest_id].nil?
           @guest = Guest.new
           @guest.save

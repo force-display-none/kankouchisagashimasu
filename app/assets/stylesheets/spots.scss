@@ -2,64 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // 観光地詳細ページ
-.spot-show-box {
-    width: 60%;
-    float: left;
-}
-/* tabnav */
-.tabnav{
-    margin: 0;
-    padding: 0;
-}
-.tabnav li{
-    display: inline;
-}
-.tabnav li label{
-    display: inline-block;
-    background: #ddd;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
-    text-decoration: none;
-    cursor: pointer;
-}
-input[name=tabinput]{
-  display: none;
-}
-#tab01:checked ~ .tabnav .tabnav01,
-#tab02:checked ~ .tabnav .tabnav02 {
-    background: #FFCC66;
-    color: #333;
-}
-
-/* tabcontent */
-.tabcontent{
-    // padding: 20px;
-    border: 1px dotted #ccc;
-}
-.tabcontent div{
-  display: none;
-}
-#tab01:checked ~ .tabcontent #tabcontent01,
-#tab02:checked ~ .tabcontent #tabcontent02  {
-  display: block;
-}
-.left {
-	float: left;
-    padding-left: 5%;
-	// width: 600px;
-}
-.pad_left {
-    padding-left: 5%;
-}
-li {
-    list-style: none;
+.spot-show-header-box {
+  position: relative;
+  margin-top: 2%;
+  margin-bottom: 44px;
+  small {
+    color: red;
+    display: block;
+    text-align: right;
     a {
       text-decoration: none;
+      &:hover {
+        color: #FFF !important;
+      }
     }
+  }
+  .spot-show-tags-box {
+    position: absolute;
+    left: 0;
+  }
+  .spot-show-spot-like-want-went-box {
+    position: absolute;
+    right: 0;
+    a {
+      text-decoration: none;
+      color: #FF8C00;
+      &:hover {
+        color: #FF99FF !important;
+      }
+    }
+  }
 }
-
-.button {
+.tag {
+  display: inline-block;
+  margin-top: 2%;
+  padding: 1em 1.5em;
+}
+.like-button {
+  position: relative;
   display: inline-block;
   padding: .25em 1em;
   background-color: #FF8C00;
@@ -68,12 +48,69 @@ li {
   color: #fff;
   text-decoration: none;
   text-align: center;
-  -webkit-transition: .3s ease-in-out;
-  transition: .3s ease-in-out;
 }
-.button:hover {
+.like-button:hover {
   -webkit-animation: bounce 2s ease-in-out;
   animation: bounce 2s ease-in-out;
+  background-color: #FF99FF;
+  border: 1px solid #FF99FF;
+}
+.like-button:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #FF8C00;
+  width: 0;
+  height: 0;
+}
+.like-button:hover:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #FF99FF;
+  width: 0;
+  height: 0;
+}
+.went-button {
+  position: relative;
+  display: inline-block;
+  padding: .25em 1em;
+  background-color: #1DCD00;
+  border: 1px solid #1DCD00;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+.went-button:hover {
+  -webkit-animation: bounce 2s ease-in-out;
+  animation: bounce 2s ease-in-out;
+  background-color: #FF99FF;
+  border: 1px solid #FF99FF;
+}
+.went-button:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #1DCD00;
+  width: 0;
+  height: 0;
+}
+.went-button:hover:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #FF99FF;
+  width: 0;
+  height: 0;
 }
 @-webkit-keyframes bounce {
   5%  { -webkit-transform: scale(1.1, .8); }
@@ -84,4 +121,406 @@ li {
   5%  { transform: scale(1.1, .8); }
   10% { transform: scale(.8, 1.1) translateY(-5px); }
   15% { transform: scale(1, 1); }
+}
+
+.spot-headline {
+  color: #FF8C00;
+  text-align: center;
+  margin-top: 1%;
+  padding: 0.25em;
+  border-top: solid 2px #FF8C00;
+  border-bottom: solid 2px #FF8C00;
+  background: -webkit-repeating-linear-gradient(-45deg, #FFFFCC, #FFFFCC 3px,#FFF 3px, #FFF 7px);
+  background: repeating-linear-gradient(-45deg, #FFFFCC, #FFFFCC 3px,#FFF 3px, #FFF 7px);
+}
+
+/* tabnav */
+.tabnav{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.tabnav li{
+    width: calc(100% / 2);
+    display: inline-block;
+    text-align: center;
+}
+.tabnav li label{
+    width: 100%;
+    background-color: rgba( 0, 0, 0, 0) !important;
+    color: #000 !important;
+    padding: 1%;
+    border-radius: 5px 5px 0 0;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+input[name=tabinput]{
+  display: none;
+}
+#tab01:checked ~ .tabnav .tabnav01,
+#tab02:checked ~ .tabnav .tabnav02 {
+    background-color: rgba( 0, 0, 0, 0.025) !important;
+    border-top: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
+    border-left: 1px dotted #ccc;
+    color: #000 !important;
+}
+#tab01:not(:checked) ~ .tabnav .tabnav01,
+#tab02:not(:checked) ~ .tabnav .tabnav02 {
+    background-color: rgba( 0, 0, 0, 0) !important;
+    border-bottom: 1px dotted #ccc;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    &:hover {
+      background: #FF8C00 !important;
+      color: #FFF !important;
+    }
+}
+
+/* tabcontent */
+.tabcontent{
+    padding: 20px;
+    border-right: 1px dotted #ccc;
+    border-bottom: 1px dotted #ccc;
+    border-left: 1px dotted #ccc;
+    background-color: rgba( 0, 0, 0, 0.025);
+}
+.tabcontent div{
+  display: none;
+}
+#tab01:checked ~ .tabcontent #tabcontent01,
+#tab02:checked ~ .tabcontent #tabcontent02  {
+  display: block;
+}
+li {
+    list-style: none;
+    a {
+      text-decoration: none;
+    }
+}
+.tabcontent-headline {
+  padding: 0.25em 0.5em;
+  color: #494949;
+  background: transparent;/*背景透明に*/
+  border-left: solid 5px #FF8C00;/*左線*/
+}
+
+.spot-description {
+  color: #494949;
+}
+
+// p {
+//   font-size: 16px;
+//   font-weight: bold;
+//   text-align: center;
+//   margin: 60px auto 40px;
+// }
+.tbl-r02 {
+  color: #494949;
+  display: block;
+  width: 100%;
+  tbody {
+    display: block;
+    width: 100%;
+    tr {
+      display: flex;
+      width: 100%;
+        th {
+          display: inline-flex;
+          width: 25%;
+          background-color: rgba( 0, 0, 0, 0.1);
+          border: solid 1px #ccc;
+          padding: 10px;
+        }
+        td {
+          position: relative;
+          display: inline-flex;
+          width: 100%;
+          border: solid 1px #ccc;
+          padding: 10px;
+          .spot-location {
+            position: absolute;
+          }
+          .map_btn {
+            right: 5%;
+            position: absolute;
+            display: inline-block;
+            text-decoration: none;
+            color: #FFF;
+            background: #fd9535;/*色*/
+            border-radius: 4px;/*角の丸み*/
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+            border: solid 2px #d27d00;/*線色*/
+          }
+          .map_btn:active {/*押したとき*/
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+          }
+        }
+      }
+   }
+}
+// @media screen and (max-width: 640px) {
+//   .last td:last-child {
+//     border-bottom: solid 1px #ccc;
+//     width: 100%;
+//   }
+//   .tbl-r02 {
+//     width: 80%;
+//   }
+//   .tbl-r02 th,
+//   .tbl-r02 td {
+// 　　border-bottom: none;
+//     display: block;
+//     width: 100%;
+//   }
+// }
+.google-map-headline {
+position: absolute;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 1;
+color: #FF8C00;
+font-size: 20px;
+padding: 10px 0;
+text-align: center;
+margin: 1.5em 0;
+}
+.google-map-headline:before {
+content: "";
+position: absolute;
+top: -8px;
+left: 50%;
+width: 150px;
+height: 58px;
+border-radius: 50%;
+border: 5px solid #FFCC99;
+border-left-color: transparent;
+border-right-color: transparent;
+-moz-transform: translateX(-50%);
+-webkit-transform: translateX(-50%);
+-ms-transform: translateX(-50%);
+transform: translateX(-50%);
+}
+.relative {
+  width: 100%;
+  height: 615px;
+  position: relative;
+  margin-top: 3%;
+}
+
+
+.wrapper{
+  width: 615px;
+  height: 615px;
+  position: absolute;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.card{
+  width: 600px;
+  height: 600px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 600px;
+  font-size: 24px;
+  font-weight: bold;
+  // box-shadow:1px 1px 2px 1px rgba(50, 50, 50, 0.2);
+}
+
+.cut_t{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #FFF;
+  box-shadow:0px 1px 2px 1px rgba(50, 50, 50, 0.2);
+  transform:rotate(-45deg);
+  top: -50px;
+  left: -50px;
+  z-index: 1;
+  border-bottom: 1px solid #494949;
+}
+.cut_b{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #FFF;
+  box-shadow:0px 1px 2px 1px rgba(50, 50, 50, 0.2);
+  transform:rotate(45deg);
+  bottom: -50px;
+  right: -50px;
+  border-left: 1px solid #494949;
+}
+.notes {
+  width: 100%;
+  color: #FF0000;/*文字色*/
+  padding: 0.5em;/*文字周りの余白*/
+  display: block;/*おまじない*/
+  line-height: 1.3;/*行高*/
+  background: #FFCCCC;/*背景色*/
+  vertical-align: middle;/*上下中央*/
+  border-radius: 25px 0px 0px 25px;/*左側の角を丸く*/
+  margin: 1% 0;
+}
+
+.notes:before {
+  content: '●';
+  color: white;
+  margin-right: 8px;
+}
+
+.spot-review-box {
+  display: block;
+  border-top: solid 3px rgba( 0, 0, 0, 0.1);
+  .spot-review-header {
+    display: block;
+    padding: 0.5% 0;
+    letter-spacing: -1em;
+    .spot-review-header-item {
+      display: inline-block;
+      letter-spacing: 0;
+    }
+  }
+  .spot-review-body-box {
+    display: block;
+    position: relative;
+    background-color: rgba( 0, 0, 0, 0.1);
+    padding-bottom: 1%;
+    h4 {
+      margin: 0;
+    }
+    .spot-review-headline {
+      display: block;
+      padding: 0 0.25em 0.5em 0.25em;
+      color: #494949;
+      border-left: solid 5px blue;/*左線*/
+     }
+   }
+    .spot-review-body {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-left: 1em;
+    }
+  }
+  .spot-review-date {
+    display: block;
+    letter-spacing: -1em;
+    .spot-review-date-item {
+      display: inline-block;
+      letter-spacing: 0;
+    }
+  }
+  .spot-review-footer {
+    display: flex;
+    .spot-review-footer-item {
+      display: inline-block;
+      margin-left: auto;
+    }
+    a {
+      text-decoration: none;
+      .btn-default {
+        padding: 0;
+        &:hover {
+           background-color: rgba( 0, 0, 0, 0.1) !important;
+        }
+       }
+      }
+    }
+
+.balloon3-left {
+  position: relative;
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  color: #FFF;
+  font-size: 10px;
+  font-weight: bold;
+  background: #1DA1F2;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.balloon3-left:before{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -15px;
+  margin-top: -15px;
+  border: 5px solid transparent;
+  border-right: 15px solid #1DA1F2;
+  z-index: 0;
+}
+
+#review-form {
+  width: 50% ;
+  margin: 0 ;
+  padding: 10px 20px ;
+  border: 2px solid #aaa ;
+  background: #fff ;
+  position: fixed ;
+  display: none ;
+  z-index: 2 ;
+  text-align: center;
+    input {
+    color: #000;
+    width: 240px;
+    border-radius: 0px;
+  }
+    select {
+    color: #000;
+    width: 120px;
+    border-radius: 0px;
+  }
+   #spot_review_fellow_travelers {
+    color: #000;
+    width: 240px;
+    border-radius: 0px;
+  }
+    input[type="file"] {
+    margin: 0 auto;
+  }
+    input[type="submit"] {
+    color: #FFF;
+    background: #0F0A64;
+    border-color: #0F0A64;
+    &:hover {
+      background: #FF8C00;
+    }
+  }
+
+}
+
+#review-form-innar{
+  margin:0 auto;
+  width:80%;
+}
+
+#review-form-overlay {
+  z-index: 1 ;
+  display: none ;
+  position: fixed ;
+  top: 0 ;
+  left: 0 ;
+  width: 100% ;
+  height: 120% ;
+  background-color: rgba( 0,0,0, 0.75 ) ;
+}
+
+.button-link {
+  color: #00f ;
+  text-decoration: underline ;
+}
+
+.button-link:hover {
+  cursor: pointer ;
+  // color: # ;
 }
