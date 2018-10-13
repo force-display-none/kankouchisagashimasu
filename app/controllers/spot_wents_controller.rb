@@ -4,29 +4,39 @@ class SpotWentsController < ApplicationController
   	@spot = Spot.find(params[:spot_id])
     @spot_went = current_user.spot_wents.new(spot_id: @spot.id)
     @spot_went.save
-    @spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
+    @spot_wants = current_user.spot_wants.where(spot_id: @spot.id)
     @spot_review = SpotReview.new
-    if !@spot_want.nil?
-      @spot_want.destroy
+    if !@spot_wants.nil?
+      @spot_wants.delete_all
     end
-    # redirect_to spot_path(@spot)
-    @spot.reload
-    respond_to do |format|
-      format.html { render @spot, @spot_review }
-      format.js
+    if params[:user_id]
+      redirect_to user_path(current_user)
+    else
+      @spot.reload
+      respond_to do |format|
+        format.html { render @spot, @spot_review }
+        format.js
+      end
     end
   end
 
   def destroy
   	@spot = Spot.find(params[:spot_id])
-  	@spot_went = current_user.spot_wents.find_by(spot_id: @spot.id)
-    @spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
-    @spot_went.destroy
-    # redirect_to spot_path(spot)
-    @spot.reload
-    respond_to do |format|
-      format.html { render @spot }
-      format.js
+  	if current_user.spot_wents.where(spot_id: @spot.id).count == 1
+      @spot_went = current_user.spot_wents.find_by(spot_id: @spot.id)
+      @spot_went.destroy
+    else
+      @spot_wents = current_user.spot_wents.where(spot_id: @spot.id)
+      @spot_wents.delete_all
+    end
+    if params[:user_id]
+      redirect_to user_path(current_user)
+    else
+      @spot.reload
+      respond_to do |format|
+        format.html { render @spot }
+        format.js
+      end
     end
   end
 

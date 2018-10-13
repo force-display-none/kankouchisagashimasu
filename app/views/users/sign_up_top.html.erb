@@ -1,3 +1,4 @@
+<% provide(:title, "初めての方はこちら") %>
 <div class="fadeSlider">
   <div class="fadeSlider-plat">
     <div class="fadeSlider-text-box">
@@ -24,7 +25,7 @@
           <!-- モーダルウィンドウのコンテンツ開始 -->
             <h3>会員登録フォーム</h3>
             <p>
-              <small><%= link_to "(SNSアカウントと連携して登録する方はこちら)", new_user_registration_path, class: "hover-orange" %></small>
+              <small style="font-size: 80%;"><%= link_to "(SNSアカウントと連携して登録する方はこちら)", new_user_registration_path, class: "hover-orange" %></small>
             </p>
             <!-- User新規登録form_for -->
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>

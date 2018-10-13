@@ -3,12 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'prefectures#index'
-  get '/regions/region_id/prefectures/prefecture_id/areas/area_id/spots/:id/show_reviews' => 'spots#show_reviews', as: :spots_show_reviews
   get '/regions/region_id/prefectures/prefecture_id/areas/area_id/spots/spot_id/spot_images/admin_index' => 'spot_images#admin_index', as: :spot_images_admin_index
   get '/regions/region_id/prefectures/prefecture_id/areas/area_id/spots/spot_id/spot_reviews/spot_review_id/spot_review_images/admin_index' => 'spot_review_images#admin_index', as: :spot_review_images_admin_index
   get '/users/sign_up_top' => 'users#sign_up_top', as: :sign_up_top
-  get '/users/:id/my_reviews' => 'users#my_reviews', as: :users_my_reviews
-  get '/users/:id/my_helpfuls' => 'users#my_helpfuls', as: :users_my_helpfuls
   get '/users/:id/my_like_images' => 'users#my_like_images', as: :users_my_like_images
   get '/spots/:id/map' => 'spots#map', as: :map
   get '/spots/:id/create_spot_guest_likes' => 'spot_likes#create_by_guest', as: :create_spot_guest_likes
@@ -32,6 +29,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :users, only: [:show, :index, :edit, :update, :destroy]
+  resources :users, only: [:show, :index, :update, :destroy]
 
 end

@@ -371,7 +371,12 @@ transform: translateX(-50%);
   color: white;
   margin-right: 8px;
 }
-
+.spot-reviews-box {
+  display: block;
+  max-height: 80vh;
+  overflow: scroll;
+  clear: both;
+}
 .spot-review-box {
   display: block;
   border-top: solid 3px rgba( 0, 0, 0, 0.1);
@@ -385,6 +390,7 @@ transform: translateX(-50%);
     }
   }
   .spot-review-body-box {
+    clear: both;
     display: block;
     position: relative;
     background-color: rgba( 0, 0, 0, 0.1);
@@ -406,12 +412,25 @@ transform: translateX(-50%);
       padding-left: 1em;
     }
   }
+  _::-webkit-full-page-media, _:future, :root .spot-review-header {
+    letter-spacing: normal;
+    text-align: right;
+    .spot-review-header-item {
+      letter-spacing: normal;
+    }
+}
   .spot-review-date {
     display: block;
     letter-spacing: -1em;
     .spot-review-date-item {
       display: inline-block;
       letter-spacing: 0;
+    }
+  }
+  _::-webkit-full-page-media, _:future, :root .spot-review-date {
+    letter-spacing: normal;
+    .spot-review-date-item {
+      letter-spacing: normal;
     }
   }
   .spot-review-footer {
@@ -475,6 +494,9 @@ transform: translateX(-50%);
     width: 240px;
     border-radius: 0px;
   }
+   .body {
+    width: 240px;
+   }
     select {
     color: #000;
     width: 120px;

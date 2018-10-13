@@ -24,10 +24,14 @@ class SpotReviewHelpfulsController < ApplicationController
       @spot_review_helpfuls.delete_all
     end
     # redirect_to spot_path(@spot_review.spot)
-    @spot_review.reload
-    respond_to do |format|
-      format.html { render @spot_review, @i }
-      format.js
+    if params[:user_id]
+      redirect_to user_path(current_user)
+    else
+      @spot_review.reload
+      respond_to do |format|
+        format.html { render @spot_review, @i }
+        format.js
+      end
     end
   end
 

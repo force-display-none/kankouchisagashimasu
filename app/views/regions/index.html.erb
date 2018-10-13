@@ -1,9 +1,10 @@
+<% provide(:title, "地域の一覧") %>
 <div class="back-image2">
   <div class="back-image-mask2">
     <div class="container">
       <div class="row">
         <div class="col-sm-8">
-          <h1 class="headline">地方の一覧から選ぶ</h1>
+          <h1 class="headline">地域の一覧から選ぶ</h1>
           <% n = 1 %>
           <% @regions.each do |region| %>
           <% if region.id.to_i % 2 == 0 %>

@@ -19,12 +19,6 @@ class UsersController < ApplicationController
     @spot_review_helpfuls = @user.spot_review_helpfuls
   end
 
-  def my_reviews
-  end
-
-  def my_helpfuls
-  end
-
   def my_like_images
   end
 
@@ -35,13 +29,15 @@ class UsersController < ApplicationController
   def admin_edit
   end
 
-  def edit
-  end
-
   def update
     user = current_user
-    user.update!(user_params)
-    redirect_to user_path(user)
+    if user.update(user_params)
+      flash[:notice] = "登録情報を更新しました"
+      redirect_to user_path(user)
+    else
+      flash[:alert] = "\uf071 登録情報に不備があったため更新できませんでした"
+      redirect_to user_path(user)
+    end
   end
 
   def destroy

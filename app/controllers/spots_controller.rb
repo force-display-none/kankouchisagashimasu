@@ -40,9 +40,6 @@ class SpotsController < ApplicationController
     flash.now[:notice] = "\uf002 この観光地はいかがですか？"
   end
 
-  def show_reviews
-  end
-
   def edit
   end
 

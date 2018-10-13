@@ -14,13 +14,22 @@ class SpotWantsController < ApplicationController
 
   def destroy
   	@spot = Spot.find(params[:spot_id])
-  	@spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
-    @spot_want.destroy
+    if current_user.spot_wants.where(spot_id: @spot.id).count == 1
+  	  @spot_want = current_user.spot_wants.find_by(spot_id: @spot.id)
+      @spot_want.destroy
+    else
+      @spot_wants = current_user.spot_wants.where(spot_id: @spot.id)
+      @spot_wants.delete_all
+    end
+    if params[:user_id]
+      redirect_to user_path(current_user)
+    else
     # redirect_to spot_path(@spot)
-    @spot.reload
-    respond_to do |format|
-      format.html { render @spot }
-      format.js
+      @spot.reload
+      respond_to do |format|
+        format.html { render @spot }
+        format.js
+      end
     end
   end
 

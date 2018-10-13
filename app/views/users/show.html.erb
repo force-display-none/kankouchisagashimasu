@@ -1,35 +1,48 @@
+<% provide(:title, "マイページ") %>
 <div class="back-image2">
   <div class="back-image-mask2">
     <div class="container">
       <div class="row">
-        <div class="col-sm-3"></div>
         <div class="col-sm-6">
-          <h2><%= @user.nickname %>さんのページです</h2>
-            <h3>登録情報を変更する</h3><i style="float: right;"><%= link_to "退会する", user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %></i>
-            <%= form_for(@user) do |f| %>
-              <%= render 'edit_user_form', f: f %>
-            <% end %>
+          <%= link_to "トップに戻る", root_path, class: "blue blue--bgLeft" %>
+          <h2 class="tabcontent-headline"><%= current_user.nickname %>さんのページ</h2>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-6"></div>
       </div>
       <div class="row">
-        <input id="tab01" type="radio" name="tabinput" checked>
-        <input id="tab02" type="radio" name="tabinput">
-        <input id="tab03" type="radio" name="tabinput">
-
-        <ul class="tabnav">
-          <li><label class="tabnav01" for="tab01">行きたい/行った一覧</label></li>
-          <li><label class="tabnav02" for="tab02">投稿レビュー一覧</label></li>
-          <li><label class="tabnav03" for="tab03">参考になったレビュー一覧</label></li>
-        </ul>
-
-        <div class="tabcontent">
-          <%= render 'my_wants_and_wents', spot_wants: @spot_wants, spot_wents: @spot_wents %>
-          <%= render 'my_reviews', spot_reviews: @spot_reviews %>
-          <%= render 'my_keep_helpfuls', spot_review_helpfuls: @spot_review_helpfuls %>
-        </div><!-- tabcontent -->
-      </div><!-- 2つ目のrow -->
-</div>
-</div>
-</div>
+        <div class="col-sm-3">
+          <div style="text-align: center;">
+            <h3 class="user-content-headline">登録情報変更</h3>
+          </div>
+          <%= form_for(@user) do |f| %>
+            <%= render 'edit_user_form', f: f %>
+          <% end %>
+        </div>
+        <div class="col-sm-9">
+          <div style="text-align: center;">
+            <h3 class="user-content-headline">各種一覧を見る</h3>
+          </div>
+          <input id="usertab01" type="radio" name="usertabinput" checked>
+          <input id="usertab02" type="radio" name="usertabinput">
+          <input id="usertab03" type="radio" name="usertabinput">
+          <ul class="usertabnav">
+            <li><label class="usertabnav01" for="usertab01">観光地行きたい/行った一覧</label></li>
+            <li><label class="usertabnav02" for="usertab02">投稿レビュー一覧</label></li>
+            <li><label class="usertabnav03" for="usertab03">参考になったレビュー一覧</label></li>
+          </ul>
+          <div class="usertabcontent">
+            <div id="usertabcontent01">
+              <%= render 'my_wants_and_wents', spot_wants: @spot_wants, spot_wents: @spot_wents %>
+            </div>
+            <div id="usertabcontent02">
+              <%= render 'my_reviews', spot_reviews: @spot_reviews %>
+            </div>
+            <div id="usertabcontent03">
+              <%= render 'my_keep_helpfuls', spot_review_helpfuls: @spot_review_helpfuls %>
+            </div>
+          </div><!-- usertabcontent -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

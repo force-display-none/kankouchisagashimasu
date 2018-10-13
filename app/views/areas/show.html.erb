@@ -1,10 +1,11 @@
+<% provide(:title, "#{@area.name}エリアの観光地一覧") %>
 <div class="back-image2">
   <div class="back-image-mask2">
     <div class="container">
       <div class="row">
         <div class="col-sm-8">
           <span><%= link_to "全国", root_path, class: "blue blue--bgLeft" %> => 地域:</span><%= link_to "#{@area.prefecture.region.name}", regions_path(@area, id: @area.prefecture.region.id), class: "blue blue--bgLeft" %> => 都道府県名:<%= link_to "#{@area.prefecture.name}", areas_path(@area, id: @area.prefecture.id), class: "blue blue--bgLeft" %> => エリア:<%= @area.name %>
-          <h1 class="headline">観光地一覧(<%= @area.prefecture.name %> => <%= @area.name %>エリア)</h1>
+          <h1 class="headline"><%= @area.name %>エリアの観光地一覧</h1>
           <%= search_form_for(@q, url: area_path(@area)) do |f| %>
             <div class="form-group">
               <%= f.label :name_cont, "観光地名で検索する" %><br>

@@ -29,6 +29,16 @@ module ApplicationHelper
     }
   end
 
+  #ページ毎のタイトルを返す
+  def full_title(page_title = '')
+    base_title = "観光地さがします"
+    if page_title.empty?
+      base_title
+    else
+      page_title + "|" + base_title
+    end
+  end
+
   def resource_name
      :user
   end

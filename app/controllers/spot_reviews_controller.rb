@@ -31,17 +31,29 @@ class SpotReviewsController < ApplicationController
   def update
     spot_review = SpotReview.find(params[:id])
     if spot_review.user.id == current_user.id
-      spot_review.update(spot_review_params)
+      if spot_review.update(spot_review_params)
+        flash[:notice] = "レビューを更新しました"
+        redirect_to user_path(current_user)
+      else
+        flash[:alert] = "\uf071 投稿内容に不備があったためレビューは更新出来ませんでした"
+        redirect_to user_path(current_user)
+      end
+    else
+     redirect_to user_path(current_user)
     end
-    redirect_to user_path(current_user)
   end
 
   def destroy
     spot_review = SpotReview.find(params[:id])
+    spot = spot_review.spot
     if spot_review.user.id == current_user.id
       spot_review.destroy
     end
-    redirect_to user_path(current_user)
+    if params[:user_id]
+      redirect_to user_path(current_user)
+    else
+      redirect_to spot_path(spot)
+    end
   end
 
     private

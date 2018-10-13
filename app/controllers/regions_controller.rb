@@ -4,10 +4,10 @@ class RegionsController < ApplicationController
   	@regions = Region.all
     if params[:id].present?
   	  region = Region.find(params[:id])
-  	  if region.id == 1 || region.id == 10
-  	    prefecture = region.prefectures.first
-        redirect_to areas_path(prefecture, id: prefecture.id)
-  	  end
+  	  # if region.id == 1 || region.id == 10
+  	  #   prefecture = region.prefectures.first
+     #    redirect_to areas_path(prefecture, id: prefecture.id)
+  	  # end
     end
   end
 
