@@ -606,14 +606,17 @@ hr{
 	display: flex;
 	flex-wrap:wrap;
 	padding:0;
-	margin: 0 42%;
+	margin-top: 2%;
 	/*margin:-5px 0 0 -5px;*/
+}
+.shareList8__item-box {
+	margin: 0 auto;
 }
 .shareList8__item {
 	height:50px;
 	line-height:50px;
-	text-align:center;
-	margin:9px 0 0 5px;
+	display: inline-block;
+	/*margin:9px 0 0 5px;*/
 }
 .shareList8__link {
 	display:block;

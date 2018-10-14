@@ -1,6 +1,28 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 568px; //スマートフォン
+
+@mixin tab {
+  @media screen and (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($widthSp)) {
+    @content;
+  }
+}
+.user-item-index {
+   margin-left: 3%;
+   @media screen and (min-width:769px) {
+   display: none !important;
+  }
+}
 .user-content-headline{
 position: relative;
 display: inline-block;
@@ -31,7 +53,6 @@ transform: rotate(-60deg);
     background: #FF8C00;
   }
 }
-
 .user-delete-btn {
     position: relative;
     display: inline-block;
@@ -50,12 +71,49 @@ transform: rotate(-60deg);
         background: red;
     }
 }
-
 .user-delete-btn:active {
     border: solid 1px #FFCCCC;
     box-shadow: none;
     text-shadow: none;
     text-decoration: none !important;
+}
+
+.tab-sp-user-delete-btn {
+    float: right;
+    position: relative;
+    right: 0;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none !important;
+    color: red !important;
+    background: #FFCCCC;/*色*/
+    border: solid 1px #FFCCCC;/*線色*/
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    @media screen and (min-width:769px) {
+      display: none !important;
+    }
+    &:hover {
+        color: #FFF !important;
+        background: red;
+    }
+}
+.tab-sp-user-delete-btn:active {
+    border: solid 1px #FFCCCC;
+    box-shadow: none;
+    text-shadow: none;
+    text-decoration: none !important;
+}
+
+
+.pc-user-tailai {
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
 }
 
 /* usertabnav */

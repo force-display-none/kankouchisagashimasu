@@ -14,9 +14,9 @@
             <% style = "primary" %>
           <% end %>
             <% if area.spots.exists? %>
-              <%=link_to area_path(area) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h5><%= area.name %>エリアの観光地一覧へ</h5></button><% end %><br>
+              <%=link_to area_path(area) do %><button type="button" class="btn btn-<%= style %> area-name-btn"><h5><%= area.name %>エリアの観光地一覧へ</h5></button><% end %><br>
             <% else %>
-              <button style="width: 100%; cursor: not-allowed" type="button" class="btn btn-<%= style %>"><h5><%= fa_icon("exclamation-triangle") %><%= area.name %>エリア(このエリアに登録されている観光地はまだありません)</h5></button><br>
+              <button cursor: not-allowed" type="button" class="btn btn-<%= style %> area-name-btn"><h5><%= fa_icon("exclamation-triangle") %><%= area.name %>エリア<br>(登録されている観光地はまだありません)</h5></button><br>
             <% end %>
           <% n += 1 %>
           <% end %>

@@ -16,17 +16,18 @@
 
 @import "font-awesome";
 
-$widthPC: 1080px; //PC
-$widthTab: 768px; //タブレット
-$widthSp: 568px; //スマートフォン
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 414px; //スマートフォン
 
 @mixin tab {
-  @media (min-width: $widthTab) and (max-width: ($widthPC)) {
+  @media screen and (max-width: ($widthTab)) {
     @content;
   }
 }
+
 @mixin sp {
-  @media (max-width: ($widthTab)) {
+  @media screen and (max-width: ($widthSp)) {
     @content;
   }
 }
@@ -40,11 +41,20 @@ html {
 	min-height: 100%;
 	position: relative;
 	body {
-	  margin-bottom: 180px;
-    // position: relative;
-    }
+	  margin-bottom: 200px;
+  }
 }
-
+.col-sm-8 {
+  @include tab {
+    padding-right: 10%;
+  }
+  @include sp {
+    padding-right: 10%;
+  }
+}
+.col-sm-12 {
+  padding: 0;
+}
 .btn-primary {
     display: inline-block;
     padding: 0.5em 1em;
@@ -53,8 +63,6 @@ html {
     font-weight: bold;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #709dff 50%, #FFF 100%);
-    // background-image: -webkit-linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
-    // background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
     background-image: linear-gradient(45deg, #709dff 50%, #FFF 100%);
     transition: .4s;
 }
@@ -114,7 +122,6 @@ html {
 }
 
 #twitter-widget-0 { min-width: 240px !important; }
-
 // ヘッダー
 // .header-text-sp {
 //   @include pc {
@@ -139,11 +146,28 @@ header {
 .header-logo {
 	margin-left: 5%;
 }
+.pc-nav {
+  @include tab {
+    display: none!important;
+  }
+  @include sp {
+    display: none!important;
+  }
+}
+@media screen and (min-width:769px) {
+  .dropdown {
+    display: none;
+  }
+}
+.dropdown-menu {
+  margin-left: -100%;
+}
 .login-nav {
 	position: absolute;
 	bottom: 0%;
 	right: 5%;
   }
+
 .blue {
   color: #0000FF;
   text-decoration: none;
@@ -189,13 +213,30 @@ header {
 div .nav-last-content {
 	margin-left: 16px;
 }
-.flash-box {
+.flash-box-pc {
   display: inline-grid;
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
+}
+.flash-box-tab-sp {
+  display: inline-grid;
+  margin-bottom: 8%;
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
 }
 .flash {
   font-size: 20px;
-  // position: absolute;
-  // bottom: 0;
+  @include tab {
+    font-size: 100%;
+  }
+  @include sp {
+    font-size: 100%;
+  }
 }
 
 .back-image {
@@ -262,6 +303,12 @@ div .nav-last-content {
   position: relative;
   display: inline-block;
   padding: 10px 0 20px 0;
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
   .auth {
     position: absolute;
     top: 0;
@@ -269,15 +316,15 @@ div .nav-last-content {
     width: 100%;
   }
 }
-
-
-
 // サイドバー
 #sidebar {
 	margin-top: 32px;
   position: relative;
 	float: right;
 	width: 25%;
+  @include tab {
+    display: none;
+  }
 	@include sp {
 	  display: none;
 	}
@@ -291,7 +338,7 @@ footer {
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 180px;
+  height: 200px;
   position: absolute;
   bottom: 0;
   .anchor {
@@ -524,4 +571,9 @@ cursor: pointer ;
 }
 .hover-orange:hover:before {
   transform: scale(1);
+}
+@media screen and (min-width: 769px) {
+ .sp-tab-new {
+  display: none;
+ }
 }

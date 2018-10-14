@@ -1,6 +1,7 @@
 class PrefecturesController < ApplicationController
 
   def index
+    @regions = Region.all
   	@prefectures = Prefecture.all
     if user_signed_in?
       if session[:url]

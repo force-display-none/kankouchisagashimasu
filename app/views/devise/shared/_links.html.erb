@@ -3,7 +3,8 @@
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "\uf234 初めての方はこちら", sign_up_top_path, class: "hover fa new" %><br />
+  <%= link_to "\uf234 初めての方はこちら", sign_up_top_path, class: "hover fa new pc-nav" %><br />
+  <%= link_to "\uf234 初めての方はこちら", new_user_registration_path, class: "hover fa new sp-tab-new" %><br />
 <% end -%>
 
 <%#- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

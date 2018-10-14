@@ -10,9 +10,9 @@
     <td><span class="spot-location"><%= spot.location %></span>
         <span class="spot-map">
           <% if spot.latitude.nil? || spot.longitude.nil? %>
-            <%= link_to "地図を見る", spot.map_url, class: "map_btn" %>
+            <%= link_to "地図", spot.map_url, class: "map_btn" %>
           <% else %>
-            <%= link_to "地図を見る", map_path, class: "map_btn" %>
+            <%= link_to "地図", map_path, class: "map_btn" %>
           <% end %>
         </span>
     </td>

@@ -1,6 +1,22 @@
 // Place all the styles related to the spots controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 568px; //スマートフォン
+
+@mixin tab {
+  @media screen and (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($widthSp)) {
+    @content;
+  }
+}
 // 観光地詳細ページ
 .spot-show-header-box {
   position: relative;
@@ -17,19 +33,25 @@
       }
     }
   }
+@media screen and (min-width:769px) {
   .spot-show-tags-box {
     position: absolute;
     left: 0;
   }
+}
   .spot-show-spot-like-want-went-box {
     position: absolute;
     right: 0;
+    bottom: -30px;
     a {
       text-decoration: none;
       color: #FF8C00;
       &:hover {
         color: #FF99FF !important;
       }
+    }
+    @include sp {
+      font-size: 0.6em;
     }
   }
 }
@@ -261,21 +283,6 @@ li {
       }
    }
 }
-// @media screen and (max-width: 640px) {
-//   .last td:last-child {
-//     border-bottom: solid 1px #ccc;
-//     width: 100%;
-//   }
-//   .tbl-r02 {
-//     width: 80%;
-//   }
-//   .tbl-r02 th,
-//   .tbl-r02 td {
-// 　　border-bottom: none;
-//     display: block;
-//     width: 100%;
-//   }
-// }
 .google-map-headline {
 position: absolute;
 left: 50%;
@@ -286,6 +293,9 @@ font-size: 20px;
 padding: 10px 0;
 text-align: center;
 margin: 1.5em 0;
+@include sp {
+  display: none;
+}
 }
 .google-map-headline:before {
 content: "";
@@ -308,9 +318,13 @@ transform: translateX(-50%);
   height: 615px;
   position: relative;
   margin-top: 3%;
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
 }
-
-
 .wrapper{
   width: 615px;
   height: 615px;
@@ -353,6 +367,12 @@ transform: translateX(-50%);
   bottom: -50px;
   right: -50px;
   border-left: 1px solid #494949;
+}
+.sp-tab-image {
+  text-align: center;
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
 }
 .notes {
   width: 100%;
@@ -489,23 +509,40 @@ transform: translateX(-50%);
   display: none ;
   z-index: 2 ;
   text-align: center;
+  @include sp {
+    .red,.blue {
+      font-size: 0.6em!important;
+    }
+  }
     input {
     color: #000;
     width: 240px;
     border-radius: 0px;
+    @include sp {
+      width: 100%;
+    }
   }
    .body {
     width: 240px;
+    @include sp {
+      width: 100%;
+    }
    }
     select {
     color: #000;
     width: 120px;
     border-radius: 0px;
+    @include sp {
+      width: 100%;
+    }
   }
    #spot_review_fellow_travelers {
     color: #000;
     width: 240px;
     border-radius: 0px;
+    @include sp {
+      width: 100%;
+    }
   }
     input[type="file"] {
     margin: 0 auto;
@@ -545,4 +582,9 @@ transform: translateX(-50%);
 .button-link:hover {
   cursor: pointer ;
   // color: # ;
+}
+@media screen and (max-width: 1080px) {
+  .spot-show-sidebar {
+    display: none;
+  }
 }

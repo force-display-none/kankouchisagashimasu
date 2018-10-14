@@ -26,7 +26,7 @@
               <% @spot.tag_list.each do |tag| %>
                 <span class="label label-primary tag"><%= tag %></span>
               <% end %>
-            </div>
+            </div><br>
             <div class="spot-show-spot-like-want-went-box">
               <span id="went-want"><%= render 'want_went' %></span>
               <%= render 'like' %>
@@ -51,6 +51,7 @@
   <div class="cut_b"></div>
 </div>
 </div>
+<div class="sp-tab-image"><%= attachment_image_tag @image, :image, :fill, 300, 300%></div>
 
             <!-- <ul class="bxslider"> -->
               <%# @spot.spot_images.each do |image| %>
@@ -62,7 +63,8 @@
             <!-- </ul> -->
             <% end %>
            </div>
-                   <div class="col-sm-1">
+      <div class="spot-show-sidebar">
+        <div class="col-sm-1" >
           <%= render 'layouts/sidebar' %>
         </div>
         <div class="col-sm-3"></div>
