@@ -12,7 +12,8 @@
         <div class="col-sm-6"></div>
       </div>
       <div class="row">
-        <div class="col-sm-3">
+       <!-- pc用 -->
+        <div class="col-sm-3 pc-nav">
           <div style="text-align: center;">
             <h3 class="user-content-headline">登録情報変更</h3>
           </div>
@@ -20,9 +21,32 @@
             <%= render 'edit_user_form', f: f %>
           <% end %>
         </div>
+
+　　　　　<!-- sp tab用 -->
+        <div class="col-sm-3 sp-tab-new">
+          <a id="user-edit-form-open" class="blue blue--bgLeft form-open">
+            登録情報変更フォームはこちら
+          </a>
+          <div id="user-edit-form">
+            <div id="user-edit-form-innar"><!-- モーダルウィンドウのコンテンツ開始 -->
+              <p class="red bold">
+                <div class="form">
+                  <strong>変更フォーム</strong>
+                </div><br>
+                <%= form_for(@user) do |f| %>
+                  <%= render 'edit_user_form', f: f %>
+                <% end %>
+              </p>
+              <p>
+                <a id="user-edit-form-close" class="button-link">閉じる</a>
+              </p>
+            </div><!-- user-edit-form--innarモーダルウィンドウのコンテンツ終了 -->
+          </div><!-- user-edit-form- -->
+        </div>
+
         <div class="col-sm-9">
           <div style="text-align: center;">
-            <h3 id="user-item-index" class="user-content-headline">各種一覧を見る</h3>
+            <h3 id="user-item-index" class="user-content-headline">各種一覧<span class="pc-nav">を見る</span></h3>
           </div>
           <input id="usertab01" type="radio" name="usertabinput" checked>
           <input id="usertab02" type="radio" name="usertabinput">
