@@ -245,10 +245,22 @@ div .nav-last-content {
   background-image: image_url('img3.jpg');
   background-size: cover;
   background-position: center;
+  @include tab {
+    height: auto;
+  }
+  @include sp {
+    height: auto;
+  }
   .back-image-mask {
     height: 100%;
     background-color: rgba( 0, 0, 0, 0.5);
     position: relative;
+    @include tab {
+      position: static;
+    }
+    @include sp {
+      position: static;
+    }
   }
   .form {
     position: absolute;
@@ -257,6 +269,18 @@ div .nav-last-content {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @include tab {
+      position: static;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+    @include sp {
+      position: static;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
     h3 {
       margin-top: 0;
       padding-top: 20px;
