@@ -8,7 +8,7 @@
       <span class="spot-review-box">
         <span class="spot-review-header">
           <span class="spot-review-header-item"><span style="color: #FF8C00;">レビューNo.<%= @i %></span></span><br>
-          <span class="spot-review-header-item" style="margin: 0 1%;">観光地名：<%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot), class: "blue blue--bgLeft" %></span><br>
+          <span class="spot-review-header-item" style="margin: 0 1%;">観光地名：<%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot), class: "blue blue--bgLeft", data: {"turbolinks" => false} %></span><br>
 　　　　   <span class="spot-review-header-item"><%#= attachment_image_tag review.spot_review_images.first, :image, :fill, 30, 30 %></span>
           <span class="spot-review-header-item" style="margin: 0 1%;">投稿者：<%= user.nickname %>さん</span>
           <span class="spot-review-header-item"><%= user.gender %>／<%= user.age %></span>

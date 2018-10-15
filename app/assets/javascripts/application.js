@@ -12,6 +12,7 @@
 //
 //= require activestorage
 //= require jquery
+// jquery.turbolinksはturbolinksより上
 //= require jquery.turbolinks
 //= require turbolinks
 //= require rails-ujs

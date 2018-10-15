@@ -1,7 +1,11 @@
 class SpotsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :createguest!, only: [:show]
 
   def new
+    if current_user.management == "user"
+      redirect_to root_path
+    end
     @spot = Spot.new
     @spot_image = @spot.spot_images.build
   end

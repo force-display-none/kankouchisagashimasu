@@ -25,7 +25,7 @@
                 <% else %>
                   <% style = "primary" %>
                 <% end %>
-              <%= link_to spot_path(spot) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
+              <%= link_to spot_path(spot), data: {"turbolinks" => false} do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
               <% n += 1 %>
               <% end %>
             <% else %>
@@ -35,7 +35,7 @@
                 <% else %>
                   <% style = "primary" %>
                 <% end %>
-              <%= link_to spot_path(spot) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
+              <%= link_to spot_path(spot), data: {"turbolinks" => false} do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= spot.name %><br>(<%= spot.s_spot_genre.name %>)</h4></button><% end %>
               <% n += 1 %>
               <% end %>
             <% end %>

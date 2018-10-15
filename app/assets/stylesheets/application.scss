@@ -412,25 +412,25 @@ footer {
     opacity: 0.7;
 
     &.fadeSlider_01 {
-      background-image: url(img1.jpg);
+      background-image: image_url('img1.jpg');
       animation: fadeSlideImg01 12s ease-out infinite;
       animation-delay: 3s;
     }
     &.fadeSlider_02 {
       opacity: 0;
-      background-image: url(img2.jpg);
+      background-image: image_url('img2.jpg');
       animation: fadeSlideImg02 12s ease-out infinite;
       animation-delay: 3s;
     }
     &.fadeSlider_03 {
       opacity: 0;
-      background-image: url(img3.jpg);
+      background-image: image_url('img3.jpg');
       animation: fadeSlideImg03 12s ease-out infinite;
       animation-delay: 3s;
     }
     &.fadeSlider_04 {
       opacity: 0;
-      background-image: url(img4.jpg);
+      background-image: image_url('img4.jpg');
       animation: fadeSlideImg04 12s ease-out infinite;
       animation-delay: 3s;
     }

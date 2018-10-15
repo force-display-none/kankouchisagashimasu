@@ -1,7 +1,7 @@
  <!-- <div class="header-text-sp">素敵な<span class="header-text">観光地</span>見つけよう！</div> -->
  <div class="header-text-pc"><span>行きたい観光地を見つけよう!</span></div>
  <header>
-   <%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/', class: "header-logo" %>
+   <%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/', class: "header-logo", data: {"turbolinks" => false} %>
     <span class="flash-box-pc"><span class="flash fa" style="color: red; background-color: #FFCCCC;"><%= alert %></span><span class="flash fa" style="color: #0000FF;"><%= notice %></span></span>
     <div class="flash-box-tab-sp"><span class="flash fa" style="color: red; background-color: #FFCCCC;"><%= alert %></span><span class="flash fa" style="color: #0000FF;"><%= notice %></span></div>
    <% if user_signed_in? %>
