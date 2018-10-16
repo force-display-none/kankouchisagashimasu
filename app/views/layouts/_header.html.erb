@@ -12,7 +12,7 @@
        <button class="btn btn-primary dropdown-toggle fa" type="button" data-toggle="dropdown"><%= fa_icon("user-plus") %>
        <span class="caret"></span></button>
        <ul class="dropdown-menu">
-         <li><%= link_to "マイページ", user_path(current_user), class: "blue blue--bgLeft" %></li>
+         <li><%= link_to "マイページ", user_path(current_user), class: "blue blue--bgLeft", data: {"turbolinks" => false} %></li>
          <li><%= link_to "ログアウト", destroy_user_session_path, class: "red red--bgLeft", method: :delete, "data-confirm" => "ログアウトしてよろしいですか？" %></li>
        </ul>
      </div>

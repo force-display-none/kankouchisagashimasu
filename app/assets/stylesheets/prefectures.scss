@@ -23,6 +23,9 @@ $widthSp: 414px; //スマートフォン
     background-image: image_url('img3.jpg');
     background-size: cover;
     background-position: center;
+    @include sp {
+      background-image: image_url('gahag-0119247818.png');
+  }
     // @include tab {
     //   height: 105vh;
     // }
@@ -40,7 +43,12 @@ $widthSp: 414px; //スマートフォン
     h1 {
       @include sp {
         font-size: 32px;
+        color: #FF8C00;
       }
+    }
+    .sub-headline {
+      padding-left: 5%;
+      color: #FF8C00;
     }
   }
   @media screen and (min-width: 415px) {
