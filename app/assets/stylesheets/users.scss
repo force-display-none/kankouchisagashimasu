@@ -17,12 +17,6 @@ $widthSp: 568px; //スマートフォン
     @content;
   }
 }
-.user-item-index {
-   margin-left: 3%;
-   @media screen and (min-width:769px) {
-   display: none !important;
-  }
-}
 .user-content-headline{
 position: relative;
 display: inline-block;
@@ -343,7 +337,7 @@ li {
     text-decoration: none !important;
 }
 #user-edit-form {
-  width: 50% ;
+  width: 80% ;
   margin: 0 ;
   padding: 10px 20px ;
   border: 2px solid #aaa ;
@@ -352,6 +346,9 @@ li {
   display: none ;
   z-index: 2 ;
   text-align: center;
+  input, select {
+    width: 100%;
+  }
 }
 #user-edit-form-innar{
   margin:0 auto;

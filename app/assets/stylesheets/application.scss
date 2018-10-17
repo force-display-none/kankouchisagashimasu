@@ -247,9 +247,11 @@ div .nav-last-content {
   background-position: center;
   @include tab {
     height: auto;
+    background-image: image_url('gahag-0119247818.png');
   }
   @include sp {
     height: auto;
+    background-image: image_url('gahag-0119247818.png');
   }
   .back-image-mask {
     height: 100%;
