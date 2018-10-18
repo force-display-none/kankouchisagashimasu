@@ -1,0 +1,37 @@
+<% if current_user.spot_review_helpfuls.exists? %>
+  <h4 class="tabcontent-headline"><%= current_user.nickname %>さんが参考にしているレビューは全<%= current_user.spot_review_helpfuls.count %>件です</h4>
+    <span class="my-reviews-box">
+    <% @i = 1 %>
+    <%spot_review_helpfuls.each do |helpful| %>
+      <% user = helpful.spot_review.user %>
+      <% review = helpful.spot_review %>
+      <span class="spot-review-box">
+        <span class="spot-review-header">
+          <span class="spot-review-header-item"><span style="color: #FF8C00;">レビューNo.<%= @i %></span></span><br>
+          <span class="spot-review-header-item" style="margin: 0 1%;">観光地名：<%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot), class: "blue blue--bgLeft", data: {"turbolinks" => false} %></span><br>
+　　　　   <span class="spot-review-header-item"><%#= attachment_image_tag review.spot_review_images.first, :image, :fill, 30, 30 %></span>
+          <span class="spot-review-header-item" style="margin: 0 1%;">投稿者：<%= user.nickname %>さん</span>
+          <span class="spot-review-header-item"><%= user.gender %>／<%= user.age %></span>
+        </span>
+        <span class="spot-review-body-box">
+　　  　   <h4 class="spot-review-headline"><%= review.title %></h4>
+　　  　   <span class="spot-review-body"><%= review.body %></span>
+        </span>
+        <span class="spot-review-date">
+　　　　　　<span class="spot-review-date-item">同行者：<span style="border: solid 1px #000;"><%= review.fellow_travelers %></span></span>
+　　  　   <span class="spot-review-date-item" style="margin-left: 1%;">行った時期：<%= review.season.strftime('%Y年%m月') %></span>
+　　  　   <span class="spot-review-date-item" style="margin-left: 1%;">投稿日：<%= review.created_at.strftime('%Y年%m月%d日') %></span>
+          <span class="spot-review-date-item" style="margin-top: 1%; margin-left: 3%;"><%= link_to "レビューNo.#{@i}の参考になったを外す", spot_spot_review_spot_review_helpfuls_path(spot_id: review.spot.id, spot_review_id: review.id, user_id: current_user.id),  method: :delete, class: "myreview-delete-btn", "data-confirm" => "本当に削除しますか？"%>
+          </span>
+        </span>
+      </span><!-- spot-review-box -->
+      <% @i += 1 %>
+    <% end %><!-- spot.spot_helpful.each do -->
+  </span><!-- my-reviews-box -->
+  <% else %>
+    <span>参考にしているレビューはありません</span>
+  <% end %><!-- if spot_review_helpfuls.exists? -->
+
+
+
+

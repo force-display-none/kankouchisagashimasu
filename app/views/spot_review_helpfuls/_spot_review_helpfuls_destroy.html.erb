@@ -1,0 +1,8 @@
+<%= link_to spot_spot_review_spot_review_helpfuls_path(spot_id: review.spot.id, spot_review_id: review.id, helpful_id: @i), method: :delete, id: "helpfuls#{@i}", class: "spot-review-footer-item", remote: true do %>
+<span class="spot-review-footer-item" id="<%= @i %>"><em class="red red--bgLeft">参考になったを外しますか？</em></span>
+   <button class="btn btn-default">はい</button>
+    <!-- <i class="fa fa-music" aria-hidden="true""></i> -->
+    <span class="balloon3-left">
+    <%= review.spot_review_helpfuls.count %>
+</span>
+<% end %>

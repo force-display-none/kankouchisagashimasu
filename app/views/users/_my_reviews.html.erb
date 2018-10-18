@@ -1,0 +1,36 @@
+<% if spot_reviews.exists? %>
+  <h4 class="tabcontent-headline"><%= current_user.nickname %>さんの投稿したレビューは全<%= spot_reviews.count %>件です(<span style="color: blue;">編集出来ます</span>)</h4>
+  <span class="my-reviews-box">
+    <% i = 1 %>
+    <% spot_reviews.each do |review| %>
+      <%= form_for(review, url: spot_spot_review_path( spot_id: review.spot, id: review.id)) do |f| %>
+        <span style="color: #FF8C00;">レビューNo.<%= i %></span><br>
+        観光地名：<%= link_to "#{review.spot.name}(#{review.spot.area.prefecture.name})", spot_path(review.spot), class: "blue blue--bgLeft", data: {"turbolinks" => false} %>
+        参考にされている数<span class="balloon3-left"><%= review.spot_review_helpfuls.count %></span>
+        <span>
+          <%= link_to " No.#{i}のレビューを削除", spot_spot_review_path(review, spot_id: review.spot.id, id: review.id, user_id: current_user.id),  method: :delete, class: "myreview-delete-btn", "data-confirm" => "本当に削除しますか？"%>
+        </span><br>
+        <span class="field">
+          <%= f.label :タイトル %>
+          <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+        </span><br>
+        <span class="field">
+          <%= f.label :レビュー内容 %>
+          <%= f.text_area :body, rows: '5', autofocus: true, autocomplete: "body" %>
+        </span><br>
+        <span class="field">
+          <%= f.label :行った時期 %><%= f.label :同行者, class:"fellow_travelers" %><br />
+          <%= f.date_select :season, {:discard_day => true}, start_year: 2018, end_year:   (Time.now.year - 30) %>
+          <%= f.select :fellow_travelers, SpotReview.fellow_travelers.keys.to_a, {} %>
+        </span>
+        <span class="actions">
+          <%= f.submit " No.#{i}のレビューを更新"%>
+        </span>
+      <% end %><!-- form_for -->
+      <br>
+      <% i += 1 %>
+    <% end %><!-- spot_reviews.each do -->
+  </span><!-- my-reviews-box -->
+<% else %>
+  <h4 class="tabcontent-headline"><%= current_user.nickname %>さんはまだレビューを投稿していません</h4>
+<% end %><!-- if spot_reviews.exists? -->

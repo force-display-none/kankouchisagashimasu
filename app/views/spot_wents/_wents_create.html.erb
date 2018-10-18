@@ -1,0 +1,11 @@
+<% if @spot.want?(current_user) %>
+  <%= render 'spot_wants/wants_destroy' %>
+<% else %>
+  <%= render 'spot_wants/wants_create' %>
+<% end %><!-- spot.want?(current_user) -->
+
+<%= link_to spot_spot_wents_path(@spot), method: :post, id: "wents", remote: true, :style=>"color:#1DCD00;"  do %>
+  <span class="went-button">行った!</span>
+  <i class="fa fa-music" aria-hidden="true""></i>
+  <%= @spot.spot_wents.count %>
+<% end %>

@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+
+  <% if @spot.liked_by?(current_user) %>
+    <%= render 'spot_likes/likes_destroy' %>
+  <% else %>
+    <%= render 'spot_likes/likes_create' %>
+
+  <% end %>
+
+<% else %>
+
+  <% if @spot.spot_likes.where(remote_ip: request.remote_ip).exists? %>
+
+  <%= render 'spot_likes/likes_delete_by_remote_ip' %>
+
+  <% elsif @spot.guest_liked_by?(@guest) %>
+
+  <%= render 'spot_likes/likes_delete_by_guest' %>
+
+  <% else %>
+
+  <%= render 'spot_likes/likes_create_by_guest' %>
+
+  <% end %>
+
+<% end %>

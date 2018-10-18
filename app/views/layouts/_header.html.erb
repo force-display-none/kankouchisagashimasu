@@ -1,0 +1,45 @@
+ <!-- <div class="header-text-sp">素敵な<span class="header-text">観光地</span>見つけよう！</div> -->
+ <div class="header-text-pc"><span>行きたい観光地を見つけよう!</span></div>
+ <header>
+   <%= link_to image_tag('1_Primary_logo_on_transparent_210x69.png', :alt =>"アイコン"), '/', class: "header-logo", data: {"turbolinks" => false} %>
+    <span class="flash-box-pc"><span class="flash fa" style="color: red; background-color: #FFCCCC;"><%= alert %></span><span class="flash fa" style="color: #0000FF;"><%= notice %></span></span>
+    <div class="flash-box-tab-sp"><span class="flash fa" style="color: red; background-color: #FFCCCC;"><%= alert %></span><span class="flash fa" style="color: #0000FF;"><%= notice %></span></div>
+   <% if user_signed_in? %>
+
+　　　<!-- spとTab用ヘッダーメニュー -->
+     <div class="dropdown login-nav">
+       <span style="color: blue;">ログイン中</span><br>
+       <button class="btn btn-primary dropdown-toggle fa" type="button" data-toggle="dropdown"><%= fa_icon("user-plus") %>
+       <span class="caret"></span></button>
+       <ul class="dropdown-menu">
+         <li><%= link_to "マイページ", user_path(current_user), class: "blue blue--bgLeft", data: {"turbolinks" => false} %></li>
+         <li><%= link_to "ログアウト", destroy_user_session_path, class: "red red--bgLeft", method: :delete, "data-confirm" => "ログアウトしてよろしいですか？" %></li>
+       </ul>
+     </div>
+
+　　　<!-- pc用ヘッダーメニュー -->
+     <div class="login-nav pc-nav">
+       <span>ようこそ<strong style="color: blue;"><%= current_user.nickname %></strong>さん(<%= link_to "マイページ", user_path(current_user), class: "blue blue--bgLeft" %>)</span>
+       <span class="nav-last-content"><%= link_to "ログアウト", destroy_user_session_path, class: "red red--bgLeft", method: :delete, "data-confirm" => "ログアウトしてよろしいですか？" %></span>
+     </div>
+   <% else %>
+
+　　　<!-- spとTab用ヘッダーメニュー -->
+     <div class="dropdown login-nav">
+       <button class="btn btn-primary dropdown-toggle fa" type="button" data-toggle="dropdown"><%= fa_icon("user-plus") %>
+       <span class="caret"></span></button>
+       <ul class="dropdown-menu">
+         <li><%= link_to "ログイン", new_user_session_path, class: "blue blue--bgLeft" %></li>
+         <li><%= link_to "新規登録", new_user_registration_path, class: "blue blue--bgLeft" %></li>
+         <li><%= link_to "Twitter認証", user_twitter_omniauth_authorize_path, class: "blue blue--bgLeft" %></li>
+         <li><%= link_to "Facebook認証", user_facebook_omniauth_authorize_path, class: "blue blue--bgLeft" %></li>
+       </ul>
+     </div>
+
+　　　<!-- pc用ヘッダーメニュー -->
+     <div class="login-nav pc-nav">
+       <span>ようこそ<strong style="color: blue;">ゲスト</strong>さん(<%= link_to "ログイン", new_user_session_path, class: "blue blue--bgLeft" %>)</span>
+       <span class="nav-last-content"><%= link_to "初めての方はこちら", sign_up_top_path, class: "blue blue--bgLeft" %></span>
+     </div>
+   <% end %>
+ </header>

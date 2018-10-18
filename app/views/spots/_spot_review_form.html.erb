@@ -1,0 +1,28 @@
+<span class="field">
+  <span style="color: red;">必須</span> <%= f.label :タイトル %>(50字以内)<br />
+  <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+</span><br>
+<span class="field">
+  <span style="color: red;">必須</span> <%= f.label :レビュー内容 %>(300字以内)<br />
+  <%= f.text_area :body, rows: '5', autofocus: true, autocomplete: "body", class: "body" %>
+</span><br>
+<span class="field">
+  <span style="color: red;">必須</span> <%= f.label :行った時期 %>(選択して下さい)<br />
+  <%= f.date_select :season, {:discard_day => true}, start_year: 2018, end_year:   (Time.now.year - 30) %>
+</span><br>
+<span class="field">
+  <span style="color: red;">必須</span> <%= f.label :同行者 %>(選択して下さい)<br />
+  <%= f.select :fellow_travelers, SpotReview.fellow_travelers.keys.to_a, {} %>
+</span><br><br>
+<span id="spot_review_images" class="field">
+  <strong>画像を投稿する</strong>
+  <%= f.fields_for :spot_review_images do |spot_review_image| %>
+    <%= render 'spot_review_image_fields', f: spot_review_image %>
+  <% end %>
+</span>
+<span id="links" class="field">
+    <%= link_to_add_association '投稿画像を追加する', f, :spot_review_images, class: "blue blue--bgLeft" %>
+</span><br>
+<span class="actions">
+  <%= f.submit "レビューを投稿する" %>
+</span>

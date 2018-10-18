@@ -1,0 +1,99 @@
+<div class="top-main-box">
+  <div class="map-box">
+   <p>都道府県名をクリックして下さい</p>
+     <h1><span><strong>観光地</strong>さがします</span></h1>
+     <table id="japan-map">
+         <tr>
+             <td colspan="22" rowspan="4">&nbsp;</td>
+             <td colspan="3" class="pref"><%= link_to '北海道', search_path(@prefectures, id: 1), id: "hokkaido" %></td>
+         </tr>
+         <tr>
+             <td colspan="3">&nbsp;</td>
+         </tr>
+         <tr>
+             <td colspan="3" class="pref"><%= link_to '青森県', search_path(@prefectures, id: 2), id: "aomori" %></td>
+         </tr>
+         <tr>
+             <td class="pref"><%= link_to '秋田県', search_path(@prefectures, id: 3), id: "akita" %></td>
+             <td colspan="2" class="pref"><%= link_to '岩手県', search_path(@prefectures, id: 4), id: "iwate" %></td>
+         </tr>
+         <tr>
+             <td colspan="15" rowspan="2">&nbsp;</td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '石川県', search_path(@prefectures, id: 18), id: "ishikawa" %></td>
+             <td colspan="5">&nbsp;</td>
+             <td class="pref"><%= link_to '山形県', search_path(@prefectures, id: 6), id: "yamagata" %></td>
+             <td colspan="2" class="pref"><%= link_to '宮城県', search_path(@prefectures, id: 5), id: "miyagi" %></td>
+         </tr>
+         <tr>
+             <td colspan="3" class="pref"><%= link_to '富山県', search_path(@prefectures, id: 17), id: "toyama" %></td>
+             <td colspan="3" class="pref"><%= link_to '新潟県', search_path(@prefectures, id: 16), id: "niigata" %></td>
+             <td colspan="2" class="pref"><%= link_to '福島県', search_path(@prefectures, id: 7), id: "fukushima" %></td>
+         </tr>
+         <tr>
+             <td colspan="13">&nbsp;</td>
+             <td colspan="4" class="pref"><%= link_to '福井県', search_path(@prefectures, id: 19), id: "fukui" %></td>
+             <td rowspan="2" class="pref"><%= link_to '岐阜県', search_path(@prefectures, id: 22), id: "gifu" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '長野県', search_path(@prefectures, id: 20), id: "nagano" %></td>
+             <td colspan="2" class="pref"><%= link_to '群馬県', search_path(@prefectures, id: 10), id: "gunma" %></td>
+             <td class="pref"><%= link_to '栃木県', search_path(@prefectures, id: 9), id: "tochigi" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '茨城県', search_path(@prefectures, id: 8), id: "ibaraki" %></td>
+         </tr>
+         <tr>
+             <td colspan="5">&nbsp;</td>
+             <td class="pref"><%= link_to '山口県', search_path(@prefectures, id: 39), id: "yamaguchi" %></td>
+             <td colspan="2" class="pref"><%= link_to '島根県', search_path(@prefectures, id: 32), id: "shimane" %></td>
+             <td colspan="2" class="pref"><%= link_to '鳥取県', search_path(@prefectures, id: 31), id: "tottori" %></td>
+             <td rowspan="2" class="pref"><%= link_to '兵庫県', search_path(@prefectures, id: 27), id: "hyogo" %></td>
+             <td colspan="2" class="pref"><%= link_to '京都府', search_path(@prefectures, id: 25), id: "kyoto" %></td>
+             <td colspan="4" class="pref"><%= link_to '滋賀県', search_path(@prefectures, id: 29), id: "shiga" %></td>
+             <td colspan="2" class="pref"><%= link_to '山梨県', search_path(@prefectures, id: 15), id: "yamanashi" %></td>
+             <td class="pref"><%= link_to '埼玉県', search_path(@prefectures, id: 11), id: "saitama" %></td>
+         </tr>
+         <tr>
+             <td rowspan="2" class="pref"><%= link_to '長崎県', search_path(@prefectures, id: 44), id: "nagasaki" %></td>
+             <td rowspan="2" class="pref"><%= link_to '佐賀県', search_path(@prefectures, id: 42), id: "saga" %></td>
+             <td colspan="3" class="pref"><%= link_to '福岡県', search_path(@prefectures, id: 40), id: "fukuoka" %></td>
+             <td>&nbsp;</td>
+             <td colspan="2" class="pref"><%= link_to '広島県', search_path(@prefectures, id: 34), id: "hiroshima" %></td>
+             <td colspan="2" class="pref"><%= link_to '岡山県', search_path(@prefectures, id: 33), id: "okayama" %></td>
+             <td colspan="2" class="pref"><%= link_to '大阪府', search_path(@prefectures, id: 26), id: "osaka" %></td>
+             <td colspan="2" class="pref"><%= link_to '奈良県', search_path(@prefectures, id: 28), id: "nara" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '三重県', search_path(@prefectures, id: 23), id: "mie" %></td>
+             <td class="pref"><%= link_to '愛知県', search_path(@prefectures, id: 24), id: "aichi" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '静岡県', search_path(@prefectures, id: 21), id: "shizuoka" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '神奈川県', search_path(@prefectures, id: 14), id: "kanagawa" %></td  >
+             <td class="pref"><%= link_to '東京都', search_path(@prefectures, id: 12), id: "tokyo" %></td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '千葉県', search_path(@prefectures, id: 13), id: "chiba" %></td>
+         </tr>
+         <tr>
+             <td rowspan="3" class="pref"><%= link_to '熊本県', search_path(@prefectures, id: 43), id: "kumamoto" %></td>
+             <td colspan="2" class="pref"><%= link_to '大分県', search_path(@prefectures, id: 41), id: "oita" %></td>
+             <td colspan="6">&nbsp;</td>
+             <td colspan="4" class="pref"><%= link_to '和歌山県', search_path(@prefectures, id: 30), id: "wakayama" %></td>
+             <td>&nbsp;</td>
+             <td>&nbsp;</td>
+         </tr>
+         <tr>
+             <td colspan="2" rowspan="3">&nbsp;</td>
+             <td colspan="2" rowspan="2" class="pref"><%= link_to '宮崎県', search_path(@prefectures, id: 45), id: "miyazaki" %></td>
+             <td rowspan="2">&nbsp;</td>
+             <td colspan="2" class="pref"><%= link_to '愛媛県', search_path(@prefectures, id: 36), id: "ehime" %></td>
+             <td colspan="2" class="pref"><%= link_to '香川県', search_path(@prefectures, id: 35), id: "kagawa" %></td>
+             <td colspan="15" rowspan="4">&nbsp;</td>
+         </tr>
+         <tr>
+             <td colspan="2" class="pref"><%= link_to '高知県', search_path(@prefectures, id: 38), id: "kochi" %></td>
+             <td colspan="2" class="pref"><%= link_to '徳島県', search_path(@prefectures, id: 37), id: "tokushima" %></td>
+         </tr>
+         <tr>
+             <td colspan="3" class="pref"><%= link_to '鹿児島県', search_path(@prefectures, id: 46), id: "kagoshima" %></td>
+             <td colspan="5">&nbsp;</td>
+         </tr>
+         <tr>
+             <td colspan="2" class="pref"><%= link_to '沖縄県', search_path(@prefectures, id: 47), id: "okinawa" %></td>
+         </tr>
+     </table>
+   </span>
+  </div>
+  <span class="top-to-regions"><%= link_to "一覧から探す", regions_path, data: {"turbolinks" => false} %></span>
+</div>

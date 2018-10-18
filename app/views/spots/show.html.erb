@@ -1,0 +1,100 @@
+<% provide(:title, "#{@spot.name}") %>
+<div class="back-image2">
+  <div class="back-image-mask2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <span>
+            <%= link_to "全国", root_path, class: "blue blue--bgLeft" %>→ 地域:
+          </span>
+          <%= link_to "#{@spot.area.prefecture.region.name}", regions_path(@spot, id: @spot.area.prefecture.region.id), class: "blue blue--bgLeft" %>→ 都道府県名:
+          <%= link_to "#{@spot.area.prefecture.name}", areas_path(@spot, id: @spot.area.prefecture.id), class: "blue blue--bgLeft" %>→ エリア:
+          <%= link_to "#{@spot.area.name}", area_path(@spot.area), class: "blue blue--bgLeft" %>
+          <br>
+          <span>ジャンル → </span>
+          <span style="color: #FF8C00"><%= @spot.s_spot_genre.l_spot_genre.name %></span>→
+          <span style="color: #FF8C00"><%= @spot.s_spot_genre.name %></span>
+          <br>
+          <%= render 'share' %>
+          <div class="spot-show-header-box">
+            <% if user_signed_in? %>
+            <small style="opacity: 0;"><%= fa_icon("exclamation-triangle") %>行った/行きたいの利用には<%= link_to "ログイン", new_user_session_path,"data-confirm" => "ログインページに移動します", class: "red red--bgLeft", :style=>"color:red;" %>が必要です)</small>
+            <% else %>
+            <small><%= fa_icon("exclamation-triangle") %>行った/行きたいの利用には<%= link_to "ログイン", new_user_session_path, class: "red red--bgLeft", :style=>"color:red;" %>が必要です)</small>
+            <% end %>
+            <div class="spot-show-tags-box">
+              <% @spot.tag_list.each do |tag| %>
+                <span class="label label-primary tag"><%= tag %></span>
+              <% end %>
+            </div><br>
+            <div class="spot-show-spot-like-want-went-box">
+              <span id="went-want"><%= render 'want_went' %></span>
+              <%= render 'like' %>
+            </div>
+          </div>
+          <h1 class="spot-headline">
+            <%= @spot.name %>
+          </h1>
+
+        </div>
+        <!-- <div class="col-sm-4"></div> -->
+      </div>
+        <div class="row">
+          <div class="col-sm-8">
+
+            <% if @spot.spot_images.exists? %>
+
+<div class="relative">
+              <div class="wrapper">
+  <div class="cut_t"></div>
+  <div class="card"><%= attachment_image_tag @image, :image, :fill, 600, 600, :style=>"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);" %></div>
+  <div class="cut_b"></div>
+</div>
+</div>
+<div class="sp-tab-image"><%= attachment_image_tag @image, :image, :fill, 300, 300%></div>
+
+            <!-- <ul class="bxslider"> -->
+              <%# @spot.spot_images.each do |image| %>
+              <!-- <li> --><!-- <div style="width: 100%; height: 615px; margin: 0 auto; background-color: rgba( 0, 0, 0, 0.5); position: relative;"> -->
+
+              <!-- </div> -->
+              <!-- </li> -->
+              <%# end %>
+            <!-- </ul> -->
+            <% end %>
+           </div>
+      <div class="spot-show-sidebar">
+        <div class="col-sm-1" >
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+            <div class="row">
+        <div class="col-sm-12">
+          <% if @spot.spot_images.exists? %>
+          <small class="notes"><%= fa_icon("exclamation-triangle") %>掲載されている情報や写真については最新の情報とは限りません。必ずご自身で事前にご確認の上、ご利用ください。</small>
+          <% end %>
+            <input id="tab01" type="radio" name="tabinput" checked>
+            <input id="tab02" type="radio" name="tabinput">
+            <ul class="tabnav">
+              <li ><label class="tabnav01" for="tab01">概要</label></li>
+              <li><label class="tabnav02" for="tab02">レビュー</label></li>
+            </ul>
+            <div class="tabcontent">
+              <div id="tabcontent01">
+                <%= render 'show_gaiyou', spot: @spot %>
+              </div>
+              <div id="tabcontent02">
+                <%= render 'show_review',spot: @spot, spot_review: @spot_review %>
+              </div>
+            </div>
+            <!-- class="tabcontent" -->
+
+          <!-- class="spot-show-box" -->
+        </div>
+        <!-- <div class="col-sm-1"></div> -->
+      </div>
+      </div>
+    </div>
+    <br>
+  </div>

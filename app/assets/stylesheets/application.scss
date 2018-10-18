@@ -1,0 +1,605 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "font-awesome";
+
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 414px; //スマートフォン
+
+@mixin tab {
+  @media screen and (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($widthSp)) {
+    @content;
+  }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+	body {
+	  margin-bottom: 200px;
+  }
+}
+.col-sm-8 {
+  @include tab {
+    padding-right: 10%;
+  }
+  @include sp {
+    padding-right: 10%;
+  }
+}
+.col-sm-12 {
+  padding: 0;
+}
+.btn-primary {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #709dff 50%, #FFF 100%);
+    background-image: linear-gradient(45deg, #709dff 50%, #FFF 100%);
+    transition: .4s;
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-primary:active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary:active.focus,
+.btn-primary.active, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary.focus,
+.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary.focus {
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(45deg, #ff1900 0%, #fb9d00 100%);
+    background-image: linear-gradient(45deg, #ff1900 0%, #fb9d00 100%);
+    border-color: #ff8b5f;
+}
+
+.btn-primary.outline {
+    border: 3px solid #b0c9ff; //アウトラインのみのボタンの線の色
+    color: #FFF; //アウトラインのみのボタンのテキストの色
+}
+
+.btn-success {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #0005ff 0%, #3b3e3b 100%);
+    background-image: linear-gradient(45deg, #0005ff 0%, #3b3e3b 100%);
+    transition: .4s;
+}
+
+.btn-success:hover, .btn-success:focus, 
+.btn-success:active, .btn-success:active:focus, .btn-success:active:hover, .btn-success:active.focus,
+.btn-success.active, .btn-success.active:focus, .btn-success.active:hover, .btn-success.active.focus,
+.open > .dropdown-toggle.btn-success, 
+.open > .dropdown-toggle.btn-success:hover,
+.open > .dropdown-toggle.btn-success:focus, 
+.open > .dropdown-toggle.btn-success.focus,
+.btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus,
+.btn-success.disabled.focus, .btn-success[disabled].focus, fieldset[disabled] .btn-success.focus {
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(270deg, #ff1900 0%, #fb9d00 100%);
+    background-image: linear-gradient(270deg, #ff1900 0%, #fb9d00 100%);
+    border-color: #ff8b5f;
+}
+
+.btn-success.outline {
+    border: 3px solid #001bfb; //アウトラインのみのボタンの線の色
+    color: #FFF; //アウトラインのみのボタンのテキストの色
+}
+
+#twitter-widget-0 { min-width: 240px !important; }
+// ヘッダー
+// .header-text-sp {
+//   @include pc {
+//     display: none;
+//   };
+// }
+
+.header-text-pc {
+  background-color: #FF8C00;
+  span {
+    color: #FFF;
+    font-family: "sans-serif";
+    padding-left: 5%;
+  }
+}
+
+header {
+	position: relative;
+	border-bottom: thick solid #FF8C00;
+	background-image: image_url('gahag-0119247818.png');
+}
+.header-logo {
+	margin-left: 5%;
+}
+.pc-nav {
+  @include tab {
+    display: none!important;
+  }
+  @include sp {
+    display: none!important;
+  }
+}
+@media screen and (min-width:769px) {
+  .dropdown {
+    display: none;
+  }
+}
+.dropdown-menu {
+  margin-left: -100%;
+}
+.login-nav {
+	position: absolute;
+	bottom: 0%;
+	right: 5%;
+  }
+
+.blue {
+  color: #0000FF;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all .3s;
+  position: relative;
+  // margin: 15px 25px;
+    &:hover {
+      text-decoration: none;
+      color: #FFF;
+    }
+}
+.blue--bgLeft {
+  // padding: 0 .3em;
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 50%, rgba(0,0,255,1) 50%);
+  background-position: 0 0;
+  background-size: 201% auto;
+  &:hover {
+    background-position: -100% 0;
+    color: #FFF;
+    }
+}
+.red {
+  color: #0000FF;
+  text-decoration: none !important;
+  font-size: 16px;
+  transition: all .3s;
+  position: relative;
+    &:hover {
+      text-decoration: none;
+      color: #FFF;
+    }
+}
+.red--bgLeft {
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 50%, rgba(255,0,0,1) 50%);
+  background-position: 0 0;
+  background-size: 201% auto;
+  &:hover {
+    background-position: -100% 0;
+    color: #FFF;
+  }
+}
+div .nav-last-content {
+	margin-left: 16px;
+}
+.flash-box-pc {
+  display: inline-grid;
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
+}
+.flash-box-tab-sp {
+  display: inline-grid;
+  margin-bottom: 8%;
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+}
+.flash {
+  font-size: 20px;
+  @include tab {
+    font-size: 100%;
+  }
+  @include sp {
+    font-size: 100%;
+  }
+}
+
+.back-image {
+  height: 100vh;
+  width: 100%;
+  background-image: image_url('img3.jpg');
+  background-size: cover;
+  background-position: center;
+  @include tab {
+    height: auto;
+    background-image: image_url('gahag-0119247818.png');
+  }
+  @include sp {
+    height: auto;
+    background-image: image_url('gahag-0119247818.png');
+  }
+  .back-image-mask {
+    height: 100%;
+    background-color: rgba( 0, 0, 0, 0.5);
+    position: relative;
+    @include tab {
+      position: static;
+    }
+    @include sp {
+      position: static;
+    }
+  }
+  .form {
+    position: absolute;
+    text-align: center;
+    color: #FFF;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include tab {
+      position: static;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+    @include sp {
+      position: static;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+    h3 {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+    span {
+      color: #FFF;
+    }
+    .error_field {
+      color: red;
+      font-size: 16px;
+      height: 16px;
+      line-height: 10px;
+      padding: 0;
+      margin: 0 auto;
+      border: none;
+      background-color: rgba( 0, 0, 0, 0.5);
+
+    }
+    input, select {
+      color: #000;
+      width: 240px;
+      border-radius: 0px;
+    }
+    .sign_up_submit {
+      color: #FFF;
+      background: #0F0A64;
+      border-color: #0F0A64;
+      &:hover {
+        background: #FF8C00;
+      }
+    }
+  }
+  #user_remember_me {
+    width: 10px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  .new {
+    margin-top: 100px;
+  }
+}
+.auth-box {
+  position: relative;
+  display: inline-block;
+  padding: 10px 0 20px 0;
+  @include tab {
+    display: none;
+  }
+  @include sp {
+    display: none;
+  }
+  .auth {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+// サイドバー
+#sidebar {
+	margin-top: 32px;
+  position: relative;
+	float: right;
+	width: 25%;
+  @include tab {
+    display: none;
+  }
+	@include sp {
+	  display: none;
+	}
+
+}
+// フッター
+footer {
+  clear: both;
+  text-align: center;
+  background-image: image_url('gahag-0119247818.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  .anchor {
+    background-color: #FF8C00;
+    cursor: pointer;
+    &:hover {
+      transition: background-color .3s;
+      background-color: #696969;
+    }
+    a {
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    }
+  }
+  .copyright {
+  	padding: 32px 0;
+  	margin-top: 0;
+  }
+}
+
+.fadeSlider {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .fadeSlider-plat {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  }
+
+  .fadeSlider-text-box {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  }
+
+  .fadeSlider-text {
+    position: absolute;
+    z-index: 4;
+    color: #FFF;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  h1 a {
+    color: #FFF;
+    text-decoration: none;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+
+    &.fadeSlider_01 {
+      background-image: image_url('img1.jpg');
+      animation: fadeSlideImg01 12s ease-out infinite;
+      animation-delay: 3s;
+    }
+    &.fadeSlider_02 {
+      opacity: 0;
+      background-image: image_url('img2.jpg');
+      animation: fadeSlideImg02 12s ease-out infinite;
+      animation-delay: 3s;
+    }
+    &.fadeSlider_03 {
+      opacity: 0;
+      background-image: image_url('img3.jpg');
+      animation: fadeSlideImg03 12s ease-out infinite;
+      animation-delay: 3s;
+    }
+    &.fadeSlider_04 {
+      opacity: 0;
+      background-image: image_url('img4.jpg');
+      animation: fadeSlideImg04 12s ease-out infinite;
+      animation-delay: 3s;
+    }
+
+}
+
+@keyframes fadeSlideImg01 {
+    0% { opacity: 0.7; }
+    25% { opacity: 0; }
+    50% { opacity: 0; }
+    75% { opacity: 0; }
+    100% { opacity: 0.7; }
+}
+@keyframes fadeSlideImg02 {
+    0% { opacity: 0; }
+    25% { opacity: 0.7; }
+    50% { opacity: 0; }
+    75% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@keyframes fadeSlideImg03 {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@keyframes fadeSlideImg04 {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    50% { opacity: 0; }
+    75% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+}
+
+#contents h2 {
+  padding-top: 20px;
+}
+
+#modal-content {
+width: 85% ;
+margin: 0 ;
+padding: 10px 20px ;
+border: 2px solid #aaa ;
+background: #FFF ;
+background-color: rgba( 0, 0, 0, 0.5);
+position: fixed ;
+display: none ;
+z-index: 6 ;
+  input, select {
+    color: #000;
+    width: 240px;
+    border-radius: 0px;
+  }
+  .sign_up_submit {
+    color: #FFF;
+    background: #0F0A64;
+    border-color: #0F0A64;
+    &:hover {
+      background: #FF8C00;
+    }
+  }
+}
+#modal-content-innar{
+margin:0 auto;
+width:80%;
+}
+#modal-overlay {
+z-index: 1 ;
+display: none ;
+position: fixed ;
+top: 0 ;
+left: 0 ;
+width: 100% ;
+height: 120% ;
+background-color: rgba( 0,0,0, 0.75 ) ;
+}
+.button-link {
+color: #00f ;
+text-decoration: underline ;
+}
+.button-link:hover {
+cursor: pointer ;
+// color: #f00 ;
+}
+
+#modal-close{
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.hover{
+  display: inline-block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none !important;
+  &:hover{
+    color: #FFF;
+  }
+}
+.hover:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #FFF;
+  transform: scale(0, 1);
+  transition: 0.5s;
+}
+.hover:hover:before {
+  transform: scale(1);
+}
+
+.hover-orange{
+  display: inline-block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none !important;
+  &:hover{
+  color: #FF8C00;
+  }
+}
+.hover-orange:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #FF8C00;
+  transform: scale(0, 1);
+  transition: 0.5s;
+}
+.hover-orange:hover:before {
+  transform: scale(1);
+}
+@media screen and (min-width: 769px) {
+ .sp-tab-new {
+  display: none;
+ }
+}

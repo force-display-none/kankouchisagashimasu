@@ -1,0 +1,41 @@
+// Place all the styles related to the areas controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 414px; //スマートフォン
+
+@mixin tab {
+  @media screen and (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($widthSp)) {
+    @content;
+  }
+}
+#q_s_spot_genre_id_eq {
+	width: 100%;
+}
+.search_submit {
+  color: #FFF;
+  background: #0F0A64;
+  border-color: #0F0A64;
+  &:hover {
+    background: #FF8C00;
+  }
+}
+.area-name-btn {
+  width: 100%;
+  h5 {
+    @include tab {
+   	  font-size: 0.9em;
+    }
+    @include sp {
+      font-size: 0.6em;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+
+  <% if @spot.went?(current_user) %>
+    <%= render 'spot_wents/wents_destroy' %>
+  <% else %>
+    <%= render 'spot_wents/wents_create' %>
+  <% end %><!-- spot.went?(current_user) -->
+
+<% else %><!-- user_signed_in? -->
+
+  <%= link_to new_user_session_path, "data-confirm" => "この機能の利用にはログインが必要です。ログインページに移動してよろしいですか？"  do %>
+    <span class="like-button">行きたい!</span>
+    <i class="fa fa-check-square" aria-hidden="true"></i>
+    <%= @spot.spot_wants.count %>
+  <% end %>
+
+  <%= link_to new_user_session_path, "data-confirm" => "この機能の利用にはログインが必要です。ログインページに移動してよろしいですか？", :style=>"color:#1DCD00;"  do %>
+    <span class="went-button">行った!</span>
+    <i class="fa fa-music" aria-hidden="true"></i>
+    <%= @spot.spot_wents.count %>
+  <% end %>
+
+<% end %><!-- if user_signed_in? -->

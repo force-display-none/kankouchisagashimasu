@@ -1,0 +1,42 @@
+<div class="top-back-box">
+  <div class="container">
+    <div class="row pc-top">
+      <div class="col-sm-8">
+        <%= render 'japan_map' %>
+      </div>
+      <div class="col-sm-1">
+        <%= render 'layouts/sidebar' %>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="row sp-tab-top">
+      <div class="col-sm-8">
+        <h1>観光地さがします</h1>
+        <h4 class="sub-headline">都道府県を選択してください</h4>
+          <% n = 1 %>
+          <% @regions.each do |region| %>
+          <% if region.id.to_i % 2 == 0 %>
+            <% style = "success" %>
+          <% else %>
+            <% style = "primary" %>
+          <% end %>
+            <% if region.id == 1 || region.id == 10 %>
+            <%= link_to search_path(region, id: region.prefectures.first.id) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= region.name %></h4></button><% end %><br>
+            <% else %>
+            <button style="width: 100%;" type="button" class="btn btn-<%= style %>" data-toggle="collapse" data-target="#region<%= n %>"><%= region.name %></h4></button><br>
+            <% end %>
+            <div id="region<%= n %>" class="collapse">
+            <% region.prefectures.each do |prefecture| %>
+              <p class="prefectures"><%= link_to "#{prefecture.name}", search_path(prefecture, id: prefecture.id), class: "hover-orange" %></p>
+            <% end %>
+            </div>
+          <% n += 1 %>
+          <% end %>
+        </div>
+        <div class="col-sm-1">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+  </div>
+</div>

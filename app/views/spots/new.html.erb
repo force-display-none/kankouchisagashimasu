@@ -1,0 +1,7 @@
+<h1>観光地登録</h1>
+<!-- form_for部分 -->
+<a href="http://www.geocoding.jp/">先にmapを取得しましょう</a>
+<%= form_for(@spot, url: spots_path) do |f| %>
+  <%= render 'spot_form', f: f %>
+<% end %>
+

@@ -1,0 +1,5 @@
+<%= link_to spot_spot_wants_path(@spot), method: :delete, id: "wants", remote: true  do %>
+  <span class="like-button">行きたい!</span>
+  <i class="fa fa-check-square" aria-hidden="true" style="color: red;"></i>
+  <%= @spot.spot_wants.count %>
+<% end %>

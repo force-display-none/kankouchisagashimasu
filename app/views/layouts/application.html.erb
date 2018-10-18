@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kankouchisagashimasu</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= display_meta_tags(default_meta_tags) %>
+    <meta property="og:image:width" content="630" />
+    <meta property="og:image:height" content="210" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- SNSアイコン用 -->
+    <link href="/assets/style.css" rel="stylesheet" />
+    <link href="/assets/icon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900">
 
+    <!-- bootstrap用 -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- bootstrap用 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Googleマップ表示用 -->
+    <script src="//maps.google.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>"></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+
+    <!-- モーダルウィンドウ表示用 -->
+    <script src="/assets/modal.js"></script>
+    <script src="/assets/review_form.js"></script>
+    <script src="/assets/user_edit_form.js"></script>
+
+    <!-- スライドショー実装用だけど見送る -->
+    <!-- <script src="/assets/jquery.bxslider.min.js"></script> -->
+    <!-- <script src="/assets/bxSlider_option.js"></script> -->
+
+    <!-- <!– Read bxSlider CSS file –> -->
+    <!-- <link href="/assets/jquery.bxslider.css" rel="stylesheet" /> -->
+    <%= favicon_link_tag('favicon.ico') %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="anchor">
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <footer>
+      <div class="anchor"><span><%= link_to "ページ上部に戻る", "#anchor" %></span></div>
+      <div class="shareList8">
+        <div class="shareList8__item-box">
+          <div class="shareList8__item"><a class="shareList8__link icon-facebook" href="https://www.facebook.com/share.php?url=<%= request.url %>" target="_blank" title="Facebook"></a></div>
+          <div class="shareList8__item"><a class="shareList8__link icon-twitter" href="https://twitter.com/share?url=<%= request.url %>&text=" target="_blank" title="Twitter"></a></div>
+       </div>
+      </div>
+      <p class="copyright"><small>Copyright © 観光地さがします</small></p>
+    </footer>
+    <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </body>
 </html>

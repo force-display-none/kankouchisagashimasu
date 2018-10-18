@@ -1,0 +1,131 @@
+// Place all the styles related to the prefectures controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// $widthPC: 1080px; //PC
+$widthTab: 768px; //縦置きタブレット
+$widthSp: 414px; //スマートフォン
+
+@mixin tab {
+  @media screen and (max-width: ($widthTab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($widthSp)) {
+    @content;
+  }
+}
+.top-back-box {
+    width: 100%;
+    // height: 120vh;
+    background-image: image_url('img3.jpg');
+    background-size: cover;
+    background-position: center;
+    @include sp {
+      background-image: image_url('gahag-0119247818.png');
+  }
+    // @include tab {
+    //   height: 105vh;
+    // }
+    // @include sp {
+    //   height: 80vh;
+    // }
+}
+.pc-top {
+  @include sp {
+    display: none;
+  }
+}
+.sp-tab-top {
+  .col-sm-8 {
+    h1 {
+      @include sp {
+        font-size: 32px;
+        color: #FF8C00;
+      }
+    }
+    .sub-headline {
+      padding-left: 5%;
+      color: #FF8C00;
+    }
+  }
+  @media screen and (min-width: 415px) {
+  display: none;
+  }
+}
+.top-main-box {
+  position: relative;
+  .top-to-regions {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    a {
+      text-decoration: none;
+      // min-height: 10px;
+      font-size: 0.7em;
+      padding: 5px;
+      background-color: #224163;
+      color: #FFF;
+      border-radius: 5px;
+      &:hover {
+        background-color: #FF8C00;
+      }
+    }
+  }
+}
+.map-box {
+  padding: 0.5em 1em;
+  margin: 5em 0;
+  font-weight: bold;
+  background: #EEE;
+  border: solid 3px #FF8C00;/*線*/
+  border-radius: 10px;/*角の丸み*/
+  background-color: rgba( 0, 0, 0, 0.3);
+  p {
+      margin-bottom: 0;
+      color: #FFF;
+  }
+  h1 {
+    margin-top: 0;
+    padding-left: 16px;
+    color: #FFF;
+    span {
+      border-bottom: double 5px #FF7F04;
+      background: -webkit-linear-gradient(top, #FFB76B 0%, #FFA73D 50%, #FF7C00 51%, #FF7F04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      strong {
+        color: #FFF;
+      }
+    }
+  }
+}
+// トップの日本地図
+#japan-map {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    margin: 0 auto;
+}
+.pref {
+    background: #224163;
+    min-height: 10px;
+    font-size: 0.7em;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+    &:hover {
+      background-color: #FF8C00;
+    }
+}
+.pref a {
+    display: block;
+    min-height: 10px;
+    text-decoration: none;
+    color: white;
+}
+#hokkaido {
+    margin: 20px 0;
+}

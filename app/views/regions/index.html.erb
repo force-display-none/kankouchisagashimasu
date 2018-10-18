@@ -1,0 +1,35 @@
+<% provide(:title, "地域の一覧") %>
+<div class="back-image2">
+  <div class="back-image-mask2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <h1 class="headline">地域の一覧から選ぶ</h1>
+          <% n = 1 %>
+          <% @regions.each do |region| %>
+          <% if region.id.to_i % 2 == 0 %>
+            <% style = "success" %>
+          <% else %>
+            <% style = "primary" %>
+          <% end %>
+            <% if region.id == 1 || region.id == 10 %>
+              <%= link_to areas_path(region, id: region.prefectures.first.id) do %><button style="width: 100%;" type="button" class="btn btn-<%= style %>"><h4><%= region.name %></h4></button><% end %><br>
+            <% else %>
+              <button style="width: 100%;" type="button" class="btn btn-<%= style %>" data-toggle="collapse" data-target="#region<%= n %>"><h4><%= region.name %></h4></button><br>
+            <% end %>
+            <div id="region<%= n %>" class="collapse">
+            <% region.prefectures.each do |prefecture| %>
+      	      <p class="prefectures"><%= link_to "#{prefecture.name}", areas_path(prefecture, id: prefecture.id), class: "hover-orange" %></p>
+      	    <% end %>
+            </div>
+          <% n += 1 %>
+          <% end %>
+        </div>
+        <div class="col-sm-1">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div><br>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<% provide(:title, "マイページ") %>
+<div class="back-image2">
+  <div class="back-image-mask2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to "トップへ", root_path, class: "blue blue--bgLeft" %>
+          <span><%= link_to "\uf071 退会する", user_path(current_user), method: :delete, class: "tab-sp-user-delete-btn fa", "data-confirm" => "本当に退会しますか？" %></span>
+          <h2 class="tabcontent-headline"><%= current_user.nickname %>さんのページ</h2>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      <div class="row">
+       <!-- pc用 -->
+        <div class="col-sm-3 pc-nav">
+          <div style="text-align: center;">
+            <h3 class="user-content-headline">登録情報変更</h3>
+          </div>
+          <%= form_for(@user) do |f| %>
+            <%= render 'edit_user_form', f: f %>
+          <% end %>
+        </div>
+
+　　　　　<!-- sp tab用 -->
+        <div class="col-sm-3 sp-tab-new">
+          <a id="user-edit-form-open" class="blue blue--bgLeft form-open">
+            登録情報変更フォームはこちら
+          </a>
+          <div id="user-edit-form">
+            <div id="user-edit-form-innar"><!-- モーダルウィンドウのコンテンツ開始 -->
+              <p class="red bold">
+                <div class="form">
+                  <strong>変更フォーム</strong>
+                </div><br>
+                <%= form_for(@user) do |f| %>
+                  <%= render 'edit_user_form', f: f %>
+                <% end %>
+              </p>
+              <p>
+                <a id="user-edit-form-close" class="button-link">閉じる</a>
+              </p>
+            </div><!-- user-edit-form--innarモーダルウィンドウのコンテンツ終了 -->
+          </div><!-- user-edit-form- -->
+        </div>
+
+        <div class="col-sm-9">
+          <div style="text-align: center;">
+            <h3 class="user-content-headline">各種一覧<span class="pc-nav">を見る</span></h3>
+          </div>
+          <input id="usertab01" type="radio" name="usertabinput" checked>
+          <input id="usertab02" type="radio" name="usertabinput">
+          <input id="usertab03" type="radio" name="usertabinput">
+          <ul class="usertabnav">
+            <li><label class="usertabnav01" for="usertab01">観光地行きたい/行った一覧</label></li>
+            <li><label class="usertabnav02" for="usertab02">投稿レビュー一覧</label></li>
+            <li><label class="usertabnav03" for="usertab03">参考になったレビュー一覧</label></li>
+          </ul>
+          <div class="usertabcontent">
+            <div id="usertabcontent01">
+              <%= render 'my_wants_and_wents', spot_wants: @spot_wants, spot_wents: @spot_wents %>
+            </div>
+            <div id="usertabcontent02">
+              <%= render 'my_reviews', spot_reviews: @spot_reviews %>
+            </div>
+            <div id="usertabcontent03">
+              <%= render 'my_keep_helpfuls', spot_review_helpfuls: @spot_review_helpfuls %>
+            </div>
+          </div><!-- usertabcontent -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

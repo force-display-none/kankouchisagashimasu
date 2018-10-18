@@ -1,0 +1,33 @@
+<span class="container">
+  <span class="row">
+    <span class="col-sm-6" style="border-right: 1px dotted #ccc;">
+      <% if spot_wants.exists? %>
+      <span style="display: block; text-align: center;"><h5 class="user-want-went-hedline">行きたい一覧(全<%= spot_wants.count %>件)</h5></span>
+        <% spot_wants.each do |want| %>
+          観光地名：<%= link_to "#{want.spot.name}(#{want.spot.area.prefecture.name})", spot_path(want.spot), class: "blue blue--bgLeft", data: {"turbolinks" => false} %><br>
+          <%= link_to spot_spot_wants_path(spot_id: want.spot.id, user_id: current_user.id), method: :delete, id: "wants", "data-confirm" => "本当に外しますか？" do %>
+            <span class="user-want-button">行きたいを外す</span>
+          <% end %>
+          <%= link_to spot_spot_wents_path(spot_id: want.spot.id, user_id: current_user.id), method: :post, id: "wents", :style=>"color:#1DCD00;"  do %>
+            <span class="user-went-button">行ったを登録</span><br>
+          <% end %>
+        <% end %><!-- spot_wants.each -->
+      <% else %>
+        <span style="display: block; text-align: center;"><h5 class="user-want-went-hedline">行きたい観光地はありません</h5></span>
+      <% end %><!-- spot_wants.exists? -->
+    </span>
+    <span class="col-sm-6">
+      <% if spot_wents.exists? %>
+      <span style="display: block; text-align: center;"><h5 class="user-want-went-hedline">行った一覧(全<%= spot_wents.count %>件)</h5></span>
+        <% spot_wents.each do |went| %>
+          観光地名：<%= link_to "#{went.spot.name}(#{went.spot.area.prefecture.name})", spot_path(went.spot), class: "blue blue--bgLeft", data: {"turbolinks" => false} %><br>
+          <%= link_to spot_spot_wents_path(spot_id: went.spot.id, user_id: current_user.id), method: :delete, id: "wents", "data-confirm" => "本当に外しますか？"  do %>
+            <span class="user-want-button">行ったを外す</span><br>
+          <% end %>
+        <% end %><!-- spot_wents.each -->
+      <% else %>
+        <span style="display: block; text-align: center;"><h5 class="user-want-went-hedline">行った観光地はありません</h5></span>
+      <% end %><!-- spot_wents.exists? -->
+    </span>
+  </span>
+</span>
