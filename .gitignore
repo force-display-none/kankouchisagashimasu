@@ -35,3 +35,6 @@
 
 # Ignore API key .
 /.env
+
+# Ignore pots.where('area_id >= ?', rand(area.spots.first.area_id..area.spots.last.area_id)).first .
+/pots.where('area_id >= ?', rand(area.spots.first.area_id..area.spots.last.area_id)).first
