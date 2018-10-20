@@ -128,5 +128,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # gem 'capistrano-rails'         #デプロイツール
   # gem 'capistrano-rbenv'         #デプロイツール
   # gem 'capistrano-passenger'     #デプロイツール
+# デプロイ用(カリキュラムより)
   # gem 'json'
   # gem 'mysql2'
